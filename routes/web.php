@@ -13,6 +13,6 @@ Route::get('/marc', function() {
 });
 
 Route::get('/anton', function() {
-    $cow = Farm::create(\Cowsayphp\Farm\Cow::class);
-    echo '<pre>'.$cow->say("Anton is ready!").'</pre>';
+    $Cow = Farm::create(\Cowsayphp\Farm\Cow::class);
+    echo '<pre>'.$Cow->say("Anton is ready!").'</pre>';
 });
