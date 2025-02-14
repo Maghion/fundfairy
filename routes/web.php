@@ -13,6 +13,6 @@ Route::get('/marc', function() {
 });
 
 Route::get('/michelle', function() {
-    $dragon = Farm::create(\Cowsayphp\Farm\Whale::class);
+    $dragon = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$dragon->say("Michelle is ready!").'</pre>';
 });
