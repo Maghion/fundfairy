@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('/lillian', function () {
-    $dragon = Farm::create(\Cowsayphp\Farm\dragon::class);
+    $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
 });
 
