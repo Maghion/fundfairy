@@ -12,7 +12,6 @@ Route::get('/marc', function() {
     echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';
 });
 
-
 Route::get('/michelle', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$dragon->say("Michelle is ready!").'</pre>';
