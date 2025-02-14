@@ -12,12 +12,12 @@ Route::get('/marc', function() {
     echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/lillian', function () {
     $dragon = Farm::create(\Cowsayphp\Farm\dragon::class);
     echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
 });
 
+Route::get('/elise', function() {
+    $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
+    echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
+});
