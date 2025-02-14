@@ -16,3 +16,8 @@ Route::get('/george/', function($name) {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
+
+Route::get('/elise', function() {
+    $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
+    echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
+});
