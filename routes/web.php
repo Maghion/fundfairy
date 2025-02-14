@@ -17,6 +17,16 @@ Route::get('/george', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
+  
+Route::get('/keren', function() {
+    $dragon = Farm::create(\Cowsayphp\Farm\Whale::class);
+    echo '<pre>'.$dragon->say("Keren is ready!").'</pre>';
+});
+
+Route::get('/lillian', function () {
+    $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
+    echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
+});
 
 //update
 Route::get('/mireille', function() {
