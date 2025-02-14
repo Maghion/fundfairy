@@ -13,7 +13,7 @@ Route::get('/marc', function() {
 });
 
 
-Route::get('/george', function($name) {
+Route::get('/george', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
