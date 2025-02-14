@@ -12,7 +12,7 @@ Route::get('/marc', function() {
     echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';
 });
 
-Route::get('/george/', function($name) {
+Route::get('/george', function($name) {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
