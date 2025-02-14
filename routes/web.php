@@ -11,3 +11,9 @@ Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';
 });
+
+
+Route::get('/Mireille', function() {
+    $cow = Farm::create(\Cowsayphp\Farm\Dragon::class);
+    echo '<pre>'.$cow->say("Mimi is ready!").'</pre>';
+});
