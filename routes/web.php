@@ -13,7 +13,7 @@ Route::get('/marc', function() {
 });
 
 
-Route::get('/Mireille', function() {
+Route::get('/mireille', function() {
     $cow = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$cow->say("Mimi is ready!").'</pre>';
 });
