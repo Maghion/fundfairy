@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class UserProfileController extends Controller
 {
@@ -10,7 +11,7 @@ class UserProfileController extends Controller
      * @desc Show all users
      * @route GET /users
      */
-    public function index()
+    public function index(): View
     {
         $title = 'User Profiles';
         $profiles = [
@@ -18,7 +19,7 @@ class UserProfileController extends Controller
             'another_user@yahoo.com',
             'third-user@hotmail.com',
             ];
-        return view('users/index', compact('title', 'profiles'));
+        return view('users.index', compact('title', 'profiles'));
 
     }
 
@@ -26,7 +27,7 @@ class UserProfileController extends Controller
      * @desc Show profile creation form
      * @route GET /users/create
      */
-    public function create()
+    public function create(): View
     {
         return  view('users.create');
     }
@@ -52,37 +53,37 @@ class UserProfileController extends Controller
 
     /**
      * @desc Display a specific user
-     * @route GET /users/{email}
+     * @route GET /users/{id}
      */
-    public function show(string $email)
+    public function show(string $id): String
     {
-        return  view('users.show', compact('email'));
+        return  "Viewing profile for $id";
     }
 
     /**
      * @desc Display edit form
-     * @route GET /users/edit
+     * @route GET /users/{users}/edit
      */
-    public function edit(string $email)
+    public function edit(string $id): String
     {
-        return   "Edit profile for $email";
+        return   "Edit profile for $id";
     }
 
     /**
      * @desc Update a specific user
-     * @route GET /users/{email}/edit
+     * @route PUT /users/{id}
      */
-    public function update(Request $request, string $email)
+    public function update(Request $request, string $id)
     {
-        return    "Update profile for $email";
+        return    "Update profile for $id";
     }
 
     /**
      * @desc yeet user off our platform
-     * @route DELETE /users/{email}
+     * @route DELETE /users/{id}
      */
-    public function destroy(string $email)
+    public function destroy(string $id)
     {
-        return    "You are the weakest link, Goodbye! $email";
+        return    "You are the weakest link, Goodbye! $id";
     }
 }

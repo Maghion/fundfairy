@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
@@ -9,7 +8,7 @@ use Cowsayphp\Farm;
 Route::get('/', [HomeController::class, 'index']);
 
 //USERS ROUTES
-Route::get('/users', [UserProfileController::class, 'index']);
+Route::resource('users', UserProfileController::class);
 Route::get('/users/create', [UserProfileController::class, 'create']);
 Route::post('/users', [UserProfileController::class, 'store']);
 

@@ -1,6 +1,6 @@
 <x-fundfairylayout>
     <x-slot name="title"> Create Profile </x-slot>
-    <h1>Create Profile</h1>
+    <h1>{{$title}}</h1>
     <form action="/users" method="POST">
         @csrf
         <input type="text" name="email" placeholder="Email" />
