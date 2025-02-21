@@ -59,18 +59,20 @@ class DonationRequestController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @desc Update the donation request in storage.
+     * @route PUT /donation-request/{id}
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): string
     {
-        //
+        return "You have updated donation request: $id";
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @desc Remove the donation request from storage.
+     * @route DELETE /donation-request/{id}
      */
-    public function destroy(string $id)
+    public function destroy(string $id): string
     {
-        //
+        return "You have deleted donation request: $id";
     }
 }
