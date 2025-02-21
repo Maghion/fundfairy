@@ -2,10 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('donation', DonationController::class);
+Route::resource('comment', CommentController::class);
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
@@ -26,7 +31,7 @@ Route::get('/george', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
-  
+
 Route::get('/keren', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Whale::class);
     echo '<pre>'.$dragon->say("Keren is ready!").'</pre>';
