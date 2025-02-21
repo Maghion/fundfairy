@@ -5,24 +5,25 @@
         </h1>
         <nav class="hidden md:flex items-center space-x-4">
             <x-fundfairy-nav-link :active="request()->is('/')" url="/">Home</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('jobs')" url="/jobs">About</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('jobs/saved')" url="/businesses">Businesses</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('login')" url="/testamonials">Testamonials</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('register')" url="/login">User Login</x-fundfairy-nav-link>
-            <x-button-link bgClass="bg-red-500" textClass="text-white" url="/donation/create" icon="edit">Donation Request</x-button-link>
+            <x-fundfairy-nav-link :active="request()->is('about')" url="/about">About</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('register')" url="/register">Register</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fundfairy-nav-link>
+            <a class="bg-red-500 bgtext-white" href="/donation/create">Donation Request</a>
         </nav>
     </div>
     <!-- Mobile Menu -->
-    <nav
-        id="mobile-menu"
-        class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">
-        <a href="{{url('/about')}}" class="block px-4 py-2 hover:bg-blue-700">About</a>
-        <a href="{{url('/businesses')}}" class="block px-4 py-2 hover:bg-blue-700">Businesses</a>
-        <a href="{{url('/testamonials')}}" class="block px-4 py-2 hover:bg-blue-700">Testamonials</a>
-        <a href="{{url('/login')}}" class="block px-4 py-2 hover:bg-blue-700">Login</a>
-        <a href="{{url('/donation/create')}}" class="block px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black">
-            <i class="fa fa-edit"></i> Donation Request</a>
-    </nav>
+{{--    <nav--}}
+{{--        id="mobile-menu"--}}
+{{--        class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">--}}
+{{--        <a href="{{url('/about')}}" class="block px-4 py-2 hover:bg-blue-700">About</a>--}}
+{{--        <a href="{{url('/businesses')}}" class="block px-4 py-2 hover:bg-blue-700">Businesses</a>--}}
+{{--        <a href="{{url('/testamonials')}}" class="block px-4 py-2 hover:bg-blue-700">Testamonials</a>--}}
+{{--        <a href="{{url('/login')}}" class="block px-4 py-2 hover:bg-blue-700">Login</a>--}}
+{{--        <a href="{{url('/donation/create')}}" class="block px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-black">--}}
+{{--            <i class="fa fa-edit"></i> Donation Request</a>--}}
+{{--    </nav>--}}
 </header>
 
 
