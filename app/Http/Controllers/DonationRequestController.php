@@ -19,19 +19,25 @@ class DonationRequestController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @desc Show the form for creating a new donation request.
+     * @route GET /donation-request/create
      */
-    public function create()
+    public function create(): View
     {
-        //
+        $title = 'New Donation Request';
+        return view('donation-request.create', compact('title'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @desc Store a newly created donation requests in storage.
+     * @route POST /donation-request
      */
     public function store(Request $request)
     {
-        //
+        $title = $request->input('title');
+        $description = $request->input('description');
+
+        return "Title: $title, Description: $description";
     }
 
     /**
