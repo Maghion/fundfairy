@@ -4,13 +4,13 @@
             <a href="{{url('/')}}">Fund Fairy</a>
         </h1>
         <nav class="hidden md:flex items-center space-x-4">
-            <x-fundfairy-nav-link :active="request()->is('/')" url="/">Home</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('about')" url="/about">About</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('register')" url="/register">Register</x-fundfairy-nav-link>
-            <x-fundfairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fundfairy-nav-link>
-            <a class="bg-red-500 bgtext-white" href="/donation/create">Donation Request</a>
+            <x-fundfairy-nav-link :active="request()->is('/')" url="/" class="block px-4 py-2 hover:bg-blue-700">Home</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('about')" url="/about" class="block px-4 py-2 hover:bg-blue-700">About</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('businesses')" url="/businesses" class="block px-4 py-2 hover:bg-blue-700">Businesses</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved" class="block px-4 py-2 hover:bg-blue-700">Bookmarks</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('register')" url="/register" class="block px-4 py-2 hover:bg-blue-700">Register</x-fundfairy-nav-link>
+            <x-fundfairy-nav-link :active="request()->is('login')" url="/login" class="block px-4 py-2 hover:bg-blue-700">User Login</x-fundfairy-nav-link>
+            <a class="bg-red-500 bg-text-white" href="/donation/create">Donation Request</a>
         </nav>
     </div>
     <!-- Mobile Menu -->
