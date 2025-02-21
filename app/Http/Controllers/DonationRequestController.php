@@ -41,19 +41,21 @@ class DonationRequestController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @desc Display a single donation request
+     * @route GET /donation-request/{id}
      */
-    public function show(string $id)
+    public function show(string $id): string
     {
-        //
+        return "Showing donation request: $id";
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @desc Show the form for editing a single donation request
+     * @route GET /donation-request/{id}/edit
      */
-    public function edit(string $id)
+    public function edit(string $id): string
     {
-        //
+        return "Edit donation request: $id";
     }
 
     /**
