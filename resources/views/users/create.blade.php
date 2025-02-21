@@ -1,4 +1,4 @@
-<x-fundfairylayout>
+<x-fund-fairy-layout>
     <x-slot name="title"> Create Profile </x-slot>
     <h1>{{$title}}</h1>
     <form action="/users" method="POST">
@@ -12,4 +12,4 @@
         <input type="text" name="phone_number" placeholder="867-5309" />
         <button type="submit">Submit</button>
     </form>
-</x-fundfairylayout>
+</x-fund-fairy-layout>
