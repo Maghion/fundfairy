@@ -1,11 +1,17 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserProfileController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+//USERS ROUTES
+Route::get('/users', [UserProfileController::class, 'index']);
+Route::get('/users/create', [UserProfileController::class, 'create']);
+Route::post('/users', [UserProfileController::class, 'store']);
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
@@ -26,7 +32,7 @@ Route::get('/george', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
 });
-  
+
 Route::get('/keren', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Whale::class);
     echo '<pre>'.$dragon->say("Keren is ready!").'</pre>';
@@ -47,3 +53,4 @@ Route::get('/elise', function() {
     $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
 });
+
