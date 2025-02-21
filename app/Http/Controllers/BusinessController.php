@@ -77,10 +77,12 @@ class BusinessController extends Controller
         return "You have deleted business: $id";
     }
 
-    // @desc   Save a business to favorites
-    // @route  POST /businesses/{id}/save
-    public function save(business $business): string
-    {
-        return 'Bookmark business';
-    }
+    /**
+     * @desc   Save a job to favorites
+     * @route  POST /businesses/{id}/save
+     */
+//    public function save(Business $business): string
+//    {
+//        return 'Save business';
+//    }
 }

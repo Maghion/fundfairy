@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('businesses.save');
+Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 
 Route::resource('businesses', BusinessController::class);
 
