@@ -8,4 +8,3 @@
         @endforelse
     </ul>
 </x-fund-fairy-layout>
-//

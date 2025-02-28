@@ -8,4 +8,3 @@
         <button type="submit">Submit</button>
     </form>
 </x-fund-fairy-layout>
-//

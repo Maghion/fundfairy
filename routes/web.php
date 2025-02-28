@@ -1,5 +1,4 @@
 <?php
-//
 use App\Http\Controllers\BusinessController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
@@ -8,7 +7,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
+Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('businesses.save');
 
 Route::resource('businesses', BusinessController::class);
 
