@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DonationRequestController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 use App\Http\Controllers\DonationController;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
+Route::resource('donation-request', DonationRequestController::class);
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
