@@ -1,16 +1,21 @@
 <?php
 
 use App\Http\Controllers\BusinessController;
-use App\Http\Controllers\DonationRequestController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\BusinessReviewController;
+use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+
+//USERS ROUTES
+Route::resource('users', UserProfileController::class);
+Route::get('/users/create', [UserProfileController::class, 'create']);
+Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class);
 
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
@@ -19,6 +24,7 @@ Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 Route::resource('testimonial', TestimonialController::class);
+
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
