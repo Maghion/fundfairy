@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
+use App\Http\Controllers\TestimonialController;
 
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
@@ -22,6 +23,7 @@ Route::resource('business-review',BusinessReviewController::class);
 Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
+Route::resource('testimonial', TestimonialController::class);
 
 
 Route::get('/marc', function() {
