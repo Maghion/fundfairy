@@ -87,5 +87,4 @@ class CommentController extends Controller
     public function show($id): string {
         return "<h1>Show Comment $id</h1>";
     }
-
 }

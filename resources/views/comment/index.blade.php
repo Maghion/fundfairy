@@ -8,7 +8,7 @@
                 <li>{{ $comment }}</li>
             @endif
         @empty
-            <li>No Donations Found</li>
+            <li>No comment found</li>
         @endforelse
     </ul>
 </x-fund-fairy-layout>
