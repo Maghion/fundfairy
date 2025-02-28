@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogPostsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\HomeController;
@@ -24,11 +25,8 @@ Route::resource('businesses', BusinessController::class);
 Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
+Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class);
-
-
-Route::resource('comment', CommentController::class);
-
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
@@ -60,7 +58,6 @@ Route::get('/lillian', function () {
     echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
 });
 
-//update
 Route::get('/mireille', function() {
     $cow = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$cow->say("Mimi is ready!").'</pre>';
