@@ -1,13 +1,22 @@
 <?php
 
 use App\Http\Controllers\BlogPostsController;
+use App\Http\Controllers\BusinessReviewController;
+use App\Http\Controllers\DonationRequestController;
+
+
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::resource('business-review',BusinessReviewController::class);
+Route::resource('donation', DonationController::class);
+Route::resource('comment', CommentController::class);
+Route::resource('donation-request', DonationRequestController::class);
 Route::resource('blog', BlogPostsController::class);
 
 Route::get('/marc', function() {
@@ -40,7 +49,6 @@ Route::get('/lillian', function () {
     echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
 });
 
-//update
 Route::get('/mireille', function() {
     $cow = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$cow->say("Mimi is ready!").'</pre>';
@@ -50,3 +58,8 @@ Route::get('/elise', function() {
     $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
 });
+
+
+
+
+
