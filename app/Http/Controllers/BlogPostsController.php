@@ -13,7 +13,7 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = ['Blog 1', 'Blog 2', 'Blog 3'];
+        $blogPosts = ['Blog1', 'Blog2', 'Blog3'];
         return view('blog-posts.index', compact('title', 'blogPosts'));
     }
 
