@@ -1,5 +1,5 @@
-<x-fundfairylayout>
+<x-fund-fairy-layout>
     <h1>Welcome to Fund Fairy</h1>
     <p>Fund your dream today!</p>
-</x-fundfairylayout>
+</x-fund-fairy-layout>
 

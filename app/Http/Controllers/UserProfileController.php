@@ -57,7 +57,7 @@ class UserProfileController extends Controller
      */
     public function show(string $id): String
     {
-        return  "Viewing profile for $id";
+        return  "Viewing prfile for $id";
     }
 
     /**
