@@ -3,11 +3,15 @@
 use App\Http\Controllers\DonationRequestController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('donation', DonationController::class);
+Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 
 Route::get('/marc', function() {
