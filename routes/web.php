@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserProfileController;
@@ -24,6 +25,9 @@ Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 Route::resource('testimonial', TestimonialController::class);
+
+
+Route::resource('comment', CommentController::class);
 
 
 Route::get('/marc', function() {
@@ -66,4 +70,3 @@ Route::get('/elise', function() {
     $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
 });
-
