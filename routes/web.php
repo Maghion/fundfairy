@@ -1,9 +1,15 @@
 <?php
 
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\BusinessReviewController;
+use App\Http\Controllers\DonationRequestController;
+
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\CommentController;
 
 Route::get('/', [HomeController::class, 'index']);
 
@@ -11,6 +17,12 @@ Route::get('/', [HomeController::class, 'index']);
 Route::resource('users', UserProfileController::class);
 Route::get('/users/create', [UserProfileController::class, 'create']);
 Route::post('/users', [UserProfileController::class, 'store']);
+Route::resource('business-review',BusinessReviewController::class);
+
+Route::resource('donation', DonationController::class);
+Route::resource('comment', CommentController::class);
+Route::resource('donation-request', DonationRequestController::class);
+
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
@@ -52,4 +64,3 @@ Route::get('/elise', function() {
     $penguin = Farm::create(\Cowsayphp\Farm\Tux::class);
     echo '<pre>'.$penguin->say("Elise is ready! (And I'm a penguin now.)").'</pre>';
 });
-
