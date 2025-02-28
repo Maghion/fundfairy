@@ -20,7 +20,7 @@ class BusinessController extends Controller
     }
 
     /**
-     * @desc Show the form for creating a new business
+     * @desc Show the form for creating a new business.
      * @route GET /businesses/create
      */
     public function create(): View
@@ -69,7 +69,7 @@ class BusinessController extends Controller
     }
 
     /**
-     * Remove the business from storage.
+     * @desc Remove the business from storage.
      * @route DELETE /businesses/{id}
      */
     public function destroy(string $id): string
@@ -78,7 +78,7 @@ class BusinessController extends Controller
     }
 
     /**
-     * @desc   Save a job to favorites
+     * @desc   Save a business to favorites.
      * @route  POST /businesses/{id}/save
      */
 //    public function save(Business $business): string
