@@ -10,13 +10,12 @@
             <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('register')" url="/register">Register</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fund-fairy-nav-link>
-            <a class="bg-red-500 bgtext-white" href="/donation/create">Donation Request</a>
+            <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
         </nav>
         <button id="hamburger" class="text-white md:hidden flex items-center">
             <i class="fa fa-bars text-2xl"></i>
         </button>
     </div>
-
 {{--    <!-- Mobile Menu -->--}}
     <div
         id="mobile-menu"
