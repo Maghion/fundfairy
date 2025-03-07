@@ -27,7 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('blog_posts');
 
         Schema::table('blog_posts', function (Blueprint $table) {
             // Drop foreign key constraint and user_id column
@@ -36,5 +35,6 @@ return new class extends Migration
 
             // ...
         });
+        Schema::dropIfExists('blog_posts');
     }
 };
