@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description');
-            $table->enum('status', ['Active', 'Pending', 'Complete'])->default('Active');
+            $table->enum('status', ['Active', 'Pending', 'Complete'])->default('Pending');
             $table->integer('funding_goal');
             $table->boolean('featured')->default(false);
             $table->timestamps();
