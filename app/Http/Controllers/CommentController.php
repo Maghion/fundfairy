@@ -29,9 +29,13 @@ class CommentController extends Controller
         return "Title: $title, Description: $description";
     }
 
-    public function show(string $id): string
+//    public function show(string $id): string
+//    {
+//        return "Showing comment: $id";
+//    }
+    public function show(Comment $comment): View
     {
-        return "Showing comment: $id";
+        return view('comments.show', compact('comment'));
     }
 
     /**
