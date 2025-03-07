@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->index();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('content');
             $table->enum('status', ['published', 'draft'])->default('published');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamp('created_at');
         });
 
         Schema::table('blog_posts', function (Blueprint $table) {
