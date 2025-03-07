@@ -20,15 +20,6 @@ return new class extends Migration
             $table->enum('status', ['published', 'draft'])->default('published');
             $table->timestamp();
         });
-
-        Schema::table('blog_posts', function (Blueprint $table) {
-            // Add this line
-            $table->unsignedBigInteger('user_id')->after('id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-        });
-
-
-
     }
 
     /**
