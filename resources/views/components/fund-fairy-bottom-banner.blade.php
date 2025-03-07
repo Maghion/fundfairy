@@ -21,7 +21,7 @@
             </p>
         </div>
         <div class="mt-6">
-            <x-workopia-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="{{ $btnColor }}">{{ $btnText }}</x-workopia-button-link>
+            <x-fund-fairy-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="{{ $btnColor }}">{{ $btnText }}</x-fund-fairy-button-link>
         </div>
     </div>
 </section>
