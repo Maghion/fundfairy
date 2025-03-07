@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogPostsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BusinessController;
+use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\BusinessReviewController;
