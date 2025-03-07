@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('donation_request_id');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->text('comment');
-            $table->text('parent_comment_id');
+            $table->unsignedBigInteger('parent_comment_id');
             $table->timestamps();
             //foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
