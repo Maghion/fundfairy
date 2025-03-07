@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class DonationRequest extends Model
 {
     use HasFactory;
-    protected $table = 'donation_request';
+    protected $table = 'donation_requests';
     protected $fillable = [
         'title',
         'description',
