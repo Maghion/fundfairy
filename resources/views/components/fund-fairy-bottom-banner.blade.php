@@ -1,7 +1,7 @@
 @props([
     'heading' => 'Turn Dreams into Reality!',
     'subheading' => 'Request funding to launch your business or help others succeed by investing in their ideas',
-    'btnText' => 'Donate Now',
+    'btnText' => 'Donate Now!',
     'btnLink' => '/donation-request/create',
     'btnIcon' => 'magic',
     'btnColor' => 'purple',
