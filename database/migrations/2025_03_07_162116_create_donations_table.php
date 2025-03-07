@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('request_id')->constrained()->onDelete('cascade');
-            $table->string('amount');
-            $table->string('message');
-            $table->string('anon');
-            $table->string('type');
+            $table->decimal('amount', 10, 2);
+            $table->text('message')->nullable();
+            $table->boolean('anon')->default(false);
+            $table->enum('type', ['Singular', 'Weekly', 'Monthly'])->default('Singular');
             $table->timestamps();
         });
     }
