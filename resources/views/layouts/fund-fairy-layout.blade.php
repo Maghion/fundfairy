@@ -13,8 +13,8 @@
 </head>
 <body class="bg-gray-100">
 <x-fund-fairy-header />
-
 <main class="container mx-auto p-4 mt-4">{{ $slot }}</main>
+<x-fund-fairy-bottom-banner />
 <x-fund-fairy-footer/>
 </body>
 </html>
