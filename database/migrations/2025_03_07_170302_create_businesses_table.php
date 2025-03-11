@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('featured')->default(false);
             $table->timestamps();
             $table->string('business_description')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
