@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->enum('status', ['published', 'draft'])->default('published');
-            $table->timestamp('created_at')->nullable();
+            $table->timestamps();
         });
     }
 
