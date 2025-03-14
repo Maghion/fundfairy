@@ -8,7 +8,7 @@
         @error('title')
         <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
         @enderror
-        <input type="text" name="content" placeholder="Content" value="{{ old('content') }}">
+        <input type="text" name="content" placeholder="content" value="{{ old('content') }}">
         <!-- Error Message for Description -->
         @error('content')
         <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>

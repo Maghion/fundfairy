@@ -36,8 +36,8 @@ class BlogPostsController extends Controller
     {
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         // Create a new jbo listing with the validated data
