@@ -12,7 +12,7 @@
         class="bg-purple-700 text-white py-6 text-center">
         <div class="flex items-center justify-center space-x-4">
             <!-- Image with rounded shape at the top -->
-            <img src="{{ $imageSrc }}" alt="Banner Image" class="w-32 h-32 rounded-full mr-4">
+            <img src="{{ asset($imageSrc) }}" alt="Banner Image" class="w-32 h-32 rounded-full mr-4">
         </div>
         <div>
             <h2 class="text-xl font-semibold">{{ $heading }}</h2>
