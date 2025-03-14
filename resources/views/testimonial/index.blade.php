@@ -6,6 +6,7 @@
             <a href="{{ route('testimonial.show', $testimonial->id) }}">
                 {{ $testimonial->title }}
             </a>
+            <p>{{ $testimonial->description }}</p>
             @empty
             <li>No testimonials found</li>
         @endforelse
