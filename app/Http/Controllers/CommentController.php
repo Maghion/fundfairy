@@ -45,11 +45,6 @@ class CommentController extends Controller
         return "Token: $token, Parent Comment: $parent_comment, Comment: $comment";
     }
 
-    public function show(Comment $comment): View
-    {
-        return view('comments.show', compact('comment'));
-    }
-
     /**
      * @desc Display a form to edit a comment
      * @route GET /comment/{id}/edit
@@ -88,7 +83,8 @@ class CommentController extends Controller
      * @param $id
      * @return string
      */
-    public function show($id): string {
-        return "<h1>Show Comment $id</h1>";
+    public function show(Comment $comment): View
+    {
+        return view('comments.show', compact('comment'));
     }
 }
