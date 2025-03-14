@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('donation_request_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('donation_request_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->string('title');
             $table->text('comment');
             $table->unsignedBigInteger('parent_comment_id');
             $table->timestamps();
-            //foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('donation_request_id')->references('id')->on('donation_request')->onDelete('cascade');
         });
     }
     /**
