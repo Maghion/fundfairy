@@ -58,7 +58,7 @@ class User extends Authenticatable
         ];
     }
 
-
+    
     public function blogPosts(): HasMany
     {
         return $this->hasMany(BlogPost::class);
@@ -79,11 +79,12 @@ class User extends Authenticatable
     {
 //        return $this->hasMany(Comment::class);
     }
-
-    public function donations(): void //HasMany
-    {
-//        return $this->hasMany(Donation::class);
+  
+    // Also need DonationRequest model to have this function
+    public function donations(): HasMany {
+        return $this->hasMany(Donation::class);
     }
+  
     public function testimonials(): void //HasMany
     {
 //        return $this->hasMany(Testimonial::class);
