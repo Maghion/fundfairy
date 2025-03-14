@@ -18,9 +18,10 @@ class BlogPostFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::factory(), // Create new user for each listing
-            'title' => $this->faker->jobTitle,
+            'user_id' => User::factory(),
+            'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraphs(3, true),
+            'status' => $this->faker->randomElement(['published', 'draft']),
         ];
     }
 }
