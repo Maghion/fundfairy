@@ -4,7 +4,7 @@
     'btnText' => 'Donate Now!',
     'btnLink' => '/donation-request/create',
     'btnIcon' => 'magic',
-    'btnColor' => 'purple',
+    'btnColor' => 'bg-violet-900',
     'imageSrc' => 'images/donations.jpg'
  ])
 <section class="container mx-auto my-6">
@@ -21,7 +21,7 @@
             </p>
         </div>
         <div class="mt-6">
-            <x-fund-fairy-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="{{ $btnColor }}">{{ $btnText }}</x-fund-fairy-button-link>
+            <x-fund-fairy-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="{{ $btnColor }}"> {{ $btnText }}</x-fund-fairy-button-link>
         </div>
     </div>
 </section>
