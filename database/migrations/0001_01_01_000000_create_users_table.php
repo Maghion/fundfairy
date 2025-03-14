@@ -24,6 +24,12 @@ return new class extends Migration
             $table->enum('role', ['subscriber', 'user', 'premium', 'admin'])->default('user');
             $table->enum('status', ['inactive', 'active', 'locked'])->default('active');
             $table->rememberToken();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->text('biography')->nullable();
+            $table->string('avatar')->nullable();
+            $table->string('phone_number')->nullable();
+            $table->enum('role', ['subscriber', 'user', 'premium', 'admin'])->default('user');
             $table->timestamps();
         });
 
@@ -50,6 +56,7 @@ return new class extends Migration
     {
         Schema::dropIfExists('user_profile');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('user_profile');
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
     }
