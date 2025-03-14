@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -57,9 +58,10 @@ class User extends Authenticatable
         ];
     }
 
-    public function blogPosts(): void //HasMany
+
+    public function blogPosts(): HasMany
     {
-//        return $this->hasMany(BlogPost::class);
+        return $this->hasMany(BlogPost::class);
     }
 
     public function bookmarkedBusinesses(): void //BelongsToMany
