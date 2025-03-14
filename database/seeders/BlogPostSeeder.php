@@ -15,7 +15,7 @@ class BlogPostSeeder extends Seeder
     public function run(): void
     {
         // Load job listings data
-        $blogPosts = include database_path('seeders/data/job_listings.php');
+        $blogPosts = include database_path('seeders/data/blogPosts.php');
 
         // Get all user IDs
         $userIds = User::pluck('id')->toArray();
