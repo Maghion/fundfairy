@@ -67,9 +67,10 @@ class User extends Authenticatable
 //        return $this->belongsToMany(Business::class, 'bookmark')->withTimestamps();
     }
 
-    public function businessReviews(): void //HasMany
+   // Relationship with business_reviews
+    public function business_reviews(): HasMany
     {
-//        return $this->hasMany(BusinessReview::class);
+        return $this->hasMany(BusinessReview::class);
     }
 
     public function comments(): void //HasMany
