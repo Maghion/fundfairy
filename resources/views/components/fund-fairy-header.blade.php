@@ -14,10 +14,10 @@
             <x-fund-fairy-button-link btnColor="bg-pink-500" url="/donation/create" icon="magic" :block="true">Donation Request</x-fund-fairy-button-link>
         </nav>
         <button id="hamburger" class="text-white md:hidden flex items-center">
-            <i class="fa fa-bars text-2xl"></i>
+            <i class="fa fa-bars text-2xl p-2"></i>
         </button>
     </div>
-    
+
     <!-- Mobile Menu -->
    <nav id="mobile-menu"
         class="hidden md:hidden bg-blue-900 text-white mt-5 pb-4 space-y-2">
