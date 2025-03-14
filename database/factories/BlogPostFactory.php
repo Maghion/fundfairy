@@ -20,7 +20,7 @@ class BlogPostFactory extends Factory
         return [
             'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
-            'content' => $this->faker->paragraphs(3, true),
+            'content' => $this->faker->paragraph(),
             'status' => $this->faker->randomElement(['published', 'draft']),
         ];
     }
