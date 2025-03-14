@@ -5,7 +5,6 @@
             <a href="{{ route('donation.show', $donation->id) }}">
                 <strong>Amount:</strong> ${{ number_format($donation->amount, 2) }}
             </a>
-            <li><strong>Request Title:</strong> {{ $donation->donationRequest->title }}</li>
         @empty
             <li>No Donations Found</li>
         @endforelse

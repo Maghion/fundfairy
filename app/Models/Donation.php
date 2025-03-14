@@ -11,7 +11,6 @@ class Donation extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'user_id',
         'request_id',
         'amount',

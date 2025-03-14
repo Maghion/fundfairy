@@ -15,7 +15,7 @@ class DonationController extends Controller
     public function index(): View {
         $title = "Donations";
         $donations = Donation::all();
-        return view('donation.index');
+        return view('donation.index', compact('title', 'donations'));
     }
 
     /**
