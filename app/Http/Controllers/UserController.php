@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class UserProfileController extends Controller
+class UserController extends Controller
 {
     /**
      * @desc Show all users
@@ -13,14 +14,9 @@ class UserProfileController extends Controller
      */
     public function index(): View
     {
-        $title = 'User Profiles';
-        $profiles = [
-            'user@gmail.com',
-            'another_user@yahoo.com',
-            'third-user@hotmail.com',
-            ];
-        return view('users.index', compact('title', 'profiles'));
-
+        $title = 'All Users';
+        $users = User::all();
+        return view('users.index', compact('title', 'users'));
     }
 
     /**
@@ -55,9 +51,10 @@ class UserProfileController extends Controller
      * @desc Display a specific user
      * @route GET /users/{id}
      */
-    public function show(string $id): String
+    public function show(User $user): View
     {
-        return  "Viewing prfile for $id";
+        $title = 'Showing User '. $user->id;
+        return view('users.show', compact('title','user'));
     }
 
     /**
