@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,9 +14,8 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
-        $title = "Businesses";
-        $businesses = ['Business 1', 'Business 2', 'Business 3'];
-        return view('businesses.index', compact('title', 'businesses'));
+        $businesses = Business::all();
+        return view('businesses/index')->with('businesses', $businesses);
 
     }
 
@@ -45,9 +45,9 @@ class BusinessController extends Controller
      * @desc Display a single business.
      * @route GET /businesses/{id}
      */
-    public function show(string $id): string
+    public function show(Business $business): View
     {
-        return "Showing business $id";
+        return view('businesses.show', compact('business'));
     }
 
     /**

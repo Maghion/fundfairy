@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -57,7 +58,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-
     
     public function blogPosts(): HasMany
     {
@@ -67,6 +67,11 @@ class User extends Authenticatable
     public function bookmarkedBusinesses(): void //BelongsToMany
     {
 //        return $this->belongsToMany(Business::class, 'bookmark')->withTimestamps();
+    }
+  
+    public function business(): HasMany
+    {
+        return $this->hasMany(Business::class);
     }
 
    // Relationship with business_reviews
@@ -91,6 +96,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Testimonial::class);
     }
-
 
 }
