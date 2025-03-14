@@ -74,10 +74,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(BusinessReview::class);
     }
-
-    public function comments(): void //HasMany
+  
+  // Relate to comments
+    public function comments(): HasMany
     {
-//        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
   
     // Also need DonationRequest model to have this function
