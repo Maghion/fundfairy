@@ -86,9 +86,11 @@ class User extends Authenticatable
         return $this->hasMany(Donation::class);
     }
   
-    public function testimonials(): void //HasMany
+    // Relationship with  testimonials
+    public function testimonials(): HasMany
     {
-//        return $this->hasMany(Testimonial::class);
+        return $this->hasMany(Testimonial::class);
     }
+
 
 }
