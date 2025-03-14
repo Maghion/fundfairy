@@ -34,7 +34,7 @@ return new class extends Migration
         Schema::table('comments', function (Blueprint $table) {
             // Drop foreign key constraint and user_id column
             $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table->dropColumn('donation_request_id');
         });
         Schema::dropIfExists('comments');
     }
