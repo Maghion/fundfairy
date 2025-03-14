@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DonationRequest;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,7 +15,7 @@ class DonationRequestController extends Controller
     public function index(): View
     {
         $title = 'Donation Requests';
-        $donationRequests = ['Request 1', 'Request 2', 'Request 3'];
+        $donationRequests = DonationRequest::all();
         return view('donation-request.index', compact('title', 'donationRequests'));
     }
 
@@ -44,9 +45,9 @@ class DonationRequestController extends Controller
      * @desc Display a single donation request
      * @route GET /donation-request/{id}
      */
-    public function show(string $id): string
+    public function show(DonationRequest $donationRequest): View
     {
-        return "Showing donation request: $id";
+        return view('donation-request.show', compact('donationRequest'));
     }
 
     /**
