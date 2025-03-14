@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fund Fairy @if($title)| {{ $title }} @endif</title>
+    <title>Fund Fairy {{ isset($title) && $title ? '| ' . $title : '' }}</title>
     <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/styles/themes/default.css" />
     <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/styles/webawesome.css" />
     <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/webawesome.loader.js"></script>

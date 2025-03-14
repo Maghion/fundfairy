@@ -53,7 +53,8 @@ class UserController extends Controller
      */
     public function show(User $user): View
     {
-        return view('users.show', compact('user'));
+        $title = 'Showing User '. $user->id;
+        return view('users.show', compact('title','user'));
     }
 
     /**
