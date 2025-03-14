@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function comments(): HasMany
+    public function Business(): HasMany
     {
         return $this->hasMany(Business::class);
     }
