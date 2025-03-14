@@ -17,4 +17,5 @@ class Business extends Model
         'zip_code',
         'phone_number',
     ];
+
 }
