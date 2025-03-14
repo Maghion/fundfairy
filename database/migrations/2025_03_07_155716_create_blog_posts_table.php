@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->nullable()->index();
             $table->string('title');
-            $table->text('context');
+            $table->text('content');
             $table->enum('status', ['published', 'draft'])->default('published');
             $table->timestamp('created_at')->nullable();
         });
