@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Donation;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 
@@ -13,11 +14,7 @@ class DonationController extends Controller
      */
     public function index(): View {
         $title = "Donations";
-        $donations = [
-            "Donation 1",
-            "Donation 2",
-            "Donation 3"
-        ];
+        $donations = Donation::all();
         return view('donation.index', compact('title', 'donations'));
     }
 
@@ -84,8 +81,9 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function show($id): string {
-        return "<h1>Show Donation $id</h1>";
+    public function show(Donation $donation): View {
+        $title = 'Showing Donation '. $donation->id;
+        return view('donations.show', compact('title','donation'));
     }
 
 }

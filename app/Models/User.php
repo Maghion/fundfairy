@@ -4,13 +4,18 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
+
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -18,9 +23,16 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
         'email',
+        'email_verified_at',
         'password',
+        'remember_token',
+        'first_name',
+        'last_name',
+        'biography',
+        'avatar',
+        'phone_number',
+        'role'
     ];
 
     /**
@@ -45,4 +57,38 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    
+    public function blogPosts(): HasMany
+    {
+        return $this->hasMany(BlogPost::class);
+    }
+
+    public function bookmarkedBusinesses(): void //BelongsToMany
+    {
+//        return $this->belongsToMany(Business::class, 'bookmark')->withTimestamps();
+    }
+
+   // Relationship with business_reviews
+    public function business_reviews(): HasMany
+    {
+        return $this->hasMany(BusinessReview::class);
+    }
+  
+  // Relate to comments
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+  
+    // Also need DonationRequest model to have this function
+    public function donations(): HasMany {
+        return $this->hasMany(Donation::class);
+    }
+  
+    public function testimonials(): void //HasMany
+    {
+//        return $this->hasMany(Testimonial::class);
+    }
+
 }
