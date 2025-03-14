@@ -45,6 +45,10 @@ class CommentController extends Controller
         return "Token: $token, Parent Comment: $parent_comment, Comment: $comment";
     }
 
+    public function show(Comment $comment): View
+    {
+        return view('comments.show', compact('comment'));
+    }
 
     /**
      * @desc Display a form to edit a comment

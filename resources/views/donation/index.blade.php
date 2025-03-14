@@ -1,12 +1,10 @@
 <x-fund-fairy-layout>
-    <x-slot name="title">{{ $title }}</x-slot>
+    <x-slot name="title">Viewing all Donations</x-slot>
     <ul>
         @forelse($donations as $donation)
-            @if($loop->even)
-                <li style="color:green;"> {{ $donation }}</li>
-            @else
-                <li>{{ $donation }}</li>
-            @endif
+            <a href="{{ route('donation.show', $donation->id) }}">
+                <strong>Amount:</strong> ${{ number_format($donation->amount, 2) }}
+            </a>
         @empty
             <li>No Donations Found</li>
         @endforelse

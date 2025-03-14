@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessReview;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -14,12 +15,9 @@ class  BusinessReviewController extends Controller
      */
     public function index():View{
         $title = "View all Reviews";
-        $reviews =[
-            'Great Experience with FactoryPlus!',
-            'Excellent Plumbing Service',
-        ];
-
+        $reviews = BusinessReview::all();
         return view('business-review.index', compact('title', 'reviews'));
+
     }
 
     /**
@@ -55,10 +53,10 @@ class  BusinessReviewController extends Controller
      * @desc Display a single review
      * @route GET /business-review/{id}
      * @param $id
-     * @return string
+     * @return View
      */
-    public function show($id): string {
-        return "Showing review: $id";
+    public function show(BusinessReview $review): View {
+        return view('business-review.show', compact('review'));
     }
 
 

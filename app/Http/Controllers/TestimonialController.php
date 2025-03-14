@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -15,12 +16,7 @@ class TestimonialController extends Controller
 
     public function index(): View {
         $title = "Testimonials";
-        $testimonials = [
-            'testimonial 1',
-            'testimonial 2',
-            'testimonial 3',
-            'testimonial 4',
-        ];
+        $testimonials = Testimonial::all();
         return view('testimonial.index', compact('title', 'testimonials'));
     }
 
@@ -52,8 +48,8 @@ class TestimonialController extends Controller
      * @route GET /testimonial/{id}
      */
 
-    public function show(string $id): string{
-        return "<h1>Showing testimonial: $id </h1>";
+    public function show(Testimonial $testimonial): View{
+        return view('testimonial.show', compact('testimonial'));
     }
 
     /**

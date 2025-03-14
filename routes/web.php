@@ -5,7 +5,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
@@ -16,11 +16,10 @@ use Cowsayphp\Farm;
 Route::get('/', [HomeController::class, 'index']);
 
 //USERS ROUTES
-Route::resource('users', UserProfileController::class);
-Route::get('/users/create', [UserProfileController::class, 'create']);
-Route::post('/users', [UserProfileController::class, 'store']);
+Route::resource('users', UserController::class);
+//Route::get('/users/create', [UserProfileController::class, 'create']);
+//Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class);
-
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
 Route::resource('donation', DonationController::class);
