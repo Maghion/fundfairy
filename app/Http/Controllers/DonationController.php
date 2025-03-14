@@ -82,7 +82,7 @@ class DonationController extends Controller
      * @return string
      */
     public function show($id): string {
-        return view('donation.index');
+        return view('donation.show');
     }
 
 }
