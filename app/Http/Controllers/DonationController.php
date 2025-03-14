@@ -81,8 +81,9 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function show($id): string {
-        return view('donation.show');
+    public function show(Donation $donation): View {
+        $title = 'Showing Donation '. $donation->id;
+        return view('donations.show', compact('title','donation'));
     }
 
 }
