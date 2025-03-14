@@ -18,6 +18,7 @@ class Comment extends Model
         'user_id',
         'donation_request_id',
         'status',
+        'title',
         'comment',
         'parent_comment',
     ];

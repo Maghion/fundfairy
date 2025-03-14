@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('donation_request_id');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
+            $table->string('title');
             $table->text('comment');
             $table->unsignedBigInteger('parent_comment_id');
             $table->timestamps();
