@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Business extends Model
 {
-    protected $table = 'business';
+    protected $table = 'businesses';
 
     protected $fillable = [
         'name',
@@ -17,6 +17,8 @@ class Business extends Model
         'state',
         'zip_code',
         'phone_number',
+        'featured',
+        'business_description'
     ];
 
     public function user(): BelongsTo
