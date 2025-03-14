@@ -3,8 +3,7 @@
     <h1>{{ $title }}</h1>
     <form action="/comment" method="POST">
         @csrf
-        <input type="text" name="title" placeholder="Title" />
-        <input type="text" name="description" placeholder="Description" />
+        <input type="text" name="comment" placeholder="Comment" />
         <button type="submit">Submit</button>
     </form>
 </x-fund-fairy-layout>

@@ -1,65 +1,94 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-
-    public function index(): View
-    {
-        $title = 'Comments';
-        $comments = ['Comment 1', 'Comment 2', 'Comment 3'];
+    /**
+     * @desc Display list of comment
+     * @route GET /comment
+     * @return View
+     */
+    public function index(): View {
+        $title = "Comments";
+        $comments = [
+            "Wishing you the best!",
+            "Great work!",
+            "Almost there!"
+        ];
         return view('comment.index', compact('title', 'comments'));
     }
 
-    public function create(): View
-    {
-        $title = 'New Comment';
+    /**
+     * @desc Show the form to create a new comment
+     * @route GET /comment/create
+     * @return View
+     */
+    public function create(): View {
+        $title = "Add Comment";
         return view('comment.create', compact('title'));
     }
 
-    public function store(Request $request)
-    {
-        $title = $request->input('title');
-        $description = $request->input('description');
+    /**
+     * @desc Store a comment in the database
+     * @route POST /comment
+     * @param Request $request
+     * @return string
+     */
+    public function store(Request $request): string {
+        $token = $request->input('_token');
+        $parent_comment = $request->input('parent_comment');
+        $comment = $request->input('comment');
 
-        return "Title: $title, Description: $description";
+        return "Token: $token, Parent Comment: $parent_comment, Comment: $comment";
     }
 
-//    public function show(string $id): string
-//    {
-//        return "Showing comment: $id";
-//    }
     public function show(Comment $comment): View
     {
         return view('comments.show', compact('comment'));
     }
 
     /**
-     * @desc show the form for editing a single comment.
-     * @route  GET/comment/{id}/
+     * @desc Display a form to edit a comment
+     * @route GET /comment/{id}/edit
+     * @param $id
+     * @return string
      */
-    public function edit($id){
-        return "Edit comment: $id";
+    public function edit($id): string {
+        return "<h1>Edit comment $id</h1>";
     }
 
     /**
-     * @desc update the comment from storage.
-     * @route update /comment/{id}
+     * @desc Update a comment in the database
+     * @route PUT /comment/{id}
+     * @param Request $request
+     * @param $id
+     * @return string
      */
-    public function update(Request $request, $id)
-    {
-        return "You have updated comment: $id";
+    public function update(Request $request, $id): string {
+        return "<h1>Update Comment $id</h1>";
     }
 
     /**
-     * @desc Remove the comment from storage.
+     * @desc Delete a comment from the database
      * @route DELETE /comment/{id}
+     * @param $id
+     * @return string
      */
-    public function destroy(string $id): string{
-        return "You have deleted comment: $id";
+    public function destroy($id): string {
+        return "<h1>Delete comment $id</h1>";
+    }
+
+
+    /**
+     * @desc Show single comment details
+     * @route GET /comment/{id}
+     * @param $id
+     * @return string
+     */
+    public function show($id): string {
+        return "<h1>Show Comment $id</h1>";
     }
 }

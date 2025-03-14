@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -13,8 +14,9 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = ['Blog1', 'Blog2', 'Blog3'];
-        return view('blog-posts.index', compact('title', 'blogPosts'));
+        $blogPosts = BlogPost::all();
+        return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
+       // return view('blog-posts.index', compact('title', 'blogPosts'));
     }
 
     /**
@@ -40,9 +42,9 @@ class BlogPostsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): string
+    public function show(BlogPost  $blogPost): View
     {
-        return "Showing Blog Posts: $id";
+        return view('blog-posts.show', compact('blogPost'));
     }
 
     /**
