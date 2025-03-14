@@ -47,7 +47,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function Business(): HasMany
+    public function business(): HasMany
     {
         return $this->hasMany(Business::class);
     }
