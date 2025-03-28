@@ -15,5 +15,6 @@ class RandomBusinessSeeder extends Seeder
     {
         $businesses = Business::factory(15)->create();
         echo 'Businesses created successfully!';
+
     }
 }

@@ -25,5 +25,6 @@ class DatabaseSeeder extends Seeder
 
 //        $this->call(RandomUserSeeder::class);
         $this->call(RandomBusinessSeeder::class);
+
     }
 }
