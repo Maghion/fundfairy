@@ -45,7 +45,8 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
-        return view('blog-posts.show', compact('blogPost'));
+        $title = 'View Blog Post';
+        return view('blog-posts.show', compact('blogPost', 'title'));
     }
 
     /**
