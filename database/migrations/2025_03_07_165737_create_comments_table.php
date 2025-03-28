@@ -23,6 +23,7 @@ return new class extends Migration
             //foreign key constraint
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('donation_request_id')->references('id')->on('donation_request')->onDelete('cascade');
+            $table->foreign('parent_comment_id')->references('id')->on('comments')->onDelete('cascade');
         });
     }
     /**
@@ -37,6 +38,8 @@ return new class extends Migration
             $table->dropColumn(['user_id']);
             $table->dropForeign('donation_request_id');
             $table->dropColumn('donation_request_id');
+            $table->dropForeign('parent_comment_id');
+            $table->dropColumn('parent_comment_id');
         });
         Schema::dropIfExists('comments');
     }
