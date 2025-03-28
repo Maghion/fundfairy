@@ -25,7 +25,7 @@ class BlogPostsController extends Controller
     public function create(): View
     {
         $title = 'New Blog Post';
-       return view('blog-posts.create', compact('title'));
+        return view('blog-posts.create', compact('title'));
     }
 
     /**
@@ -33,6 +33,7 @@ class BlogPostsController extends Controller
      */
     public function store(Request $request): string
     {
+        $title = 'View Blog Post';
         $title = $request->input('title');
         $content= $request->input('description');
 

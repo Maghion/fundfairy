@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BusinessReview;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class  BusinessReviewController extends Controller
 {
@@ -40,12 +41,24 @@ class  BusinessReviewController extends Controller
      * @return string //return datatype
      */
     public function store(Request $request):string {
-        $token = $request->input('_token'); //prevent from scammer
-        $title = $request->input('title');
-        $rating = $request->input('rating');
-        $comment = $request->input('comments');
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'rating' => 'required|string:active, pending',
+            'comment' => 'required|string|max:255',
 
-        return "Token: $token,Title: $title, Rating: $rating, Comment: $comment";
+        ]);
+
+        // Hardcoded user ID
+        $validatedData['user_id'] = auth()->id;
+
+        // Hardcoded business ID
+        $validatedData['business_id'] = auth()->id;
+
+        // Submit to database
+        BusinessReview::create($validatedData);
+
+        return redirect()->route('business-review.index')->with('success', 'Review created successfully!');
+
     }
 
 
