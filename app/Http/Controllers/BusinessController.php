@@ -39,10 +39,10 @@ class BusinessController extends Controller
         $title = $request->input('title');
         $description = $request->input('business_description');
 
-//        Business::create([
-//            'title' => $title,
-//            'business_description' => $description
-//        ]);
+        Business::create([
+            'title' => $title,
+            'business_description' => $description
+        ]);
 
         return redirect()->route('businesses.index');
     }
