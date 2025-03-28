@@ -15,16 +15,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        DB::table('users')->truncate();
+        DB::table('businesses')->truncate();
+        DB::table('donation_requests')->truncate();
+        DB::table('donations')->truncate();
+        DB::table('business_reviews')->truncate();
+        DB::table('comments')->truncate();
+        DB::table('testimonials')->truncate();
+        DB::table('blog_posts')->truncate();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
-
-
-//        $this->call(RandomUserSeeder::class);
+        $this->call(RandomUserSeeder::class);
         $this->call(RandomBusinessSeeder::class);
-
+        //donation request
+        //donation
+        //business review
+        //comments
+        //testimonials
+        // blog posts
     }
 }
