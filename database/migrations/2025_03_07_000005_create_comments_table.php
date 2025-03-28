@@ -20,6 +20,9 @@ return new class extends Migration
             $table->text('comment');
             $table->unsignedBigInteger('parent_comment_id');
             $table->timestamps();
+            //foreign key constraint
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('donation_request_id')->references('id')->on('donation_request')->onDelete('cascade');
         });
     }
     /**
