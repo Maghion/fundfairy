@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 
 class TestimonialController extends Controller
@@ -15,12 +17,7 @@ class TestimonialController extends Controller
 
     public function index(): View {
         $title = "Testimonials";
-        $testimonials = [
-            'testimonial 1',
-            'testimonial 2',
-            'testimonial 3',
-            'testimonial 4',
-        ];
+        $testimonials = Testimonial::all();
         return view('testimonial.index', compact('title', 'testimonials'));
     }
 
@@ -40,11 +37,23 @@ class TestimonialController extends Controller
      * @route POST /testimonial
      */
 
-    public function store(Request $request){
-        $title = $request->input("title");
-        $description = $request->input("description");
+    public function store(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'description' => 'required|string',
+            'status' => 'required|string:active, pending',
+            'featured' => 'required|boolean',
 
-        return "Title: $title, Description: $description";
+        ]);
+
+        // Hardcoded user ID
+        $validatedData['user_id'] = auth()->id;
+
+        // Submit to database
+        Testimonial::create($validatedData);
+
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial created successfully!');;
+
     }
 
     /**
@@ -52,8 +61,8 @@ class TestimonialController extends Controller
      * @route GET /testimonial/{id}
      */
 
-    public function show(string $id): string{
-        return "<h1>Showing testimonial: $id </h1>";
+    public function show(Testimonial $testimonial): View{
+        return view('testimonial.show', compact('testimonial'));
     }
 
     /**
