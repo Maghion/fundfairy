@@ -2,7 +2,12 @@
     <x-slot name="title">{{ $title }}</x-slot>
     <ul>
         @forelse($businesses as $business)
-            <li>{{ $business }}</li>
+
+            <li>
+                <a href="{{ route('businesses.show', $business->id) }}">
+                    {{ $business->name }}
+                </a>
+                </li>
         @empty
             <li>No businesses found</li>
         @endforelse

@@ -5,10 +5,9 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -58,7 +57,6 @@ class User extends Authenticatable
         ];
     }
 
-
     public function blogPosts(): HasMany
     {
         return $this->hasMany(BlogPost::class);
@@ -69,24 +67,32 @@ class User extends Authenticatable
 //        return $this->belongsToMany(Business::class, 'bookmark')->withTimestamps();
     }
 
+    public function business(): HasMany
+    {
+        return $this->hasMany(Business::class);
+    }
+
    // Relationship with business_reviews
     public function business_reviews(): HasMany
     {
         return $this->hasMany(BusinessReview::class);
     }
 
-    public function comments(): void //HasMany
+  // Relate to comments
+    public function comments(): HasMany
     {
-//        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
-    public function donations(): void //HasMany
-    {
-//        return $this->hasMany(Donation::class);
+    // Also need DonationRequest model to have this function
+    public function donations(): HasMany {
+        return $this->hasMany(Donation::class);
     }
-    public function testimonials(): void //HasMany
+
+    // Relationship with  testimonials
+    public function testimonials(): HasMany
     {
-//        return $this->hasMany(Testimonial::class);
+        return $this->hasMany(Testimonial::class);
     }
 
 }

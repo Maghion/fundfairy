@@ -34,19 +34,10 @@ class BlogPostsController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
-        $title = $request->input('title');
-        $content = $request->input('content');
-
-        blogPost::create([
-            'title' => $title,
-            'content' => $content,
-        ]);
-
         // Validate the incoming request data
         $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
         // Create a new jbo listing with the validated data
