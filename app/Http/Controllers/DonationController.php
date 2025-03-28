@@ -46,7 +46,7 @@ class DonationController extends Controller
         ]);
 
         // Hardcoded user ID
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['user_id'] = 1;
 
 //        $validatedData['donation_request_id'] = auth()->id();
 
