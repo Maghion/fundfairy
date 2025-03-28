@@ -33,6 +33,7 @@ class BlogPostsController extends Controller
      */
     public function store(Request $request): string
     {
+        $title = 'View Blog Post';
         $title = $request->input('title');
         $content= $request->input('description');
 
