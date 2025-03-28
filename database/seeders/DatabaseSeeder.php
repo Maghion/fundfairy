@@ -26,11 +26,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RandomUserSeeder::class);
         $this->call(RandomBusinessSeeder::class);
-        //donation request
-        //donation
-        //business review
-        //comments
-        //testimonials
-        // blog posts
+        $this->call(DonationRequestSeeder::class);
+        $this->call(DonationSeeder::class);
+        $this->call(BusinessReviewSeeder::class);
+        $this->call(CommentSeeder::class);
+        $this->call(TestimonialSeeder::class);
+        $this->call(BlogPostSeeder::class);
     }
 }
