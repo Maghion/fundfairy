@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class BlogPostsController extends Controller
 {
@@ -31,13 +32,21 @@ class BlogPostsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): string
+    public function store(Request $request): RedirectResponse
     {
-        $title = 'View Blog Post';
-        $title = $request->input('title');
-        $content= $request->input('description');
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
 
-        return "Title: $title, Description: $content";
+        // Create a new jbo listing with the validated data
+        BlogPost::create([
+            'title' => $validatedData['title'],
+            'content' => $validatedData['content'],
+        ]);
+
+        return redirect()->route('blog-posts.index');
     }
 
     /**
@@ -72,4 +81,7 @@ class BlogPostsController extends Controller
     {
         return "You have deleted Blog Post: $id";
     }
+
+
+
 }
