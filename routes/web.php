@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\BlogPostsController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\BusinessController;
@@ -27,6 +29,18 @@ Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class);
+Route::resource('about', AboutController::class);
+Route::resource('newsletter', NewsletterController::class);
+//Route::get('/about', function () {
+//    return view('about'); // Loads the Blade file
+//});
+
+Route::get('/privacypolicy', function() {
+    $title = 'Privacy Policy';
+    return view('pages.privacypolicy', compact('title'));
+//     return view('PrivacyPolicy.index' , compact('title'));
+});
+
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);

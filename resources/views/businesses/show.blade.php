@@ -6,4 +6,7 @@
     <p>{{ $business->state }}</p>
     <p>{{ $business->zip_code }}</p>
     <p>{{ $business->phone_number }}</p>
+    <p>{{ $business->featured }}</p>
+    <p>{{ $business->business_description }}</p>
 </x-layout>
+
