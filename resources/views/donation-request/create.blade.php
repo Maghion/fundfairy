@@ -2,7 +2,7 @@
     <x-slot name="title">{{ $title }}</x-slot>
     <h1>{{ $title }}</h1>
 
-    <form action="//donation-request" method="POST">
+    <form action="/donation-request" method="POST">
         @csrf
         <input type="text" name="title" placeholder="Title" value="{{ old('title') }}">
         <!-- Error Message for Title -->
@@ -32,7 +32,7 @@
         @enderror
 
         <select name="featured" class="w-full p-2 border rounded">
-            <option value="true" {{ old('featured') == 'True' ? 'selected' : '' }}>Yes</option>
+            <option value="true" {{ old('featured') == 'true' ? 'selected' : '' }}>Yes</option>
             <option value="false" {{ old('featured') == 'false' ? 'selected' : '' }}>No</option>
         </select>
         @error('featured')

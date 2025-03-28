@@ -46,8 +46,8 @@ class DonationRequestController extends Controller
 
         ]);
 
-        // Add the hardcoded user_id
-        //$validatedData['user_id'] = null;
+        // Add the hardcoded business_id
+        $validatedData['business_id'] = 1;
 
         // Create a new job listing with the validated data
         DonationRequest::create([
@@ -59,7 +59,7 @@ class DonationRequestController extends Controller
 
         ]);
 
-        return redirect()->route('donation-request.index')->with('success', 'donation request created successfully!');;
+        return redirect()->route('donation-request.index')->with('success', 'donation request created successfully!');
     }
 
 
