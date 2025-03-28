@@ -40,8 +40,8 @@
         <div class="border-t border-gray-700 mt-8 pt-6 flex flex-col md:flex-row justify-between text-sm text-gray-400">
             <p class="text-center md:text-left">&copy; FundFairy, 2025. All rights reserved.</p>
             <div class="flex justify-center md:justify-end space-x-4 mt-2 md:mt-0">
-                <a href="#" class="hover:text-white">About us</a>
-                <a href="#" class="hover:text-white border-l pl-4">Subscribe to our Newsletter</a>
+                <a href="about" class="hover:text-white">About us</a>
+                <a href="newsletter" class="hover:text-white border-l pl-4">Subscribe to our Newsletter</a>
                 <a href="{{ url('/privacypolicy') }}" class="hover:text-white border-l pl-4">Privacy Policy</a>
             </div>
         </div>
