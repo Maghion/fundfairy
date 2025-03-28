@@ -41,7 +41,7 @@ class BlogPostsController extends Controller
         ]);
 
         // Create a new jbo listing with the validated data
-        blogPost::create([
+        BlogPost::create([
             'title' => $validatedData['title'],
             'content' => $validatedData['content'],
         ]);
@@ -54,7 +54,8 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
-        return view('blog-posts.show', compact('blogPost'));
+        $title = 'View Blog Post';
+        return view('blog-posts.show', compact('blogPost', 'title'));
     }
 
     /**
