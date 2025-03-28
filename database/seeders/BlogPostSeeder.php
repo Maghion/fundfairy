@@ -31,11 +31,5 @@ class BlogPostSeeder extends Seeder
         // Insert job listings
         DB::table('blog-posts')->insert($blogPosts);
 
-        // Truncate tables
-        DB::table('blog-posts')->truncate();
-        DB::table('users')->truncate();
-
-        $this->call(RandomUserSeeder::class);
-        $this->call(BlogPostSeeder::class);
     }
 }
