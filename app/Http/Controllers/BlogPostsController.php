@@ -24,9 +24,8 @@ class BlogPostsController extends Controller
      */
     public function create(): View
     {
-        return view('blog-posts.create');
-        //$title = 'New Blog Post';
-       // return view('blog-posts.create', compact('title'));
+        $title = 'New Blog Post';
+       return view('blog-posts.create', compact('title'));
     }
 
     /**
@@ -45,8 +44,8 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
-        return view('blog-posts.show', compact('blogPost'));
-        // return view('blog-posts.show', compact('blogPost'));
+        $title = 'View Blog Post';
+        return view('blog-posts.show', compact('blogPost', 'title'));
     }
 
     /**
