@@ -22,11 +22,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        // Truncate tables
-        DB::table('job_listings')->truncate();
-        DB::table('users')->truncate();
 
 //        $this->call(RandomUserSeeder::class);
-        $this->call(BusinessSeeder::class);
+        $this->call(RandomBusinessSeeder::class);
     }
 }
