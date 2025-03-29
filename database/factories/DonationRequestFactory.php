@@ -20,7 +20,7 @@ class DonationRequestFactory extends Factory
     {
         return [
             'business_id' => Business::factory(), // Create new user for each listing
-            'title' => $this->faker->donationRequestTitle,
+            'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraphs(1, true),
             'status' => $this->faker->randomElement(['Active', 'Pending', 'Complete']),
             'funding_goal' => $this->faker->numberBetween(01, 1200000),
