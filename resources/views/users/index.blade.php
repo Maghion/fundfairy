@@ -3,7 +3,8 @@
     <h1>{{$title}}</h1>
     <ul>
         @forelse($users as $user)
-            <li><a href="{{ route('users.show', $user->id) }}">{{ $user->email }}</a></li>
+            <x-user-card :user="$user" > </x-user-card>
+{{--            <li><a href="{{ route('users.show', $user->id) }}">{{ $user->email }}</a></li>--}}
         @empty
             <li>No users Found</li>
         @endforelse
