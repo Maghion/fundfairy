@@ -10,6 +10,6 @@
             <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
             @enderror
         </div>
-        <button type="submit" class="bg-purple-500 text-white px-4 py-2 rounded-md">Submit</button>
+        <button type="submit" class="bg-fuchsia-600 text-white px-4 py-2 rounded-md">Submit</button>
     </form>
 </x-fund-fairy-layout>

@@ -18,20 +18,20 @@
     </div>
 
     @if ($donationRequest->comments->isEmpty())
-        <p class="mt-4 text-purple-500">No comments yet.</p>
+        <p class="mt-4 text-fuchsia-500">No comments yet.</p>
     @else
         <ul class="mt-4 space-y-6">
             @foreach ($donationRequest->comments->sortByDesc('created_at') as $comment)
-                <li class="p-4 border border-purple-200 rounded-lg shadow-sm bg-white">
+                <li class="p-4 border border-fuchsia-200 rounded-lg shadow-sm bg-white">
                     <div class="flex items-center justify-between">
-                        <p class="font-semibold text-purple-800">
+                        <p class="font-semibold text-fuchsia-800">
                             {{ $comment->user->first_name }} {{ $comment->user->last_name }}
                         </p>
-                        <p class="text-sm text-purple-500">
+                        <p class="text-sm text-fuchsia-500">
                             {{ $comment->created_at->diffForHumans() }}
                         </p>
                     </div>
-                    <p class="mt-2 text-purple-700 whitespace-pre-line">
+                    <p class="mt-2 text-fuchsia-800 whitespace-pre-line">
                         {{ $comment->comment }}
                     </p>
                 </li>
