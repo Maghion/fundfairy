@@ -68,7 +68,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment): View
     {
-        return view('comments.show', compact('comment'));
+        return view('comment.show', compact('comment'));
     }
 
     /**
