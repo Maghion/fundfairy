@@ -26,7 +26,7 @@ return [
     | well as their drivers. You may even define multiple stores for the
     | same cache driver to group types of items stored in your caches.
     |
-    | Supported drivers: "array", "database", "file", "memcached",
+    | Supported drivers: "array", "database", "file2", "memcached",
     |                    "redis", "dynamodb", "octane", "null"
     |
     */
@@ -46,8 +46,8 @@ return [
             'lock_table' => env('DB_CACHE_LOCK_TABLE'),
         ],
 
-        'file' => [
-            'driver' => 'file',
+        'file2' => [
+            'driver' => 'file2',
             'path' => storage_path('framework/cache/data'),
             'lock_path' => storage_path('framework/cache/data'),
         ],

@@ -32,7 +32,7 @@ Route::resource('testimonial', TestimonialController::class);
 Route::resource('about', AboutController::class);
 Route::resource('newsletter', NewsletterController::class);
 //Route::get('/about', function () {
-//    return view('about'); // Loads the Blade file
+//    return view('about'); // Loads the Blade file2
 //});
 
 Route::get('/privacypolicy', function() {
