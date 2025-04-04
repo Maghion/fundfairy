@@ -8,7 +8,7 @@
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             @forelse($blogPosts as $blogPost)
-                <x-blogPost-card :job="$blogPost" />
+                <x-blogPost-card :blogPost="$blogPost" />
             @empty
                 <p>No Blogposts found</p>
             @endforelse
