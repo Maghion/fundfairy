@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     public function index() {
 
-        $blogPosts =BlogPost::latest()->limit(6)->get();
+        $blogPosts =BlogPost::latest()->limit(3)->get();
         return view('pages.index')->with('blogPosts', $blogPosts);
     }
 

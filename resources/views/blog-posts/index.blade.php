@@ -41,11 +41,4 @@
             </div>
         </div>
     </main>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        @forelse($blogPosts as $blogPost)
-            <x-blogPost-card :blog-Post="$blogPost" />
-        @empty
-            <div class="rounded-lg shadow-md bg-white p-4">{{$blogPost->title}}</div>
-        @endforelse
-    </div>
     </x-fund-fairy-layout>
