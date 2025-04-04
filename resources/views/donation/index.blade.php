@@ -33,7 +33,7 @@
                         @forelse($donations as $donation)
                         <tr>
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">{{$donation->user_id}}</td>
-                            <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">{{$donation->request_id}}</td>
+                            <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">{{$donation->id}}</td>
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 first:pl-1 last:pr-1">${{ number_format($donation->amount, 2) }}</td>
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">{{$donation->type}}</td>
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">{{$donation->message}}</td>
