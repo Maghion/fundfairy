@@ -8,15 +8,19 @@
                      src="{{ url('/images') }}/{{ $testimonial->testimonial_image }}"
                      alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
             @endif
-            <figure class="relative isolate pt-6">
-                <blockquote class="text-xl font-semibold text-white bg-violet-900 p-4 rounded">
-                    <span class="absolute text-6xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-white">“</span>
-                    <p>{{ $testimonial->description }}</p>
-                </blockquote>
-                <figcaption class="mt-8 text-base">
-                    <div class="font-semibold text-white">{{ $testimonial->user_name }}</div>
-                </figcaption>
-            </figure>
+    {{-- dipslay the user name before the testimonial--}}
+                <div class="text-center mt-4">
+                    <strong class="text-black text-lg">
+                        {{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}
+                    </strong>
+                </div>
+
+                <figure class="relative isolate pt-6">
+                    <blockquote class="text-xl font-semibold text-white bg-violet-900 p-4 rounded">
+                        <span class="absolute text-6xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-white">“</span>
+                        <p>{{ $testimonial->description }}</p>
+                    </blockquote>
+                </figure>
         </div>
     </div>
 </div>

@@ -2,7 +2,7 @@
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
     >
-        <h2 class="text-4xl text-center font-bold mb-4">Register</h2>
+        <h2 class="text-4xl text-center font-bold mb-4">Add Testimonial</h2>
         <form method="POST" action="{{ route('testimonial.store') }}">
             @csrf
             <x-inputs.text

@@ -31,7 +31,6 @@ class TestimonialSeeder extends Seeder
 
         // Insert job listings
         DB::table('testimonials')->insert($testimonials);
-        echo 'Testimonials created successfully!';
 
     }
 }
