@@ -8,13 +8,13 @@
         <form class="block mx-5 md:mx-auto md:space-x-2">
 
             <button
-                class="w-full md:w-auto bg-blue-700 hover:bg-blue-600 text-white px-4 py-3 focus:outline-none"
+                class="w-full md:w-auto bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-3 focus:outline-none"
             >
                 <i class="fa fa-search mr-1"></i> Current Requests
             </button>
 
             <button
-                class="w-full md:w-auto bg-blue-700 hover:bg-blue-600 text-white px-4 py-3 focus:outline-none"
+                class="w-full md:w-auto bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-3 focus:outline-none"
             >
                 <i class="fa fa-search mr-1"></i> Sign Up Today
             </button>
