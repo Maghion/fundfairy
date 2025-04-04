@@ -14,8 +14,11 @@ class DonationRequestController extends Controller
      */
     public function index(): View
     {
-        $title = 'Donation Requests';
+        $title = 'Donation Request';
         $donationRequests = DonationRequest::all();
+
+//        $donationRequests = DonationRequest::with('donations')->get();
+
         return view('donation-request.index', compact('title', 'donationRequests'));
     }
 
@@ -47,6 +50,9 @@ class DonationRequestController extends Controller
      */
     public function show(DonationRequest $donationRequest): View
     {
+//        $donationRequests = DonationRequest::with('donations')->get();
+        $donationRequest->load('donations');
+
         return view('donation-request.show', compact('donationRequest'));
     }
 
