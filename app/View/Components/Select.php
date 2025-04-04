@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class file2 extends Component
+class Select extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class file2 extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.inputs.file2');
+        return view('components.inputs.select');
     }
 }
