@@ -12,9 +12,9 @@
             <li>No blog posts found</li>
         @endforelse
     </ul>
-</x-fund-fairy-layout>
 
-<x-fund-fairy-layout>
+
+
         <x-slot:pageTitle>All Blogpost</x-slot:pageTitle>
     <main class="flex-auto">
         <div class="mt-16 sm:mt-32 sm:px-8">
