@@ -46,7 +46,8 @@
 
         <div class="w-full px-3 mb-6 md:mb-0">
             <label>
-                <input type="checkbox" name="anon" {{ old('anon') ? 'checked' : '' }}> Donate Anonymously
+                <input type="hidden" name="anon" value="0">
+                <input type="checkbox" name="anon" value="1" {{ old('anon') ? 'checked' : '' }}> Donate Anonymously
             </label>
             @error('anon')
             <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
