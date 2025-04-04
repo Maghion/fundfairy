@@ -22,8 +22,8 @@
                 <div class="relative px-8">
                     <div class="mx-auto max-w-2xl">
                         <header class="max-w-2xl">
-                            <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">Writing on software design, company building, and the aerospace industry.</h1>
-                            <p class="mt-6 text-base text-zinc-600">All of my long-form thoughts on programming, leadership, product design, and more, collected in chronological order.</p>
+                            <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">Blogposts</h1>
+                            <p class="mt-6 text-base text-zinc-600">Hear all the story of the business that was fully funded by your donations.</p>
                         </header>
                         <div class="mt-16">
                             <div class="md:border-l md:border-zinc-100 md:pl-6">
