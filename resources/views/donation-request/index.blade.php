@@ -1,6 +1,6 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ $title }}</x-slot>
-    <ul>
+    <ul class="grid grid-cols-3 gap-4">
         @forelse($donationRequests as $donationRequest)
             <x-donation-request-card :donationRequest="$donationRequest" />
 
