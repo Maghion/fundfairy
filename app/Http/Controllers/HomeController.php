@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index() {
-        $title = 'BLOG POSTS';
+
         $blogPosts =BlogPost::latest()->limit(6)->get();
-        return view('pages.index')->with('blogPosts', $blogPosts)->with('title', $title);
+        return view('pages.index')->with('blogPosts', $blogPosts);
     }
 
     //
