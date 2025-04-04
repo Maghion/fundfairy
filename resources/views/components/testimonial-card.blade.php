@@ -8,7 +8,7 @@
                      src="{{ url('/images') }}/{{ $testimonial->testimonial_image }}"
                      alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
             @endif
-    {{-- dipslay the user name before the testimonial--}}
+    {{-- dipslay the user name before the testimonial description--}}
                 <div class="text-center mt-4">
                     <strong class="text-black text-lg">
                         {{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}
