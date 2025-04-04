@@ -26,7 +26,7 @@ class Donation extends Model
     }
 
     // Relation to request
-    public function request(): BelongsTo
+    public function donationRequest(): BelongsTo
     {
         return $this->belongsTo(DonationRequest::class);
     }

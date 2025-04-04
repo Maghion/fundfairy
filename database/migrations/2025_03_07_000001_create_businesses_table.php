@@ -19,11 +19,11 @@ return new class extends Migration
             $table->string('address2')->nullable();
             $table->string('city');
             $table->string('state');
-            $table->integer('zip_code');
+            $table->string('zip_code');
             $table->string('phone_number');
             $table->boolean('featured')->default(false);
             $table->timestamps();
-            $table->string('business_description')->nullable();
+            $table->text('business_description')->nullable();
         });
     }
 

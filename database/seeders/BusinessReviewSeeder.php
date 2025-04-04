@@ -16,7 +16,7 @@ class BusinessReviewSeeder extends Seeder
     public function run(): void
     {
         // Load business review data
-        $reviews = include database_path('seeders/data/business-reviews.php');
+        $reviews = include database_path('seeders/data/business_reviews.php');
 
         // Get all user IDs
         $userIds = User::pluck('id')->toArray();
@@ -38,7 +38,6 @@ class BusinessReviewSeeder extends Seeder
 
 
         // Insert business-review
-        DB::table('business-reviews')->insert($reviews);
-        echo 'Review created successfully!';
+        DB::table('business_reviews')->insert($reviews);
     }
 }

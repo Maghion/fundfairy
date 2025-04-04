@@ -44,7 +44,7 @@ return [
         'id' => 6,
         'title' => "Tech Startup Dreams: How an Angel Investor Helped Me Build My App",
         'content' => "Kevin had an innovative app idea but no tech background. An angel investor saw potential and provided the necessary funds to develop and launch his startup.",
-        'status' => 'daft',
+        'status' => 'draft',
         'created_at' => now(),
         'updated_at' => now()
     ],

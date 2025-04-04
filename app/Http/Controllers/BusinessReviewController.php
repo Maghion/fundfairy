@@ -49,10 +49,10 @@ class  BusinessReviewController extends Controller
         ]);
 
         // Hardcoded user ID
-        $validatedData['user_id'] = auth()->id;
+        $validatedData['user_id'] = 1;
 
         // Hardcoded business ID
-        $validatedData['business_id'] = auth()->id;
+        $validatedData['business_id'] = 1;
 
         // Submit to database
         BusinessReview::create($validatedData);

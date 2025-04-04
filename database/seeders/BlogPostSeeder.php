@@ -15,7 +15,7 @@ class BlogPostSeeder extends Seeder
     public function run(): void
     {
         // Load job listings data
-        $blogPosts = include database_path('seeders/data/blogPosts.php');
+        $blogPosts = include database_path('seeders/data/blogposts.php');
 
         // Get all user IDs
         $userIds = User::pluck('id')->toArray();
@@ -29,7 +29,7 @@ class BlogPostSeeder extends Seeder
         }
 
         // Insert job listings
-        DB::table('blog-posts')->insert($blogPosts);
+        DB::table('blog_posts')->insert($blogPosts);
 
     }
 }

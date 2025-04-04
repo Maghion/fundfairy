@@ -18,11 +18,8 @@ return new class extends Migration
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->string('title');
             $table->text('comment');
-            $table->unsignedBigInteger('parent_comment_id');
+            $table->unsignedBigInteger('parent_comment_id')->nullable();
             $table->timestamps();
-            //foreign key constraint
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('donation_request_id')->references('id')->on('donation_request')->onDelete('cascade');
         });
     }
     /**

@@ -41,13 +41,11 @@ class TestimonialController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required|string',
-            'status' => 'required|string:active, pending',
-            'featured' => 'required|boolean',
-
+            'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Hardcoded user ID
-        $validatedData['user_id'] = auth()->id;
+        $validatedData['user_id'] = 1;
 
         // Submit to database
         Testimonial::create($validatedData);

@@ -29,4 +29,13 @@ class CommentFactory extends Factory
             'parent_comment_id'=> null,
         ];
     }
+
+    public function withParentComment(): self
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'parent_comment_id' => Comment::query()->inRandomOrder()->first()?->id ?? Comment::factory(),
+            ];
+        });
+    }
 }
