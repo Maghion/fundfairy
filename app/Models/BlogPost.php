@@ -24,12 +24,7 @@ class BlogPost extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function index(): BelongsTo
-    {
-        $blogPosts =BlogPost::latest()->limit(6)->get();
 
-        return view('pages.home')->with('BlogPosts', $blogPosts );
-    }
 
 
 

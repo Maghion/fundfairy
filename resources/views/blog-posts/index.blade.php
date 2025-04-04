@@ -29,7 +29,7 @@
                             <div class="md:border-l md:border-zinc-100 md:pl-6">
                                 <div class="-mx-4 flex max-w-3xl flex-col space-y-4 md:mx-0">
                                     @forelse($blogPosts as $blogPost)
-                                        <x-blogPost-card :job="$blogPost" />
+                                        <x-blogPost-card :blogPost="$blogPost" />
                                     @empty
                                         <p>No Blogposts found</p>
                                     @endforelse
