@@ -16,7 +16,9 @@ class Testimonial extends Model
         'title',
         'description',
         'status',
-        'featured'
+        'featured',
+        'testimonial_image'
+
     ];
 
     // Relation to user

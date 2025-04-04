@@ -22,6 +22,7 @@ class TestimonialFactory extends Factory
             'description' => $this->faker->paragraph(),
             'status' => $this->faker->randomElement(['active', 'pending']),
             'featured' => $this->faker->boolean(),
+            'testimonial_image' => $this->faker->imageUrl(width: 100, height: 100),
         ];
     }
 }

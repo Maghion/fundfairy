@@ -41,7 +41,7 @@ class TestimonialController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required|string',
-
+            'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Hardcoded user ID
