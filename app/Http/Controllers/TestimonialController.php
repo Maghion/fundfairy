@@ -52,7 +52,7 @@ class TestimonialController extends Controller
         // Submit to database
         Testimonial::create($validatedData);
 
-        return redirect()->route('testimonial.index')->with('success', 'Testimonial created successfully!');;
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial created successfully!');
 
     }
 
