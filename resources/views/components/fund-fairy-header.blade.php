@@ -1,4 +1,4 @@
-<header class="bg-fuchsia-900 text-white p-4">
+<header class="bg-fuchsia-950 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-3xl font-semibold">
             <a href="{{url('/')}}">Fund Fairy</a>
@@ -12,7 +12,7 @@
             <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('register')" url="/register">Register</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fund-fairy-nav-link>
-            <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
+            <x-fund-fairy-button-link btnColor="bg-fuchsia-600" textClass="text-white" url="/donation/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
         </nav>
         <button id="hamburger" class="text-white md:hidden flex items-center">
             <i class="fa fa-bars text-2xl p-2"></i>
