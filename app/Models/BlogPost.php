@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
+
 class BlogPost extends Model
 {
     use HasFactory;
@@ -21,6 +22,13 @@ class BlogPost extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function index(): BelongsTo
+    {
+        $blogPosts =BlogPost::latest()->limit(6)->get();
+
+        return view('pages.home')->with('BlogPosts', $blogPosts );
     }
 
 
