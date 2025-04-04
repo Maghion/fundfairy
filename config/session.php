@@ -13,7 +13,7 @@ return [
     | incoming requests. Laravel supports a variety of storage options to
     | persist session data. Database storage is a great default choice.
     |
-    | Supported: "file2", "cookie", "database", "apc",
+    | Supported: "file", "cookie", "database", "apc",
     |            "memcached", "redis", "dynamodb", "array"
     |
     */
@@ -54,7 +54,7 @@ return [
     | Session File Location
     |--------------------------------------------------------------------------
     |
-    | When utilizing the "file2" session driver, the session files are placed
+    | When utilizing the "file" session driver, the session files are placed
     | on disk. The default storage location is defined here; however, you
     | are free to provide another location where they should be stored.
     |
