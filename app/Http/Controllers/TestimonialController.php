@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 
 class TestimonialController extends Controller
@@ -36,11 +37,21 @@ class TestimonialController extends Controller
      * @route POST /testimonial
      */
 
-    public function store(Request $request){
-        $title = $request->input("title");
-        $description = $request->input("description");
+    public function store(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'description' => 'required|string',
+            'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        return "Title: $title, Description: $description";
+        // Hardcoded user ID
+        $validatedData['user_id'] = 1;
+
+        // Submit to database
+        Testimonial::create($validatedData);
+
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial created successfully!');
+
     }
 
     /**
