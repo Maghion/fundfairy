@@ -12,5 +12,5 @@
         <a href="{{ route('businesses.index') }}" class="block text-xl text-center">
             <i class="fa fa-arrow-alt-circle-right"></i> Show All Businesses
         </a>
-        <x-bottom-banner />
+        <x-fund-fairy-bottom-banner />
 </x-fund-fairy-layout>
