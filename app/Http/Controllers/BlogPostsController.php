@@ -19,7 +19,7 @@ class BlogPostsController extends Controller
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
         $blogPosts =BlogPost::latest()->limit(6)->get();
        // return view('blog-posts.index', compact('title', 'blogPosts'));
-        return view('pages.home')->with('BlogPosts', $blogPosts );
+        return view('pages.index')->with('BlogPosts', $blogPosts );
     }
 
 

@@ -8,7 +8,7 @@
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             @forelse($blogPosts as $blogPost)
-                $blogPosts =BlogPost::latest()->limit(6)->get(); />
+                <x-blogPost-card $blogPosts =BlogPost::latest()->limit(3)->get(); />
             @empty
                 <p>No Blogposts found</p>
             @endforelse
