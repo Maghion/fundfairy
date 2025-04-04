@@ -7,6 +7,7 @@
             <x-fund-fairy-nav-link :active="request()->is('/')" url="/">Home</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('about')" url="/about">About</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('blog-posts')" url="/blog-posts">Blog Post</x-fund-fairy-nav-link>
+            <x-fund-fairy-nav-link :active="request()->is('testimonial/create')" url="/testimonial/create">Testimonials</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('register')" url="/register">Register</x-fund-fairy-nav-link>
