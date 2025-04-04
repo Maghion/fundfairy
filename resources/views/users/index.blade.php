@@ -5,8 +5,13 @@
         <div class="px-(--page-padding) py-6 [--page-padding:--spacing(4)] sm:[--page-padding:--spacing(8)]">
             <div class="mx-auto max-w-6xl">
                 <x-slot name="title">Viewing all Users</x-slot>
-                <div class="-mx-(--page-padding) mt-8 flex overflow-x-auto">
-                    <div class="grow px-(--page-padding)">
+{{--                <div class="-mx-(--page-padding) mt-8 flex overflow-x-auto">--}}
+                    <div class="mb-6 space-y-2">
+                        <h2 class="text-base font-semibold text-zinc-700">Showing {{ $users->count() }} users</h2>
+                        <div>
+                            {{ $users->links() }}
+                        </div>
+{{--                    </div>--}}
                         <table class="min-w-full text-left text-sm/6 whitespace-nowrap text-zinc-950">
                             <thead class="text-zinc-500">
                             <tr>
@@ -33,12 +38,11 @@
                             @empty
                                 No users Found
                             @endforelse
-                            <div class="mt-4">
-                                {{ $users->links() }}
-                            </div>
+
                             </tbody>
                         </table>
                     </div>
+
                 </div>
             </div>
         </div>
