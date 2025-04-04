@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
+
 class BlogPost extends Model
 {
     use HasFactory;
@@ -22,6 +23,8 @@ class BlogPost extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+
 
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -17,8 +18,9 @@ class BlogPostsController extends Controller
         $title = 'BLOG POSTS';
         $blogPosts = BlogPost::all();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
-       // return view('blog-posts.index', compact('title', 'blogPosts'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
