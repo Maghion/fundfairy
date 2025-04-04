@@ -42,7 +42,7 @@
             <div class="flex justify-center md:justify-end space-x-4 mt-2 md:mt-0">
                 <a href="about" class="hover:text-white">About us</a>
                 <a href="newsletter" class="hover:text-white border-l pl-4">Subscribe to our Newsletter</a>
-                <a href="#" class="hover:text-white border-l pl-4">Privacy Policy</a>
+                <a href="{{ url('/privacypolicy') }}" class="hover:text-white border-l pl-4">Privacy Policy</a>
             </div>
         </div>
     </div>

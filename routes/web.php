@@ -35,6 +35,13 @@ Route::resource('newsletter', NewsletterController::class);
 //    return view('about'); // Loads the Blade file
 //});
 
+Route::get('/privacypolicy', function() {
+    $title = 'Privacy Policy';
+    return view('pages.privacypolicy', compact('title'));
+//     return view('PrivacyPolicy.index' , compact('title'));
+});
+
+
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
     echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';

@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class Business extends Model
 {
+    use HasFactory;
+
     protected $table = 'businesses';
 
     protected $fillable = [
@@ -20,6 +24,10 @@ class Business extends Model
         'featured',
         'business_description'
     ];
+
+    public static function create(array $array)
+    {
+    }
 
     public function user(): BelongsTo
     {

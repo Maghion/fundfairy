@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class BusinessController extends Controller
 {
@@ -14,8 +15,9 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
+        $title = "View all Businesses"; // Define title
         $businesses = Business::all();
-        return view('businesses/index')->with('businesses', $businesses);
+        return view('businesses.index', compact('title', 'businesses'));
 
     }
 
@@ -33,12 +35,17 @@ class BusinessController extends Controller
      * @desc Store a newly created business in storage.
      * @route POST /businesses
      */
-    public function store(Request $request): string
+    public function store(Request $request): RedirectResponse
     {
         $title = $request->input('title');
-        $description = $request->input('description');
+        $description = $request->input('business_description');
 
-        return "Title: $title, Description: $description";
+        Business::create([
+            'title' => $title,
+            'business_description' => $description
+        ]);
+
+        return redirect()->route('businesses.index');
     }
 
     /**
@@ -47,7 +54,8 @@ class BusinessController extends Controller
      */
     public function show(Business $business): View
     {
-        return view('businesses.show', compact('business'));
+        $title = "Business Details: " . $business->name; // Define title
+        return view('businesses.show', compact('title', 'business'));
     }
 
     /**
