@@ -17,7 +17,6 @@ class BlogPostsController extends Controller
         $title = 'BLOG POSTS';
         $blogPosts = BlogPost::all();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
-
     }
 
 
