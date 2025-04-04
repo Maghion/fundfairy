@@ -13,7 +13,7 @@
                 <p>No Blogposts found</p>
             @endforelse
         </div>
-        <a href="{{ route('jobs.index') }}" class="block text-xl text-center">
+        <a href="{{ route('$blogPosts.index') }}" class="block text-xl text-center">
             <i class="fa fa-arrow-alt-circle-right"></i> Show All BlogPosts
         </a>
         <x-fund-fairy-bottom-banner />
