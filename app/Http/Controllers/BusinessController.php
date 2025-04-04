@@ -15,8 +15,9 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
+        $title = "View all Businesses"; // Define title
         $businesses = Business::all();
-        return view('businesses/index')->with('businesses', $businesses);
+        return view('businesses.index', compact('title', 'businesses'));
 
     }
 
@@ -53,7 +54,8 @@ class BusinessController extends Controller
      */
     public function show(Business $business): View
     {
-        return view('businesses.show', compact('business'));
+        $title = "Business Details: " . $business->name; // Define title
+        return view('businesses.show', compact('title', 'business'));
     }
 
     /**
