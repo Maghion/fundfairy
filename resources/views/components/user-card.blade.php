@@ -9,9 +9,15 @@
         @endif
 
         <div>
-            <h2 class="text-xl font-bold text-gray-800">{{ $user->title }}</h2>
-            <p class="text-sm text-gray-500">{{ $user->name }}</p>
+
+
+            <p class="text-sm text-gray-500">{{ $user->first_name }}</p>
+            <p class="text-sm text-gray-500">{{ $user->last_name }}</p>
             <p class="text-sm text-gray-500">{{ $user->email }}</p>
+            <p class="text-sm text-gray-500">{{ $user->biography }}</p>
+            <p class="text-sm text-gray-500">{{ $user->avatar }}</p>
+            <p class="text-sm text-gray-500">{{ $user->role }}</p>
+
         </div>
     </div>
 
@@ -20,6 +26,8 @@
         View User Details
     </a>
 </div>
+
+
 
 
 {{--@props(['user'])--}}
