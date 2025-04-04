@@ -26,7 +26,7 @@ Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('
 Route::resource('businesses', BusinessController::class);
 Route::resource('donation', DonationController::class);
 Route::resource('comment', CommentController::class);
-Route::resource('donation-request', DonationRequestController::class);
+Route::resource('donation-requests', DonationRequestController::class);
 Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class);
 Route::resource('about', AboutController::class);

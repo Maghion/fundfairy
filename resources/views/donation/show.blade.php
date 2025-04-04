@@ -9,4 +9,6 @@
             <li><strong>Message:</strong> {{ $donation->message }}</li>
             <li><strong>Type:</strong> {{ ($donation->type) }}</li>
         @endforelse
+
+
 </x-fund-fairy-layout>
