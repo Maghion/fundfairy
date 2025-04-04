@@ -15,9 +15,8 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
-        $title = "View all Businesses"; // Define title
-        $businesses = Business::all();
-        return view('businesses.index', compact('title', 'businesses'));
+        $businesses = Business::latest()->limit(6)->get();
+        return view('businesses.index')->with('businesses', $businesses);
 
     }
 
