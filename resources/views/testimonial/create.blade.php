@@ -8,7 +8,7 @@
             <x-inputs.text
                 id="description"
                 name="description"
-                placeholder="Full name"
+                placeholder="Description"
             />
             <x-inputs.file
                 id="testimonial_image"
