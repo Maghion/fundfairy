@@ -24,5 +24,4 @@
             </button>
         </form>
     </div>
-
 </x-fund-fairy-layout>

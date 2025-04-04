@@ -29,7 +29,7 @@ class TestimonialSeeder extends Seeder
             $testimonial['updated_at'] = now();
         }
 
-        // Insert job listings
+        // Insert testimonial
         DB::table('testimonials')->insert($testimonials);
 
     }
