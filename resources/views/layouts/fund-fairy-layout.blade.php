@@ -23,6 +23,12 @@
     <x-fund-fairy-hero />
 @endif
 <main class="container mx-auto p-4 mt-4">
+    @if (session('success'))
+        <x-alert type="success" message="{{ session('success') }}" />
+    @endif
+    @if (session('error'))
+        <x-alert type="error" message="{{ session('error') }}" />
+    @endif
     {{ $slot }}
 </main>
 <x-fund-fairy-bottom-banner />

@@ -1,11 +1,9 @@
 @props(['testimonial'])
-
-<div class="bg-gray-950 px-8 py-16">
-    <div class="mx-auto flex flex-col gap-y-10">
-        <div class="rounded-lg bg-gray-200 p-8 outline -outline-offset-1 outline-white/25 max-w-full">
+<div class="mx-auto flex flex-col gap-y-10">
+        <div class="rounded-lg bg-white p-8 shadow-2xl  outline -outline-offset-1 outline-white/25 max-w-full">
             @if($testimonial->testimonial_image)
-                <img class="w-32 h-32 rounded-lg bg-gray-800 object-cover shadow-2xl outline -outline-offset-1 outline-white/10 mx-auto"
-                     src="{{ url('/images') }}/{{ $testimonial->testimonial_image }}"
+                <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
+                     src="{{ url('/images') }}/storage/{{ $testimonial->testimonial_image }}"
                      alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
             @endif
     {{-- dipslay the user name before the testimonial description--}}
@@ -16,13 +14,35 @@
                 </div>
 
                 <figure class="relative isolate pt-6">
-                    <blockquote class="text-xl font-semibold text-white bg-violet-900 p-4 rounded">
-                        <span class="absolute text-6xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-white">“</span>
+                    <blockquote class="text-xl text-gray-200 bg-violet-800 p-4 rounded">
+                        <span class="absolute font-semibold text-8xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-violet-600 ">“</span>
                         <p>{{ $testimonial->description }}</p>
                     </blockquote>
                 </figure>
+
+                <div class="flex justify-center mt-4 space-x-4">
+                    <!-- Edit Button -->
+                    <a href="{{ route('testimonial.edit', $testimonial->id) }}"
+                       class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full shadow-md transition duration-300 ease-in-out no-underline"
+                       style="text-decoration: none;"
+                    >Edit</a>
+
+                    <!-- Delete Form -->
+                    <form method="POST"
+                          action="{{ route('testimonial.destroy', $testimonial) }}"
+                          onsubmit="return confirm('Are you sure you want to delete this testimonial?')"
+                    >
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit"
+                                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full shadow-md transition duration-300 ease-in-out"
+                        >
+                            Delete
+                        </button>
+                    </form>
+                </div>
         </div>
+
     </div>
-</div>
 
 
