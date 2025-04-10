@@ -1,6 +1,6 @@
 @props(['testimonial'])
 <div class="mx-auto flex flex-col gap-y-10">
-        <div class="rounded-lg bg-white p-8 shadow-2xl  outline -outline-offset-1 outline-white/25 max-w-full">
+    <div class="rounded-lg bg-white p-8 shadow-2xl max-w-full border-4 border-fuchsia-950">
             @if($testimonial->testimonial_image)
                 <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
                      src="{{ url('/images') }}/storage/{{ $testimonial->testimonial_image }}"
@@ -14,7 +14,7 @@
                 </div>
 
                 <figure class="relative isolate pt-6">
-                    <blockquote class="text-xl text-gray-200 bg-violet-800 p-4 rounded">
+                    <blockquote class="text-xl text-black  bg-gray-200 p-4 rounded">
                         <span class="absolute font-semibold text-8xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-violet-600 ">“</span>
                         <p>{{ $testimonial->description }}</p>
                     </blockquote>
@@ -23,7 +23,8 @@
                 <div class="flex justify-center mt-4 space-x-4">
                     <!-- Edit Button -->
                     <a href="{{ route('testimonial.edit', $testimonial->id) }}"
-                       class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full shadow-md transition duration-300 ease-in-out no-underline"
+                       class="px-4 py-2 bg-gray-200 rounded-full
+                       shadow-md transition duration-300 ease-in-out hover:no-underline hover:text-white hover:bg-gray-800 "
                        style="text-decoration: none;"
                     >Edit</a>
 
@@ -35,7 +36,8 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit"
-                                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full shadow-md transition duration-300 ease-in-out"
+                                class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full
+                                 shadow-md transition duration-300 ease-in-out"
                         >
                             Delete
                         </button>
