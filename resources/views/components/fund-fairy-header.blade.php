@@ -20,7 +20,7 @@
 
     <!-- Mobile Menu -->
    <nav id="mobile-menu"
-        class="hidden md:hidden bg-fushia-900 text-white mt-5 pb-4 space-y-2">
+        class="hidden md:hidden bg-fushia-950 text-white mt-5 pb-4 space-y-2">
        <x-fund-fairy-nav-link :active="request()->is('/')" url="/" :mobile="true">Home</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('about')" url="/about" :mobile="true">About</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses" :mobile="true">Businesses</x-fund-fairy-nav-link>
