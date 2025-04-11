@@ -25,7 +25,7 @@
                 <div class="flex items-center gap-4">
                     @if($user->avatar)
                         <img src="/images/{{ $user->avatar}}" alt="{{ $user->avatar }}"
-                         class="w-16 h-16 object-cover rounded-full shadow" />
+                             class="w-16 h-16 object-cover rounded-full shadow" />
                     @endif
                     <div>
                         <p class="text-lg font-semibold text-gray-800">{{ $user->first_name }} {{ $user->last_name }}</p>
