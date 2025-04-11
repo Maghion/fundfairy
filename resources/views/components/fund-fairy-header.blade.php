@@ -1,7 +1,10 @@
 <header class="bg-fuchsia-950 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-3xl font-semibold">
-            <a href="{{url('/')}}">Fund Fairy</a>
+        <h1 class="text-3xl font-bold">
+            <a href="{{url('/')}}" class="flex items-center space-x-2 hover:text-white no-underline hover:no-underline">
+                <img src="{{ asset('images/logo.png') }}" alt="Fund Fairy Logo" class="h-16 w-16">
+                <span>FundFairy</span>
+            </a>
         </h1>
         <nav class="hidden md:flex items-center space-x-4">
             <x-fund-fairy-nav-link :active="request()->is('/')" url="/">Home</x-fund-fairy-nav-link>
@@ -24,8 +27,9 @@
             @endauth
 
             @auth
-                <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation-request/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
+                <x-fund-fairy-button-link btnColor="bg-yellow-500" textClass="text-white" url="/donation-request/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
             @endauth
+
 
         </nav>
         <button id="hamburger" class="text-white md:hidden flex items-center">
