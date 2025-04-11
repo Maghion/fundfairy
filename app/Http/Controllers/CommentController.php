@@ -58,7 +58,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment): View {
         $title = "Edit Comment";
-        return view('comment.edit', compact('comment'));
+        return view('comment.edit', compact('comment', 'title'));
     }
     /**
      * @desc Show single comment details
@@ -84,7 +84,7 @@ class CommentController extends Controller
             'comment' => 'required|string|max:500',
         ]);
         $comment->update($validatedData);
-        return redirect()->route('comments.index')->with('success', 'Comment updated successfully.');
+        return redirect()->route('comment.index')->with('success', 'Comment updated successfully.');
     }
 
     /**
