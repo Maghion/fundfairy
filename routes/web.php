@@ -17,7 +17,7 @@ use App\Http\Controllers\TestimonialController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
@@ -35,11 +35,15 @@ Route::resource('about', AboutController::class);
 Route::resource('newsletter', NewsletterController::class);
 
 //Login And Register routes
+Route::middleware('guest')->group(function () {
+    Route::get('/register', [RegisterController::class, 'register'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+});
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('register', [RegisterController::class, 'index'])->name('register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register.store');
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
 //Route::get('/about', function () {
 //    return view('about'); // Loads the Blade file
 //});

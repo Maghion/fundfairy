@@ -2,7 +2,7 @@
 
 <div class="mb-4">
     @if($label)
-        <label class="block text-gray-700  @error($name) text-red-500 @enderror" for="{{ $id }}">{{ $label }}</label>
+        <label class="block text-gray-700 @error($name) text-red-500 @enderror" for="{{ $id }}">{{ $label }}</label>
     @endif
     <textarea
         id="{{ $id }}"
