@@ -3,8 +3,8 @@
 <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between h-full">
     <div class="flex items-center gap-4 mb-4">
 {{--        replace company logo with avatar--}}
-        @if($user->company_logo)
-            <img src="/images/{{ $user->company_logo }}" alt="{{ $user->company_name }}"
+        @if($user->avatar)
+            <img src="/images/{{ $user->avatar}}" alt="{{ $user->avatar }}"
                  class="w-16 h-16 object-cover rounded-full shadow" />
         @endif
 
@@ -15,7 +15,8 @@
             <p class="text-sm text-gray-500">{{ $user->last_name }}</p>
             <p class="text-sm text-gray-500">{{ $user->email }}</p>
             <p class="text-sm text-gray-500">{{ $user->biography }}</p>
-            <p class="text-sm text-gray-500">{{ $user->avatar }}</p>
+{{--            <p class="text-sm text-gray-500">{{ $user->avatar }}</p>--}}
+            <img src="{{ $user->avatar }}" alt="Avatar" class="w-10 h-10 rounded-full object-cover" />
             <p class="text-sm text-gray-500">{{ $user->role }}</p>
 
         </div>
