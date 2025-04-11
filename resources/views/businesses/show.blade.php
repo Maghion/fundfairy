@@ -21,7 +21,7 @@
                         @foreach($business->businessReviews as $review)
                             <div class="border-b pb-4 mb-4">
                                 <h3 class="text-lg font-bold text-blue-600">{{ $review->title }}</h3>
-                                <p class="text-yellow-600 font-medium">Rating: {{ $review->rating }}</p>
+                                <wa-rating label="Rating" readonly value="{{ $review->rating }}"></wa-rating>
                                 <p class="text-gray-700">{{ $review->comment }}</p>
                                 <p class="text-sm text-gray-500">Posted by User ID: {{ $review->user_id }}</p>
                             </div>

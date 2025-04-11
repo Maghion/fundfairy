@@ -15,7 +15,7 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
-        $businesses = Business::latest()->limit(6)->get();
+        $businesses = Business::latest()->get();
         return view('businesses.index')->with('businesses', $businesses);
 
     }

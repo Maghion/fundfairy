@@ -1,10 +1,17 @@
 @props(['business'])
 
-<div class="rounded-lg shadow-md bg-white p-4">
+<div class="rounded-lg shadow-md bg-white p-4 @if($business->featured) order-first @endif">
     <div class="flex items-center space-between gap-4">
         <div>
             <h2 class="text-xl font-semibold">
                 {{$business->name}}
+
+                @if($business->featured)
+                    <span class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset">
+                    Featured
+                </span>
+                @endif
+
             </h2>
         </div>
     </div>
@@ -21,3 +28,5 @@
         Details
     </a>
 </div>
+
+
