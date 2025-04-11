@@ -1,5 +1,18 @@
 <x-fund-fairy-layout>
         <x-slot:pageTitle>All Blogpost</x-slot:pageTitle>
+    @if(session('success'))
+        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4 max-w-2xl mx-auto">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">All Blog Posts</h1>
+        <a href="{{ route('blog-posts.create') }}"
+           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Create New Post
+        </a>
+    </div>
     <main class="flex-auto">
         <div class="mt-16 sm:mt-32 sm:px-8">
             <div class="mx-auto w-full max-w-7xl">
