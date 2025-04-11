@@ -4,12 +4,12 @@
     'btnText' => 'Donate Now!',
     'btnLink' => '/donation-request/create',
     'btnIcon' => 'magic',
-    'btnColor' => 'bg-violet-900',
+    'btnColor' => 'bg-yellow-500',
     'imageSrc' => 'images/donations.jpg'
  ])
 <section class="container mx-auto my-6">
     <div
-        class="bg-purple-700 text-white py-6 text-center">
+        class="bg-fuchsia-950 text-white py-6 text-center">
         <div class="flex items-center justify-center space-x-4">
             <!-- Image with rounded shape at the top -->
             <img src="{{ asset($imageSrc) }}" alt="Banner Image" class="w-32 h-32 rounded-full mr-4">

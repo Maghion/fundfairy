@@ -38,7 +38,7 @@ class CommentController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
-            'comment' => 'required|string|max:500',
+            'comment' => 'required|string|max:255',
         ]);
 
         $validatedData['user_id'] = $request->user()->id;
