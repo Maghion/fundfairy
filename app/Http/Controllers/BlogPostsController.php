@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
