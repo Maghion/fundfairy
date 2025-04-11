@@ -15,9 +15,13 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = BlogPost::all();
+        $blogPosts = BlogPost::where('status', 'published')
+            ->orderBy('updated_at', 'content')
+            ->with('id') // eager load author relationship
+            ->get();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
     }
+
 
 
 
