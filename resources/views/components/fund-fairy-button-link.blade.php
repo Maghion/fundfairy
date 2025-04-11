@@ -3,7 +3,7 @@
     'icon' => null,
     'btnColor' => 'bg-yellow-500',
     'hoverClass' => 'hover:bg-fuchsia-700',
-    'textClass' => 'text-black',
+    'textClass' => 'text-white',
     'block' => false
     ])
 
