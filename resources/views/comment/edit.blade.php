@@ -15,9 +15,9 @@
                               id="comment"
                               name="comment"
                               placeholder="edit here">{{ old('comment', $comment->comment) }}</textarea>
-{{--                    @error('comment')--}}
-{{--                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>--}}
-{{--                    @enderror--}}
+                    @error('comment')
+                    <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <!-- Edit Button -->

@@ -96,11 +96,11 @@ class CommentController extends Controller
     public function destroy(Comment $comment): RedirectResponse
     {
         if ($comment->user_id !== request()->user()->id) {
-            return redirect()->route('comments.index')->with('error', 'You are not allowed to delete this comment.');
+            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
         }
         $comment->delete();
 
-        return redirect()->route('comments.index')->with('success', 'Comment deleted successfully.');
+        return redirect()->route('comment.index')->with('success', 'Comment deleted successfully.');
     }
 }
 
