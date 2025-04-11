@@ -42,7 +42,6 @@
                 <li class="mb-2"><strong>Location:</strong> {{ $business->city }}, {{ $business->state }}</li>
                 <li class="mb-2"><strong>Address:</strong> {{ $business->address1 }} {{ $business->address2 }}</li>
                 <li class="mb-2"><strong>Zip Code:</strong> {{ $business->zip_code }}</li>
-                <li class="mb-2"><strong> </strong> {{ $business->featured }}</li>
             </ul>
 
         </aside>
