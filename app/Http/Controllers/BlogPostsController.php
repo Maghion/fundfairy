@@ -63,25 +63,38 @@ class BlogPostsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): string
+    public function edit(BlogPost $blogPost)
     {
-        return "Edit Blog Post: $id";
+        return view('blog-posts.edit', [
+            'blogPost' => $blogPost,
+            'title' => 'Edit Blog Post'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): string
+    public function update(Request $request, BlogPost $blogPost)
     {
-        return "You have updated Blog Post: $id";
-    }
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required'
+        ]);
 
+        $blogPost->update($validated);
+
+        return redirect()->route('blog-posts.index')
+            ->with('success', 'Blog post updated successfully');
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): string
+    public function destroy(BlogPost $blogPost)
     {
-        return "You have deleted Blog Post: $id";
+        $blogPost->delete();
+
+        return redirect()->route('blog-posts.index')
+            ->with('success', 'Blog post deleted successfully');
     }
 
 

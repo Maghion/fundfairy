@@ -7,15 +7,32 @@
                 {{$blogPost->title}}
             </a>
         </h2>
+
         <time class="relative order-first mb-3 flex items-center pl-3.5 text-sm text-zinc-400 md:hidden">
-            <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true"><span class="h-4 w-0.5 rounded-full bg-zinc-200"></span></span>
+            <span class="absolute inset-y-0 left-0 flex items-center" aria-hidden="true">
+                <span class="h-4 w-0.5 rounded-full bg-zinc-200"></span>
+            </span>
             {{$blogPost->updated_at}}
         </time>
+
         <p class="mt-2 text-sm text-zinc-600">
             {{$blogPost->content}}
         </p>
-        <div aria-hidden="true" class="mt-4 flex items-center text-sm font-medium text-teal-500">
-                Read post</div>
+
+        <div class="mt-4 flex items-center gap-4">
+            <div aria-hidden="true" class="text-sm font-medium text-teal-500">
+                Read post
+            </div>
+            @auth
+                <a href="{{ route('blog-posts.edit', $blogPost) }}"
+                   class="text-sm font-medium text-blue-500 hover:text-blue-700">
+                    Edit
+                </a>
+            @endauth
+        </div>
     </div>
-    <time class="order-first hidden text-sm text-zinc-400 md:block">{{$blogPost->updated_at}}</time>
+
+    <time class="order-first hidden text-sm text-zinc-400 md:block">
+        {{$blogPost->updated_at}}
+    </time>
 </article>

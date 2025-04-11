@@ -17,6 +17,7 @@ class BlogPost extends Model
         'title',
         'content',
         'status',
+        'published_at'
     ];
 
     public function user(): BelongsTo
