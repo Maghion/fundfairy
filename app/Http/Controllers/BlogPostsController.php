@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -16,9 +16,11 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = BlogPost::all();
+        $blogPosts = BlogPost::where('status', 'published')
+            ->orderBy('updated_at', 'DESC');
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
     }
+
 
 
 

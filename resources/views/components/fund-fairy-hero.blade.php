@@ -1,23 +1,35 @@
 
-<section
-    class="hero relative bg-cover bg-center bg-no-repeat h-72 flex items-center"
->
-    <div class="overlay"></div>
-    <div class="container mx-auto text-center z-10">
-{{--        <h2 class="text-5xl text-white font-bold mb-8">Fund Your Project Today!</h2>--}}
-        <form class="block mx-5 md:mx-auto md:space-x-2">
+<section class="hero relative bg-cover bg-center bg-no-repeat h-100 flex items-center">
 
-            <button
-                class="w-full md:w-auto bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-3 focus:outline-none"
-            >
-                <i class="fa fa-search mr-1"></i> Current Requests
-            </button>
+    <div class="overlay absolute inset-0 bg-fuchsia-950 z-0"></div>
+    <div class="container mx-auto relative z-10 flex w-full h-full">
 
-            <button
-                class="w-full md:w-auto bg-fuchsia-600 hover:bg-fuchsia-700 text-white px-4 py-3 focus:outline-none"
-            >
-                <i class="fa fa-search mr-1"></i> Sign Up Today
-            </button>
-        </form>
+{{--        Text Column--}}
+        <div class="w-full md:w-[37%] flex flex-col justify-center p-4 text-white">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">
+                Turn <span class="text-fuchsia-500">Dreams</span> into <br>Reality!
+            </h2>
+            <p class="text-lg font-light md:text-2xl mb-6">
+                Request funding to launch your business or help others succeed by investing in their ideas
+            </p>
+            <form class="flex flex-col md:flex-row md:space-x-2">
+                <button class="mb-2 md:mb-0 bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-4 py-3 w-full md:w-auto">
+                    Donate
+                </button>
+                <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-4 py-3 w-full md:w-auto">
+                    Sign Up
+                </button>
+            </form>
+        </div>
+
+        <!-- Image Column -->
+        <div class="w-[64%] hidden md:block relative">
+            <img src="{{ asset('images/hero_hands.png') }}"
+                 alt="People putting their hands together"
+                 class="w-full h-full object-cover" />
+
+            <div class="absolute inset-0 bg-fuchsia-300 mix-blend-soft-light pointer-events-none"></div>
+        </div>
+
     </div>
 </section>
