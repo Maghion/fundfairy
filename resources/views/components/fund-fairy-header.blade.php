@@ -1,4 +1,4 @@
-<header class="bg-fuchsia-900 text-white p-4">
+<header class="bg-fuchsia-950 text-white p-4">
     <div class="container mx-auto flex justify-between items-center">
         <h1 class="text-3xl font-semibold">
             <a href="{{url('/')}}">Fund Fairy</a>
@@ -35,8 +35,7 @@
 
     <!-- Mobile Menu -->
    <nav id="mobile-menu"
-        class="hidden md:hidden bg-fushia-900 text-white mt-5 pb-4 space-y-2">
-
+        class="hidden md:hidden bg-fushia-950 text-white mt-5 pb-4 space-y-2">
        <x-fund-fairy-nav-link :active="request()->is('/')" url="/" :mobile="true">Home</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('about')" url="/about"  :mobile="true">About</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('blog-posts')" url="/blog-posts"  :mobile="true">Blog Posts</x-fund-fairy-nav-link>
