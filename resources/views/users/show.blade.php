@@ -21,9 +21,12 @@
                 </div>
 
                 <!--  Card : Avatar, First Name, Last Name, Email, Role -->
+
                 <div class="flex items-center gap-4">
-                    <img src="{{ $user->avatar }}" alt="Avatar"
-                         class="w-16 h-16 rounded-full object-cover shadow-md">
+                    @if($user->avatar)
+                        <img src="/images/{{ $user->avatar}}" alt="{{ $user->avatar }}"
+                         class="w-16 h-16 object-cover rounded-full shadow" />
+                    @endif
                     <div>
                         <p class="text-lg font-semibold text-gray-800">{{ $user->first_name }} {{ $user->last_name }}</p>
                         <p class="text-sm text-gray-500">{{ $user->email }}</p>
