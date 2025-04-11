@@ -5,7 +5,7 @@
             <a href="{{ route('comment.show', $comment->id) }}">
                 {{ $comment->title }}
             </a>
-            <li>{{ $comment }}</li>
+            <li>{{ $comment->comment }}</li>
         @empty
             <li>No comment found</li>
         @endforelse

@@ -2,7 +2,7 @@
     'url' =>  '/',
     'icon' => null,
     'btnColor' => 'bg-yellow-500',
-    'hoverClass' => 'hover:bg-pink-500',
+    'hoverClass' => 'hover:bg-fuchsia-700',
     'textClass' => 'text-black',
     'block' => false
     ])

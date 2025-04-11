@@ -39,6 +39,5 @@ class BusinessReviewSeeder extends Seeder
 
         // Insert business-review
         DB::table('business_reviews')->insert($reviews);
-        echo 'Review created successfully!';
     }
 }

@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * @method static create(array $validatedData)
+ */
 class Comment extends Model
 {
     use HasFactory;
@@ -23,6 +26,7 @@ class Comment extends Model
     ];
 
 // Relationship to User
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

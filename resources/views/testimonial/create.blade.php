@@ -1,31 +1,27 @@
 <x-fund-fairy-layout>
-<x-slot name="title">{{ $title }}</x-slot>
-    <h1>{{ $title }}</h1>
-    <form action="/testimonial" method="POST">
-        @csrf
-        <input type="text" name="description" placeholder="Description" 	value="{{ old('description') }}">
+    <div
+        class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
+    >
+        <h2 class="text-4xl text-center font-bold mb-4">Add Testimonial</h2>
+        <form method="POST" action="{{ route('testimonial.store') }}">
+            @csrf
+            <x-inputs.text
+                id="description"
+                name="description"
+                placeholder="Description"
+            />
+            <x-inputs.file
+                id="testimonial_image"
+                name="testimonial_image"
+                label="Testimonial Image"
+            />
 
-        <!-- Error Message for Description -->
-        @error('description')
-        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
-
-        <input type="checkbox" name="status" placeholder="Status"
-               value="{{ old('status') }}">
-        <!-- Error Message for Status -->
-        @error('status')
-        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
-
-        <input type="checkbox" name="featured" placeholder="Featured"
-               value="{{ old('featured') }}">
-        <!-- Error Message for Featured -->
-        @error('featured')
-        <div class="text-red-500 mt-2 text-sm">{{ $message }}</div>
-        @enderror
-
-
-        <button type="submit">Submit</button>
-    </form>
-
+            <button
+                type="submit"
+                class="w-full bg-violet-900 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
+            >
+                Create Testimonial
+            </button>
+        </form>
+    </div>
 </x-fund-fairy-layout>

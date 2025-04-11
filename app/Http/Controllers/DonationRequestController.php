@@ -15,8 +15,11 @@ class DonationRequestController extends Controller
      */
     public function index(): View
     {
-        $title = 'Donation Requests';
+        $title = 'Donation Request';
         $donationRequests = DonationRequest::all();
+
+//        $donationRequests = DonationRequest::with('donations')->get();
+
         return view('donation-request.index', compact('title', 'donationRequests'));
     }
 
@@ -46,8 +49,8 @@ class DonationRequestController extends Controller
 
         ]);
 
-        // Add the hardcoded user_id
-        //$validatedData['user_id'] = null;
+        // Add the hardcoded business_id
+        $validatedData['business_id'] = 1;
 
         // Create a new job listing with the validated data
         DonationRequest::create([
@@ -59,7 +62,7 @@ class DonationRequestController extends Controller
 
         ]);
 
-        return redirect()->route('donation-request.index')->with('success', 'donation request created successfully!');;
+        return redirect()->route('donation-request.index')->with('success', 'donation request created successfully!');
     }
 
 
@@ -71,6 +74,9 @@ class DonationRequestController extends Controller
      */
     public function show(DonationRequest $donationRequest): View
     {
+//        $donationRequests = DonationRequest::with('donations')->get();
+        $donationRequest->load('donations');
+
         return view('donation-request.show', compact('donationRequest'));
     }
 

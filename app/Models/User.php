@@ -89,6 +89,11 @@ class User extends Authenticatable
         return $this->hasMany(Donation::class);
     }
 
+    //checks whether the logged-in user has made a donation to that specific donation request
+    public function hasDonatedTo($donationRequest): bool {
+        return $this->donations()->where('request_id', $donationRequest->id)->exists();
+    }
+
     // Relationship with  testimonials
     public function testimonials(): HasMany
     {
