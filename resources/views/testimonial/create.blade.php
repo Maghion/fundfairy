@@ -24,7 +24,7 @@
 
             <button
                 type="submit"
-                class="w-full bg-violet-900 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
+                class="w-full bg-fuchsia-950 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
             >
                 Create
             </button>
