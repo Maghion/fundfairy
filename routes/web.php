@@ -13,11 +13,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
+use App\Http\Middleware\LogRequest;
 
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogRequest::class);
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
@@ -26,7 +27,17 @@ Route::resource('users', UserController::class);
 Route::resource('business-review',BusinessReviewController::class);
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
-Route::resource('donation', DonationController::class);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
+    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
+    Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
+    Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
+});
+Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
+Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
+
+
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 Route::resource('blog-posts', BlogPostsController::class);

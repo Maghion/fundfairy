@@ -5,6 +5,7 @@ use App\Models\Donation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
@@ -56,10 +57,11 @@ class DonationController extends Controller
         return redirect()->route('donation.index')->with('success', 'Donation created successfully!');
     }
 
-
     /**
      * @desc Display a form to edit a donation
      * @route GET /donation/{id}/edit
+     * @param $id
+     * @return string
      */
     public function edit(Donation $donation): string {
         $title = 'Edit Donation';
@@ -95,15 +97,16 @@ class DonationController extends Controller
         return redirect()->route('donation.index')->with('success', 'Donation deleted successfully.');
     }
 
-    /**
-     * @desc Show single donation details
-     * @route GET /donation/{id}
-     * @param $id
-     * @return string
-     */
-    public function show(Donation $donation): View {
-        $title = 'Showing Donation';
-        return view('donations.show', compact('title','donation'));
-    }
+//
+//    /**
+//     * @desc Show single donation details
+//     * @route GET /donation/{id}
+//     * @param $id
+//     * @return string
+//     */
+//    public function show(Donation $donation): View {
+//        $title = 'Showing Donation '. $donation->id;
+//        return view('donations.show', compact('title','donation'));
+//    }
 
 }

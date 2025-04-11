@@ -1,7 +1,6 @@
 @props(['type', 'message'])
 
-
-@if(session()->has('success') || session()->has('error'))
+@if(session()->has('success') || session()-> has('warning') | session()->has('error'))
     <div
         x-data="{ show: true }"
         x-init="setTimeout(() => show = false, 5000)"
