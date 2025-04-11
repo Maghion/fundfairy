@@ -20,7 +20,7 @@
 <body class="bg-gray-100">
 <x-fund-fairy-header />
 @if(request() ->is('/'))
-    <x-fund-fairy-top-banner />
+{{--    <x-fund-fairy-top-banner />--}}
     <x-fund-fairy-hero />
 @endif
 <main class="container mx-auto p-4 mt-4">
