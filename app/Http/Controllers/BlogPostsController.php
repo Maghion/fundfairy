@@ -16,7 +16,7 @@ class BlogPostsController extends Controller
     {
         $title = 'BLOG POSTS';
         $blogPosts = BlogPost::where('status', 'published')
-            ->orderBy('updated_at', 'content')
+            ->orderBy('updated_at', 'DESC')
             ->with('id') // eager load author relationship
             ->get();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
