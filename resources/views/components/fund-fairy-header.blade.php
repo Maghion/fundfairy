@@ -9,7 +9,7 @@
             <x-fund-fairy-nav-link :active="request()->is('blog-posts')" url="/blog-posts">Blog Post</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('testimonial')" url="/testimonial">Testimonials</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fund-fairy-nav-link>
-
+            <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request">Donation Requests</x-fund-fairy-nav-link>
             @auth
             <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
                 <form method="POST" action="{{ route('logout') }}">
@@ -23,8 +23,9 @@
                 <x-fund-fairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fund-fairy-nav-link>
             @endauth
 
+            @auth
                 <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation-request/create" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
-
+            @endauth
 
         </nav>
         <button id="hamburger" class="text-white md:hidden flex items-center">
@@ -41,7 +42,7 @@
        <x-fund-fairy-nav-link :active="request()->is('blog-posts')" url="/blog-posts"  :mobile="true">Blog Posts</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('testimonial')" url="/testimonial"  :mobile="true">Testimonials</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses"  :mobile="true">Businesses</x-fund-fairy-nav-link>
-
+       <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request"  :mobile="true">Donation Requests</x-fund-fairy-nav-link>
        @auth
            <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved"  :mobile="true">Bookmarks</x-fund-fairy-nav-link>
            <form method="POST" action="{{ route('logout') }}">
@@ -55,8 +56,8 @@
            <x-fund-fairy-nav-link :active="request()->is('login')" url="/login"  :mobile="true">User Login</x-fund-fairy-nav-link>
        @endauth
 
-
+        @auth
            <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation-request/create"  :mobile="true" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
-
+        @endauth
     </nav>
 </header>
