@@ -5,6 +5,7 @@ use App\Models\Donation;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DonationController extends Controller
 {
@@ -13,8 +14,11 @@ class DonationController extends Controller
      * @route GET /donation
      * @return View
      */
-    public function index(): View {
+    public function index(): View | RedirectResponse {
         $title = "Donations";
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
         $donations = Donation::all();
         return view('donation.index', compact('title', 'donations'));
     }
@@ -24,8 +28,12 @@ class DonationController extends Controller
      * @route GET /donation/create
      * @return View
      */
-    public function create(): View {
+    public function create(): View | RedirectResponse {
         $title = "Make Donation";
+            if (!Auth::check()) {
+                return redirect()->route('login');
+            }
+
         return view('donation.create', compact('title'));
     }
 
@@ -37,6 +45,10 @@ class DonationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
+
         $validatedData = $request->validate([
             'amount' => 'required|numeric|min:1|max:20000',
             'message' => 'nullable|string|max:255',
