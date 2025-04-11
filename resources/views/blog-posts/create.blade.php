@@ -1,13 +1,6 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ isset($blogPost) ? 'Edit Blog Post' : 'Create Blog Post' }}</x-slot>
 
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">{{ isset($blogPost) ? 'Edit Blog Post' : 'Create Blog Post' }}</h1>
-        <a href="{{ route('blog-posts.create') }}"
-           class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Create New Post
-        </a>
-    </div>
 
     <form action="{{ isset($blogPost) ? route('blog-posts.update', $blogPost) : route('blog-posts.store') }}" method="POST">
         @csrf
@@ -44,25 +37,6 @@
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 {{ isset($blogPost) ? 'Update Post' : 'Create Post' }}
             </button>
-
-            @if(isset($blogPost))
-                <a href="{{ route('blog-posts.create') }}"
-                   class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                    New Post
-                </a>
-
-                <form action="{{ route('blog-posts.destroy', $blogPost) }}"
-                      method="POST"
-                      class="inline"
-                      onsubmit="return confirm('Are you sure you want to delete this post?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Delete Post
-                    </button>
-                </form>
-            @endif
         </div>
     </form>
 </x-fund-fairy-layout>

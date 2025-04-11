@@ -65,9 +65,10 @@ class BlogPostsController extends Controller
      */
     public function edit(BlogPost $blogPost)
     {
-        return view('blog-posts.edit', [
-            'blogPost' => $blogPost,
-            'title' => 'Edit Blog Post'
+
+       return view('blog-posts.edit', [
+           'blogPost' => $blogPost,
+           'title' => 'Edit Blog Post'
         ]);
     }
 
@@ -83,6 +84,7 @@ class BlogPostsController extends Controller
 
         $blogPost->update($validated);
 
+        // Redirect back to the index page with all posts
         return redirect()->route('blog-posts.index')
             ->with('success', 'Blog post updated successfully');
     }

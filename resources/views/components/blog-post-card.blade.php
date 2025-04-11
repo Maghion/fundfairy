@@ -2,7 +2,7 @@
 <article class="md:grid md:grid-cols-4 md:items-baseline">
     <div class="relative isolate flex flex-col items-start rounded-2xl px-4 py-6 hover:bg-zinc-200/70 md:col-span-3">
         <h2 class="text-base font-semibold tracking-tight text-zinc-800">
-            <a href="{{ route('blog-posts.show', $blogPost->id) }}">
+            <a href="{{ route('blog-posts.show', $blogPost) }}">
                 <span class="absolute inset-0 z-10"></span>
                 {{$blogPost->title}}
             </a>
@@ -23,16 +23,12 @@
             <div aria-hidden="true" class="text-sm font-medium text-teal-500">
                 Read post
             </div>
-            @auth
-                <a href="{{ route('blog-posts.edit', $blogPost) }}"
-                   class="text-sm font-medium text-blue-500 hover:text-blue-700">
-                    Edit
-                </a>
-            @endauth
-        </div>
+
     </div>
 
     <time class="order-first hidden text-sm text-zinc-400 md:block">
         {{$blogPost->updated_at}}
     </time>
+
+
 </article>
