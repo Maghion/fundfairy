@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/styles/themes/default.css" />
     <link rel="stylesheet" href="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/styles/webawesome.css" />
     <link rel="stylesheet" href="{{asset('css/style.css')}}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/logo.png') }}" />
     <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/webawesome.loader.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/bf8479ea8b.js" crossorigin="anonymous"></script>
