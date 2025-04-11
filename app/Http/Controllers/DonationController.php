@@ -14,11 +14,8 @@ class DonationController extends Controller
      * @route GET /donation
      * @return View
      */
-    public function index(): View | RedirectResponse {
+    public function index(): View {
         $title = "Donations";
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
         $donations = Donation::all();
         return view('donation.index', compact('title', 'donations'));
     }
@@ -28,12 +25,8 @@ class DonationController extends Controller
      * @route GET /donation/create
      * @return View
      */
-    public function create(): View | RedirectResponse {
+    public function create(): View {
         $title = "Make Donation";
-            if (!Auth::check()) {
-                return redirect()->route('login');
-            }
-
         return view('donation.create', compact('title'));
     }
 
@@ -45,10 +38,6 @@ class DonationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        if (!Auth::check()) {
-            return redirect()->route('login');
-        }
-
         $validatedData = $request->validate([
             'amount' => 'required|numeric|min:1|max:20000',
             'message' => 'nullable|string|max:255',
@@ -99,16 +88,16 @@ class DonationController extends Controller
         return "<h1>Delete donation $id</h1>";
     }
 
-
-    /**
-     * @desc Show single donation details
-     * @route GET /donation/{id}
-     * @param $id
-     * @return string
-     */
-    public function show(Donation $donation): View {
-        $title = 'Showing Donation '. $donation->id;
-        return view('donations.show', compact('title','donation'));
-    }
+//
+//    /**
+//     * @desc Show single donation details
+//     * @route GET /donation/{id}
+//     * @param $id
+//     * @return string
+//     */
+//    public function show(Donation $donation): View {
+//        $title = 'Showing Donation '. $donation->id;
+//        return view('donations.show', compact('title','donation'));
+//    }
 
 }
