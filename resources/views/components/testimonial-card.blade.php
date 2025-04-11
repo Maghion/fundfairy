@@ -3,7 +3,8 @@
     <div class="rounded-lg bg-white p-8 shadow-2xl max-w-full border-4 border-fuchsia-950">
             @if($testimonial->testimonial_image)
                 <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
-                     src="{{ url('/images') }}/storage/{{ $testimonial->testimonial_image }}"
+                     {{-- Show user uploaded image if available, otherwise display default image --}}
+                     src="{{ $testimonial->testimonial_image ? '/storage/' . $testimonial->testimonial_image : asset('images/no_users.png') }}"
                      alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
             @endif
     {{-- dipslay the user name before the testimonial description--}}

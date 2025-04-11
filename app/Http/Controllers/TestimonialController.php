@@ -42,7 +42,7 @@ class TestimonialController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required|string',
-//           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         if ($request->hasFile('testimonial_image')) {
@@ -89,7 +89,7 @@ class TestimonialController extends Controller
     {
         $validatedData = $request->validate([
             'description' => 'required|string',
-//           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
         //Check if a file was uploaded
                 if ($request->hasFile('testimonial_image')) {
