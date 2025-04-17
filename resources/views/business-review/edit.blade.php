@@ -7,7 +7,7 @@
         <!--Form Start-->
         <form
             method="POST"
-            action="{{ route('business-review.store') }}"
+            action="{{ route('business-review.update', $businessReview->id) }}"
             enctype="multipart/form-data"
         >
             @csrf
@@ -16,7 +16,7 @@
                 id="title"
                 name="title"
                 placeholder="Title"
-
+                :value="old('title', $businessReview->title)"
 
             />
 
@@ -26,7 +26,7 @@
                 name="rating"
                 label="Rating"
                 :options="['⭐⭐⭐⭐⭐' => '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐' => '⭐⭐⭐⭐', '⭐⭐⭐' => '⭐⭐⭐', '⭐⭐' => '⭐⭐', '⭐' => '⭐']"
-                value="{{ old('rating') }}"
+                value="{{ old('rating',$businessReview-> rating) }}"
             />
 
 
@@ -34,7 +34,7 @@
                 id="comment"
                 name="comment"
                 placeholder="Comment"
-
+                :value="old('comment', $businessReview->comment)"
 
             />
 
@@ -43,7 +43,7 @@
                 type="submit"
                 class="w-full bg-fuchsia-950 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
             >
-                Save
+                Update
             </button>
 
         </form>
