@@ -2,7 +2,7 @@
     <x-slot name="title">{{ $title }}</x-slot>
 
     <div class="prose max-w-none p-6 bg-gray-50 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-blue-600 border-b pb-2">Privacy Policy</h1>
+        <h1 class="text-3xl font-bold text-fuchsia-950 border-b pb-2">Privacy Policy</h1>
 
         <p class="mt-4 text-gray-700">Welcome to Fund Fairy! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our platform to support or launch fundraising campaigns.</p>
 
@@ -27,7 +27,7 @@
         <p class="text-gray-700">We do <strong>not</strong> sell your personal information. We may share data with trusted third-party service providers (such as payment processors) who assist in operating Fund Fairy—only as needed and under strict confidentiality agreements.</p>
 
         <h2 class="mt-6 text-2xl font-semibold text-gray-800">4. Your Choices</h2>
-        <p class="text-gray-700">You can update your account information at any time. To delete your account or opt out of marketing communications, contact us at <strong>[insert contact email]</strong>.</p>
+        <p class="text-gray-700">You can update your account information at any time. To delete your account or opt out of marketing communications, contact us at <strong>fundfairy.kirkwood@gmail.com</strong>.</p>
 
         <h2 class="mt-6 text-2xl font-semibold text-gray-800">5. Data Security</h2>
         <p class="text-gray-700">We take reasonable measures to protect your information from unauthorized access, loss, or misuse.</p>
