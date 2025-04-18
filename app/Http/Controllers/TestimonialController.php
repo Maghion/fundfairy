@@ -18,7 +18,7 @@ class TestimonialController extends Controller
 
     public function index(): View {
         $title = " View All Testimonials";
-        $testimonials = Testimonial::all();
+        $testimonials = Testimonial::paginate(6);
         return view('testimonial.index', compact('title', 'testimonials'));
     }
 
