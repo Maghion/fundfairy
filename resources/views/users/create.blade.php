@@ -1,4 +1,3 @@
-
 <x-fund-fairy-layout>
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
@@ -12,9 +11,6 @@
             enctype="multipart/form-data"
         >
             @csrf
-            @method("PUT")
-
-
 
             <x-inputs.text
                 id="email"
