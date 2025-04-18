@@ -30,7 +30,7 @@ Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
+    Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
 });

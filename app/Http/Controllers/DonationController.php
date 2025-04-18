@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Donation;
+use App\Models\DonationRequest;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -28,9 +29,9 @@ class DonationController extends Controller
      * @route GET /donation/create
      * @return View
      */
-    public function create(): View {
+    public function create(DonationRequest $donationRequest): View {
         $title = "Make Donation";
-        return view('donation.create', compact('title'));
+        return view('donation.create', compact('title', 'donationRequest'));
     }
 
     /**
@@ -41,20 +42,23 @@ class DonationController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         $validatedData = $request->validate([
+            'donation_request_id' => 'required|exists:donation_requests,id',
             'amount' => 'required|numeric|min:1|max:20000',
             'message' => 'nullable|string|max:255',
-            'donation_request_id' => 'required|exists:donation_requests,id',
             'anon' => 'boolean',
             'type' => 'required|string|in:Singular,Weekly,Monthly',
         ]);
 
-        $validatedData['donation_request_id'] = auth()->id();
+//        $validatedData['donation_request_id'] = $request->input('donation_request_id');
+        $validatedData['user_id'] = auth()->id();
 
         // Submit to database
         Donation::create($validatedData);
 
-        return redirect()->route('donation.index')->with('success', 'Donation created successfully!');
+        return redirect()->route('donation-request.index',)
+            ->with('success', 'Donation created successfully!');
     }
 
     /**
@@ -68,18 +72,17 @@ class DonationController extends Controller
         $this->authorize('update', $donation);
 
         $title = 'Edit Donation';
-        return view('donation.edit', compact('donation', 'title'));
+        return view('donation.index', compact('donation', 'title'));
     }
 
     /**
      * @desc Update a donation in the database
-     * @route PUT /donation/{id}
+     * @route PUT /donation/{donation}
      * @param Request $request
-     * @param $id
-     * @return string
+     * @param Donation $donation
+     * @return RedirectResponse
      */
-    public function update(Request $request, Donation $donation): string {
-        // Check if the user is authorized
+    public function update(Request $request, Donation $donation): RedirectResponse {
         $this->authorize('update', $donation);
 
         $validatedData = $request->validate([
@@ -88,10 +91,12 @@ class DonationController extends Controller
             'anon' => 'boolean',
             'type' => 'required|string|in:Singular,Weekly,Monthly'
         ]);
-        $validatedData['user_id'] = 1;
+
         $donation->update($validatedData);
-        return redirect()->route('donation.edit', $donation->id)->with('success', 'Donation updated successfully!');
+
+        return redirect()->route('donation.index', $donation->id)->with('success', 'Donation updated successfully!');
     }
+
 
     /**
      * @desc Delete a donation from the database
