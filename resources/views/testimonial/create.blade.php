@@ -8,7 +8,10 @@
 
         <form
             method="POST"
-              action="{{ route('testimonial.store') }}"
+            action="{{ route('testimonial.store') }}"
+            enctype="multipart/form-data"
+
+
         >
             @csrf
             <x-inputs.text-area
