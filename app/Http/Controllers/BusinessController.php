@@ -47,14 +47,13 @@ class BusinessController extends Controller
             'state' => 'required|string',
             'zip_code' => 'required|string',
             'phone_number' => 'required|string',
-            'company_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Create a new business listing with the validated data
+        $validatedData['user_id'] = 1;
         Business::create($validatedData);
-        $validatedData['id'] = 1;
 
-        return redirect()->route('businesses.index')->with('success', 'Business listing created successfully!');
+        return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
     }
 
     /**

@@ -3,18 +3,18 @@
         <h2 class="text-4xl text-center font-bold mb-4">Create Business Listing</h2>
 
         <!-- Form Start -->
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('businesses.store') }}" enctype="multipart/form-data">
             @csrf
 
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">Business Info</h2>
 
             <!-- Business Name -->
             <div class="mb-4">
-                <label class="block text-gray-700" for="title">Business Name</label>
-                <input id="title" type="text" name="title" value="{{ old('title') }}"
-                       class="w-full px-4 py-2 border rounded focus:outline-none @error('title') border-red-500 @enderror"
+                <label class="block text-gray-700" for="name">Business Name</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}"
+                       class="w-full px-4 py-2 border rounded focus:outline-none @error('name') border-red-500 @enderror"
                        placeholder="Enter Business Name" />
-                @error('title')
+                @error('name')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -47,7 +47,7 @@
                 <input id="address2" type="text" name="address2" value="{{ old('address2') }}"
                        class="w-full px-4 py-2 border rounded focus:outline-none @error('address2') border-red-500 @enderror"
                        placeholder="Apt 4B" />
-                @error('address')
+                @error('address2')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -92,16 +92,6 @@
                        class="w-full px-4 py-2 border rounded focus:outline-none @error('phone_number') border-red-500 @enderror"
                        placeholder="Enter phone" />
                 @error('phone_number')
-                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <!-- Business Logo -->
-            <div class="mb-4">
-                <label class="block text-gray-700" for="business_logo">Company Logo</label>
-                <input id="business_logo" type="file" name="business_logo"
-                       class="w-full px-4 py-2 border rounded focus:outline-none @error('business_logo') border-red-500 @enderror" />
-                @error('business_logo')
                 <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
