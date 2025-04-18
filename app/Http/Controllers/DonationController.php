@@ -67,12 +67,12 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function edit(Donation $donation): string {
+    public function edit(Donation $donation): View {
         // Check if the user is authorized
         $this->authorize('update', $donation);
 
         $title = 'Edit Donation';
-        return view('donation.index', compact('donation', 'title'));
+        return view('donation.edit', compact('donation', 'title'));
     }
 
     /**
