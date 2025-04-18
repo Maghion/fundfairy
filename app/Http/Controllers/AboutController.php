@@ -11,7 +11,7 @@ class AboutController extends Controller
     public function index(): view
     {
         $about = "
-<h1 class='text-2xl'>Fundfairy - About Us</h1>
+<h1 class='text-3xl font-bold text-fuchsia-950 border-b pb-2'> About Us</h1>
 <br>
 <p> Welcome to FundFairy, where dreams take flight with the power of community-driven funding!
 

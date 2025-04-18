@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\BusinessReview;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
 
@@ -40,7 +42,8 @@ class  BusinessReviewController extends Controller
      * @param Request $request
      * @return string //return datatype
      */
-    public function store(Request $request):string {
+    public function store(Request $request):RedirectResponse {
+
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'rating' => 'required|string:active, pending',
@@ -79,8 +82,13 @@ class  BusinessReviewController extends Controller
      * @param $id
      * @return string
      */
-    public function edit($id): string {
-        return "<h1>Edit review: $id</h1>";
+    public function edit(BusinessReview $businessReview): View {
+        // Check if the user is authorized on hold
+
+
+        $title = 'Edit Single Business Review';
+
+        return view('business-review.edit', compact('businessReview', 'title'));
     }
 
     /**
@@ -91,8 +99,18 @@ class  BusinessReviewController extends Controller
      * @return string
      */
 
-    public function update(Request $request, $id):string {
-        return "<h1>Updating review: $id</h1>";
+    public function update(Request $request, BusinessReview $businessReview):RedirectResponse {
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'rating' => 'required|string:active, pending',
+            'comment' => 'required|string|max:255',
+
+        ]);
+
+        $businessReview->update($validatedData);
+        //give this page
+        return redirect()->route('business-review.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
+
     }
 
     /**
@@ -101,7 +119,11 @@ class  BusinessReviewController extends Controller
      * @param $id
      * @return string
      */
-    public function destroy($id): string {
-        return "<h1>Delete review: $id</h1>";
+    public function destroy(BusinessReview $businessReview): RedirectResponse   {
+        // delete the
+
+        $businessReview->delete();
+        return redirect()->route('business-review.index')->with('success', 'The business review was deleted successfully!');
+
     }
 }

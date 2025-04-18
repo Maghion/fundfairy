@@ -23,4 +23,29 @@
         <strong>Business:</strong>
         {{ $businessReview->business->name }}
     </div>
+
+    <div class="flex justify-center mt-4 space-x-4">
+        <!-- Edit Button -->
+        <a href="{{ route('business-review.edit', $businessReview->id) }}"
+           class="px-4 py-2 bg-gray-200 rounded-full
+                       shadow-md transition duration-300 ease-in-out hover:no-underline hover:text-white hover:bg-gray-800 "
+           style="text-decoration: none;"
+        >Edit</a>
+
+        <!-- Delete Form -->
+        <form method="POST"
+              action="{{ route('business-review.destroy', $businessReview) }}"
+              onsubmit="return confirm('Are you sure you want to delete this review?')"
+        >
+            @csrf
+            @method('DELETE')
+            <button type="submit"
+                    class="px-4 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full
+                                 shadow-md transition duration-300 ease-in-out"
+            >
+                Delete
+            </button>
+        </form>
+    </div>
 </div>
+
