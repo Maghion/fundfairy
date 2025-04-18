@@ -14,6 +14,7 @@ use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
+use App\Http\Controllers\DashboardController;
 
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
@@ -22,6 +23,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogR
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class);
