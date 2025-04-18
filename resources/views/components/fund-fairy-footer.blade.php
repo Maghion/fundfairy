@@ -27,7 +27,7 @@
                 <a href="https://maps.app.goo.gl/khi4TaHz1jHJWsYK7?g_st=com.google.maps.preview.copy" target="_blank" class="text-gray-400 hover:text-white text-xl">
                     <i class="fa-solid fa-location-dot"></i>
                 </a>
-                <a href="mailto:fundfairy@example.com" class="text-gray-400 hover:text-white text-xl">
+                <a href="mailto:fundfairy.kirkwood@gmail.com" class="text-gray-400 hover:text-white text-xl">
                     <i class="fa-solid fa-envelope"></i>
                 </a>
                 <a href="tel:+1234567890" class="text-gray-400 hover:text-white text-xl">
