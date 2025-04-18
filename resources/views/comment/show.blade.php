@@ -9,9 +9,8 @@
                 <p class='pl-3 italic text-gray-600'>"{{ $comment->comment }}"</p>
                 <p class='text-sm text-fuchsia-950 font-bold'>Posted on {{ $comment->created_at->format('M d, Y') }}</p>
 
-                {{--@can('update', $comment)--}}
+                @can('update', $comment)
                 <div class="flex space-x-3 ml-2 py-2">
-
                     <a href="{{ route('comment.edit', $comment->id) }}"
                        class="px-4 py-2 bg-fuchsia-700 hover:bg-fuchsia-800 text-white rounded hover:no-underline hover:text-white">Edit</a>
 
@@ -24,7 +23,7 @@
                         </button>
                     </form>
                     <!-- End Delete Form -->
-                {{--@endcan--}}
+                @endcan
             </li>
         </ul>
     </div>
