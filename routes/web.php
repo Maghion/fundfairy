@@ -45,6 +45,9 @@ Route::resource('testimonial', TestimonialController::class)->middleware('auth')
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
 Route::resource('newsletter', NewsletterController::class);
+Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
+
 
 //Login And Register routes
 Route::middleware('guest')->group(function () {
