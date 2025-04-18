@@ -39,7 +39,11 @@ class UserController extends Controller
         $first_name =  $request->input('first_name');
         $last_name =  $request->input('last_name');
         $biography =  $request->input('biography');
-        $avatar =  $request->input('avatar');
+
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validatedData['avatar'] = $path;
+        }
         $phone_number =  $request->input('phone_number');
         $role =   $request->input('role');
         $created_at =   $request->input('created_at');
