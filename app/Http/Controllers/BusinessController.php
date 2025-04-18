@@ -36,15 +36,24 @@ class BusinessController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $title = $request->input('title');
-        $description = $request->input('business_description');
 
-        Business::create([
-            'title' => $title,
-            'business_description' => $description
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'business_description' => 'nullable|string',
+            'address1' => 'required|string',
+            'address2' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'phone_number' => 'required|string',
         ]);
 
-        return redirect()->route('businesses.index');
+        // Create a new business listing with the validated data
+        $validatedData['user_id'] = 1;
+        Business::create($validatedData);
+
+        return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
     }
 
     /**

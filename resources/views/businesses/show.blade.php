@@ -1,7 +1,6 @@
 <x-fund-fairy-layout>
     <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-6">
 
-
         <div class="flex-1 space-y-6">
             {{-- Section 1 --}}
             <section class="rounded-lg shadow-md bg-white p-3">
@@ -47,4 +46,12 @@
         </aside>
 
     </div>
+
+    {{-- Back to All Businesses Link --}}
+    <div class="mt-8 mb-2">
+        <a href="{{ route('businesses.index') }}" class="block text-xl text-center text-blue-600 hover:underline">
+            <i class="fa fa-arrow-alt-circle-right"></i> Back to All Businesses
+        </a>
+    </div>
+
 </x-fund-fairy-layout>
