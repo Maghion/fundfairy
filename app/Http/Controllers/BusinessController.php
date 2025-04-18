@@ -50,7 +50,7 @@ class BusinessController extends Controller
         ]);
 
         // Create a new business listing with the validated data
-        $validatedData['user_id'] = 1;
+        $validatedData['user_id'] = auth()->user()->id;
         Business::create($validatedData);
 
         return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
