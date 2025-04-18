@@ -23,7 +23,7 @@
                 </form>
             @else
                 <x-fund-fairy-nav-link :active="request()->is('register')" url="/register">Register</x-fund-fairy-nav-link>
-                <x-fund-fairy-nav-link :active="request()->is('login')" url="/login">User Login</x-fund-fairy-nav-link>
+                <x-fund-fairy-nav-link :active="request()->is('login')" url="/login">Login</x-fund-fairy-nav-link>
             @endauth
 
             @auth
@@ -56,7 +56,7 @@
            </form>
        @else
            <x-fund-fairy-nav-link :active="request()->is('register')" url="/register"  :mobile="true">Register</x-fund-fairy-nav-link>
-           <x-fund-fairy-nav-link :active="request()->is('login')" url="/login"  :mobile="true">User Login</x-fund-fairy-nav-link>
+           <x-fund-fairy-nav-link :active="request()->is('login')" url="/login"  :mobile="true">Login</x-fund-fairy-nav-link>
        @endauth
 
         @auth
