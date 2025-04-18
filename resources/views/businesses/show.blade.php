@@ -50,7 +50,7 @@
     {{-- Back to All Businesses Link --}}
     <div class="mt-8 mb-2">
         <a href="{{ route('businesses.index') }}" class="block text-xl text-center text-blue-600 hover:underline">
-            <i class="fa fa-arrow-alt-circle-right"></i> Back to All Businesses
+            <i class="fa fa-arrow-alt-circle-left"></i> Back to All Businesses
         </a>
     </div>
 
