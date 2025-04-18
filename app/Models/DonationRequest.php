@@ -32,6 +32,12 @@ class DonationRequest extends Model
     public function donations(): HasMany
     {
         return $this->hasMany(Donation::class);
+
+    }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
     }
 }
 
