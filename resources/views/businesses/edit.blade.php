@@ -1,10 +1,15 @@
 <x-fund-fairy-layout>
     <div class="bg-white mx-auto p-8 rounded-lg shadow-md w-full md:max-w-3xl">
-        <h2 class="text-4xl text-center font-bold mb-4">Create Business</h2>
+        <h2 class="text-4xl text-center font-bold mb-4">Edit Business</h2>
 
         <!-- Form Start -->
-        <form method="POST" action="{{ route('businesses.store') }}" enctype="multipart/form-data">
+        <form
+            action="{{ route('businesses.update', $business->id) }}"
+            method="POST"
+            enctype="multipart/form-data"
+        >
             @csrf
+            @method('PUT')
 
             <h2 class="text-2xl font-bold mb-6 text-center text-gray-500">Business Info</h2>
 
