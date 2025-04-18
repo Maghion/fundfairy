@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Donation;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DonationController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc Display list of donation
      * @route GET /donation
@@ -46,10 +49,7 @@ class DonationController extends Controller
             'type' => 'required|string|in:Singular,Weekly,Monthly',
         ]);
 
-        // Hardcoded user ID
-        $validatedData['user_id'] = 1;
-
-//        $validatedData['donation_request_id'] = auth()->id();
+        $validatedData['donation_request_id'] = auth()->id();
 
         // Submit to database
         Donation::create($validatedData);
@@ -64,6 +64,9 @@ class DonationController extends Controller
      * @return string
      */
     public function edit(Donation $donation): string {
+        // Check if the user is authorized
+        $this->authorize('update', $donation);
+
         $title = 'Edit Donation';
         return view('donation.edit', compact('donation', 'title'));
     }
@@ -76,6 +79,9 @@ class DonationController extends Controller
      * @return string
      */
     public function update(Request $request, Donation $donation): string {
+        // Check if the user is authorized
+        $this->authorize('update', $donation);
+
         $validatedData = $request->validate([
             'amount' => 'required|numeric|min:1|max:20000',
             'message' => 'nullable|string|max:255',
@@ -92,6 +98,9 @@ class DonationController extends Controller
      * @route DELETE /donation/{id}
      */
     public function destroy(Donation $donation): RedirectResponse {
+        // Check if the user is authorized
+        $this->authorize('delete', $donation);
+
         $donation->delete();
         $title = 'Delete Donation';
         return redirect()->route('donation.index')->with('success', 'Donation deleted successfully.');
