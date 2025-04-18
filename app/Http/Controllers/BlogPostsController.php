@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
+
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class BlogPostsController extends Controller
 {
@@ -14,10 +16,13 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = BlogPost::all();
+        $blogPosts = BlogPost::where('status','=','published')
+            ->orderBy('updated_at','DESC')->get();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
-       // return view('blog-posts.index', compact('title', 'blogPosts'));
     }
+
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,12 +36,21 @@ class BlogPostsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): string
+    public function store(Request $request): RedirectResponse
     {
-        $title = $request->input('title');
-        $content= $request->input('description');
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
 
-        return "Title: $title, Description: $content";
+        // Create a new jbo listing with the validated data
+        BlogPost::create([
+            'title' => $validatedData['title'],
+            'content' => $validatedData['content'],
+        ]);
+
+        return redirect()->route('blog-posts.index');
     }
 
     /**
@@ -44,30 +58,49 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
-        return view('blog-posts.show', compact('blogPost'));
+        $title = 'View Blog Post';
+        return view('blog-posts.show', compact('blogPost', 'title'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id): string
+    public function edit(BlogPost $blogPost)
     {
-        return "Edit Blog Post: $id";
+
+       return view('blog-posts.edit', [
+           'blogPost' => $blogPost,
+           'title' => 'Edit Blog Post'
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id): string
+    public function update(Request $request, BlogPost $blogPost)
     {
-        return "You have updated Blog Post: $id";
-    }
+        $validated = $request->validate([
+            'title' => 'required|max:255',
+            'content' => 'required'
+        ]);
 
+        $blogPost->update($validated);
+
+        // Redirect back to the index page with all posts
+        return redirect()->route('blog-posts.index')
+            ->with('success', 'Blog post updated successfully');
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): string
+    public function destroy(BlogPost $blogPost)
     {
-        return "You have deleted Blog Post: $id";
+        $blogPost->delete();
+
+        return redirect()->route('blog-posts.index')
+            ->with('success', 'Blog post deleted successfully');
     }
+
+
+
 }

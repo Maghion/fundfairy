@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status', ['active', 'pending'])->default('pending');
             $table->boolean('featured')->default(false);
+            $table->string('testimonial_image')->nullable();
             $table->timestamps();
         });
     }

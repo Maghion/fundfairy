@@ -1,21 +1,73 @@
 <x-fund-fairy-layout>
-    <x-slot name="title"> Create Profile </x-slot>
-    <h1>Create Profile</h1>
-    <form action="/users" method="POST">
-        @csrf
-        <input type="text" name="email" placeholder="Email" />
-        <input type="text" name="first_name" placeholder="First Name" />
-        <input type="text" name="last_name" placeholder="Last Name" />
-        <input type="text" name="password" placeholder="Password" />
-        <input type="text" name="biography" placeholder="About" />
-        <input
-            id="avatar"
-            type="file"
-            name="avatar"
-            class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none"
-            placeholder="image link"
-        />
-        <input type="text" name="phone_number" placeholder="867-5309" />
-        <button type="submit">Submit</button>
-    </form>
+    <div
+        class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
+    >
+        <h2 class="text-4xl text-center font-bold mb-4">Create User</h2>
+
+        <!--Form Start-->
+        <form
+            method="POST"
+            action="{{ route('users.store') }}"
+            enctype="multipart/form-data"
+        >
+            @csrf
+
+            <x-inputs.text
+                id="email"
+                name="email"
+                placeholder="Email"
+
+            />
+
+
+            <x-inputs.text
+                id="first_name"
+                name="first_name"
+                placeholder="First Name"
+            />
+
+            <x-inputs.text
+                id="last_name"
+                name="last_name"
+                placeholder="Last Name"
+            />
+
+
+
+            <x-inputs.text-area
+                id="biography"
+                name="biography"
+                placeholder="Biography"
+            />
+
+            <x-inputs.file
+                id="avatar"
+                name="avatar"
+                placeholder="Avatar"
+            />
+
+            <x-inputs.text
+                id="phone_number"
+                name="phone_number"
+                placeholder="Phone Number"
+            />
+
+            <x-inputs.text
+                id="role"
+                name="role"
+                placeholder="Role"
+
+            />
+
+
+            <button
+                type="submit"
+                class="w-full bg-fuchsia-950 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
+            >
+                Save
+            </button>
+
+        </form>
+    </div>
+
 </x-fund-fairy-layout>

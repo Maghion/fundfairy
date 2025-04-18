@@ -13,17 +13,17 @@ return new class extends Migration
     {
         Schema::create('businesses', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->string('address1');
             $table->string('address2')->nullable();
             $table->string('city');
             $table->string('state');
-            $table->integer('zip_code');
+            $table->string('zip_code');
             $table->string('phone_number');
             $table->boolean('featured')->default(false);
             $table->timestamps();
-            $table->string('business_description')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->text('business_description')->nullable();
         });
     }
 

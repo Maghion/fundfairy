@@ -6,26 +6,18 @@
         <form method="POST" action="{{ route('register.store') }}">
             @csrf
             <x-inputs.text
-                id="first_name"
-                name="first_name"
-                placeholder="First Name"
-            />
-            <x-inputs.text
-                id="last_name"
-                name="last_name"
-                placeholder="Last Name"
-            />
-            <x-inputs.text
                 id="email"
                 name="email"
-                type="email"
-                placeholder="fund_fairy@fundfairy.com"
+                type="text"
+                placeholder="Email address"
+                value="{{ old('email') }}"
             />
             <x-inputs.text
                 id="password"
                 name="password"
                 type="password"
-                placeholder="Password. shhhhh..... dont tell anyone"
+                placeholder="Password"
+                value="{{ old('password') }}"
             />
             <x-inputs.text
                 id="password_confirmation"

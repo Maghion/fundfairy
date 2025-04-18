@@ -1,0 +1,52 @@
+<x-fund-fairy-layout>
+    <div
+        class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
+    >
+        <h2 class="text-4xl text-center font-bold mb-4">Edit Business Review</h2>
+
+        <!--Form Start-->
+        <form
+            method="POST"
+            action="{{ route('business-review.update', $businessReview->id) }}"
+            enctype="multipart/form-data"
+        >
+            @csrf
+            @method("PUT")
+            <x-inputs.text
+                id="title"
+                name="title"
+                placeholder="Title"
+                :value="old('title', $businessReview->title)"
+
+            />
+
+
+            <x-inputs.select
+                id="rating"
+                name="rating"
+                label="Rating"
+                :options="['⭐⭐⭐⭐⭐' => '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐' => '⭐⭐⭐⭐', '⭐⭐⭐' => '⭐⭐⭐', '⭐⭐' => '⭐⭐', '⭐' => '⭐']"
+                value="{{ old('rating',$businessReview-> rating) }}"
+            />
+
+
+            <x-inputs.text-area
+                id="comment"
+                name="comment"
+                placeholder="Comment"
+                :value="old('comment', $businessReview->comment)"
+
+            />
+
+
+            <button
+                type="submit"
+                class="w-full bg-fuchsia-950 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
+            >
+                Update
+            </button>
+
+        </form>
+    </div>
+
+</x-fund-fairy-layout>

@@ -1,15 +1,13 @@
 <?php
 
 namespace App\Models;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -58,7 +56,7 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    
+
     public function blogPosts(): HasMany
     {
         return $this->hasMany(BlogPost::class);
@@ -68,7 +66,7 @@ class User extends Authenticatable
     {
 //        return $this->belongsToMany(Business::class, 'bookmark')->withTimestamps();
     }
-  
+
     public function business(): HasMany
     {
         return $this->hasMany(Business::class);
@@ -79,18 +77,23 @@ class User extends Authenticatable
     {
         return $this->hasMany(BusinessReview::class);
     }
-  
+
   // Relate to comments
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
-  
+
     // Also need DonationRequest model to have this function
     public function donations(): HasMany {
         return $this->hasMany(Donation::class);
     }
-  
+
+    //checks whether the logged-in user has made a donation to that specific donation request
+    public function hasDonatedTo($donationRequest): bool {
+        return $this->donations()->where('request_id', $donationRequest->id)->exists();
+    }
+
     // Relationship with  testimonials
     public function testimonials(): HasMany
     {

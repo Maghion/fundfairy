@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 use App\Models\Donation;
+use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class DonationController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc Display list of donation
      * @route GET /donation
@@ -34,14 +39,23 @@ class DonationController extends Controller
      * @param Request $request
      * @return string
      */
-    public function store(Request $request): string {
-        $token = $request->input('_token');
-        $title = $request->input('title');
-        $description = $request->input('description');
+    public function store(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:1|max:20000',
+            'message' => 'nullable|string|max:255',
+            'donation_request_id' => 'required|exists:donation_requests,id',
+            'anon' => 'boolean',
+            'type' => 'required|string|in:Singular,Weekly,Monthly',
+        ]);
 
-        return "Token: $token, Title: $title, Description: $description";
+        $validatedData['donation_request_id'] = auth()->id();
+
+        // Submit to database
+        Donation::create($validatedData);
+
+        return redirect()->route('donation.index')->with('success', 'Donation created successfully!');
     }
-
 
     /**
      * @desc Display a form to edit a donation
@@ -49,8 +63,12 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function edit($id): string {
-        return "<h1>Edit donation $id</h1>";
+    public function edit(Donation $donation): string {
+        // Check if the user is authorized
+        $this->authorize('update', $donation);
+
+        $title = 'Edit Donation';
+        return view('donation.edit', compact('donation', 'title'));
     }
 
     /**
@@ -60,30 +78,44 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function update(Request $request, $id): string {
-        return "<h1>Update Donation $id</h1>";
+    public function update(Request $request, Donation $donation): string {
+        // Check if the user is authorized
+        $this->authorize('update', $donation);
+
+        $validatedData = $request->validate([
+            'amount' => 'required|numeric|min:1|max:20000',
+            'message' => 'nullable|string|max:255',
+            'anon' => 'boolean',
+            'type' => 'required|string|in:Singular,Weekly,Monthly'
+        ]);
+        $validatedData['user_id'] = 1;
+        $donation->update($validatedData);
+        return redirect()->route('donation.edit', $donation->id)->with('success', 'Donation updated successfully!');
     }
 
     /**
      * @desc Delete a donation from the database
      * @route DELETE /donation/{id}
-     * @param $id
-     * @return string
      */
-    public function destroy($id): string {
-        return "<h1>Delete donation $id</h1>";
+    public function destroy(Donation $donation): RedirectResponse {
+        // Check if the user is authorized
+        $this->authorize('delete', $donation);
+
+        $donation->delete();
+        $title = 'Delete Donation';
+        return redirect()->route('donation.index')->with('success', 'Donation deleted successfully.');
     }
 
-
-    /**
-     * @desc Show single donation details
-     * @route GET /donation/{id}
-     * @param $id
-     * @return string
-     */
-    public function show(Donation $donation): View {
-        $title = 'Showing Donation '. $donation->id;
-        return view('donations.show', compact('title','donation'));
-    }
+//
+//    /**
+//     * @desc Show single donation details
+//     * @route GET /donation/{id}
+//     * @param $id
+//     * @return string
+//     */
+//    public function show(Donation $donation): View {
+//        $title = 'Showing Donation '. $donation->id;
+//        return view('donations.show', compact('title','donation'));
+//    }
 
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 
 class TestimonialController extends Controller
@@ -15,7 +17,7 @@ class TestimonialController extends Controller
      */
 
     public function index(): View {
-        $title = "Testimonials";
+        $title = " View All Testimonials";
         $testimonials = Testimonial::all();
         return view('testimonial.index', compact('title', 'testimonials'));
     }
@@ -36,11 +38,27 @@ class TestimonialController extends Controller
      * @route POST /testimonial
      */
 
-    public function store(Request $request){
-        $title = $request->input("title");
-        $description = $request->input("description");
+    public function store(Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+            'description' => 'required|string',
+           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
-        return "Title: $title, Description: $description";
+        if ($request->hasFile('testimonial_image')) {
+            // Store the file and get the path
+            $path = $request->file('testimonial_image')->store('testimonials', 'public');
+
+            // Add the path to the validated data array
+            $validatedData['testimonial_image'] = $path;
+        }
+
+        // Hardcoded user ID
+        $validatedData['user_id'] = 1;
+        // Submit to database
+        Testimonial::create($validatedData);
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial created successfully!');
+
     }
 
     /**
@@ -57,27 +75,53 @@ class TestimonialController extends Controller
      * @route GET /testimonial/{id}/edit
      */
 
-    public function edit(string $id): string{
-        return "<h1>Editing testimonial: $id </h1>";
+    public function edit(Testimonial $testimonial): View{
+        $title = 'Edit Testimonial';
+        return view('testimonial.edit', compact('testimonial', 'title'));
     }
+
 
     /**
      * @desc Update the testimonial request in storage.
      * @route PUT /testimonial/{id}
      */
-    public function update(Request $request, string $id): string
+    public function update(Request $request, Testimonial $testimonial): RedirectResponse
     {
-        return "<h1>You have update testimonial: $id</h1>";
+        $validatedData = $request->validate([
+            'description' => 'required|string',
+           'testimonial_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+        //Check if a file was uploaded
+                if ($request->hasFile('testimonial_image')) {
+                    // Delete the old company logo from storage
+                    if ($testimonial->testimonial_image && Storage::disk('public')->exists($testimonial->testmonial_iamge)) {
+                        Storage::disk('public')->delete($testimonial->testimonial_image);
+                    }
+                    // Store the file and get the path
+                    $path = $request->file('testimonial_image')->store('testimonials', 'public');
+
+                    // Add the path to the validated data array
+                    $validatedData['testimonial_image'] = $path;
+                }
+                $testimonial->update($validatedData);
+                return redirect()->route('testimonial.index', $testimonial->id)->with('success', 'Testimonial updated successfully!');
+
     }
 
     /**
      * @desc Remove the testimonial from storage.
      * @route DELETE /testimonial/{id}
      */
-    public function destroy(string $id): string
+    public function destroy( Testimonial $testimonial): RedirectResponse
     {
-        return "You have deleted testimonial: $id";
-    }
+
+       // delete the testimonial and its image if it has one
+        if ($testimonial->testimonial_image && Storage::disk('public')->exists($testimonial->testimonial_image)) {
+            Storage::disk('public')->delete($testimonial->testimonial_image);
+        }
+        $testimonial->delete();
+        return redirect()->route('testimonial.index')->with('success', 'Testimonial deleted successfully!');
+       }
 
 
 

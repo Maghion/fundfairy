@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class UserController extends Controller
@@ -15,7 +17,8 @@ class UserController extends Controller
     public function index(): View
     {
         $title = 'All Users';
-        $users = User::all();
+//        $users = User::all();
+        $users = User::paginate(10);
         return view('users.index', compact('title', 'users'));
     }
 
@@ -23,32 +26,42 @@ class UserController extends Controller
      * @desc Show profile creation form
      * @route GET /users/create
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
-        return  view('users.create');
+        $title = "Create New User";
+        return view('users.create' , compact('title'));
     }
 
     /**
      *@desc Store a newly created profile in storage.
      * @route POST /users
      */
-    public function store(Request $request)
-    {
-        $email =  $request->input('email');
-        $password =  $request->input('password');
-        $first_name =  $request->input('first_name');
-        $last_name =  $request->input('last_name');
-        $biography =  $request->input('biography');
 
+    public function store (Request $request): RedirectResponse
+    {
+        $validatedData = $request->validate([
+
+            'email' => 'required|string|max:255',
+            //'password'=> 'required|string',
+            'first_name'=>'required|string|max:255',
+            'last_name'=>'required|string|max:255',
+            'biography'=>'required|string|max:255',
+            'avatar'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone_number'=>'nullable|string|max:255',
+            'role'=>'required|string|max:255',
+            //'created_at'=>'required|string|max:255',
+
+        ]);
+      
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
             $validatedData['avatar'] = $path;
         }
-        $phone_number =  $request->input('phone_number');
-        $role =   $request->input('role');
-        $created_at =   $request->input('created_at');
-        return "User Profile for $email created at $created_at";
 
+        // Submit to database
+        User::create($validatedData);
+
+        return redirect()->route('users.index')->with('success', 'User created successfully!');
     }
 
     /**
@@ -57,34 +70,71 @@ class UserController extends Controller
      */
     public function show(User $user): View
     {
-        $title = 'Showing User '. $user->id;
-        return view('users.show', compact('title','user'));
+        $title = 'View a User ';
+        return view('users.show', compact('user', 'title'));
     }
 
     /**
      * @desc Display edit form
      * @route GET /users/{users}/edit
      */
-    public function edit(string $id): String
+    public function edit(User $user): View
     {
-        return   "Edit profile for $id";
+
+        $title = 'Edit Single User';
+
+        return view('users.edit', compact('user', 'title'));
     }
+
 
     /**
      * @desc Update a specific user
      * @route PUT /users/{id}
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $user):RedirectResponse
     {
-        return    "Update profile for $id";
+        $validatedData = $request->validate([
+
+            'email' => 'required|string|max:255',
+            'first_name'=>'required|string|max:255',
+            'last_name'=>'required|string|max:255',
+            'biography'=>'required|string|max:255',
+            'avatar'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'phone_number'=>'nullable|string|max:255',
+            'role'=>'required|string|max:255',
+            //'created_at'=>'required|string|max:255',
+
+        ]);
+        if ($request->hasFile('avatar')) {
+            // Delete the old avatar from storage
+            if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+                Storage::disk('public')->delete($user->avatar);
+            }
+            // Store the file and get the path
+            $path = $request->file('avatar')->store('avatar', 'public');
+
+            // Add the path to the validated data array
+            $validatedData['avatar'] = $path;
+        }
+        $user->update($validatedData);
+        //give this page
+        return redirect()->route('users.show', $user->id)->with('success', 'User updated successfully!');
+
+
     }
 
     /**
      * @desc yeet user off our platform
      * @route DELETE /users/{id}
      */
-    public function destroy(string $id)
+    public function destroy(User $user): RedirectResponse
     {
-        return    "You are the weakest link, Goodbye! $id";
+        // Check if the user is authorized
+        $this->authorize('delete', $user);
+        if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {
+            Storage::disk('public')->delete($user->avatar);
+        }
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'User deleted successfully!');
     }
 }
