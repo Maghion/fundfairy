@@ -28,7 +28,7 @@ class CommentController extends Controller
      * @return View
      */
     public function create(): View {
-        $title = "Add Comment";
+        $title = "Add Your Comment";
         return view('comment.create', compact('title'));
     }
 
