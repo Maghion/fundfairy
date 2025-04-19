@@ -57,7 +57,7 @@ class DonationController extends Controller
         // Submit to database
         Donation::create($validatedData);
 
-        return redirect()->route('donation-request.index',)
+        return redirect()->route('donation-request.show', $validatedData['donation_request_id'])
             ->with('success', 'Donation created successfully!');
     }
 
