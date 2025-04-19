@@ -16,6 +16,7 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
 use App\Http\Controllers\DashboardController;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
@@ -69,6 +70,9 @@ Route::get('/privacypolicy', function() {
 //     return view('PrivacyPolicy.index' , compact('title'));
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
