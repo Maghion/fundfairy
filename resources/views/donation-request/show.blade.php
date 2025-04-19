@@ -39,6 +39,8 @@
                 <p>No Donations Found</p>
             @endforelse
         </div>
+        <!-- Pagination Links -->
+        <div class="mt-4">{{ $donations->links() }}</div>
 
         <!-- Comments -->
         <div class="mt-3 ">
