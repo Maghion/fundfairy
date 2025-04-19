@@ -23,7 +23,7 @@
             <a href="{{ route('donation-request.show', $donationRequest->id) }}" class="block mt-3 text-center bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-800">
                 View Details
             </a>
-            <a href="{{ route('donation-request.show', $donationRequest->id) }}" class="block mt-3 text-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
+            <a href="{{ route('donation.create', $donationRequest->id) }}" class="block mt-3 text-center bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
                 Donate
             </a>
 
