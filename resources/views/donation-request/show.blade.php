@@ -15,9 +15,29 @@
             <p><strong>Raised:</strong> ${{ $donationRequest->donations->sum('amount') }}</p>
 
             <!-- Progress Bar -->
-            <div class="w-full bg-gray-200 rounded-full h-3 mt-1">
+            <div class="w-full bg-gray-200 rounded-full h-3 mt-1 mb-5">
                 <div class="bg-blue-500 h-3 rounded-full" style="width: {{ ($donationRequest->donations->sum('amount') / $donationRequest->funding_goal) * 100 }}%;"></div>
             </div>
+        </div>
+
+
+        <!-- Donate Button -->
+        <x-fund-fairy-button-link
+            url="{{ route('donation.create', $donationRequest->id) }}"
+            btnColor="bg-yellow-500"
+            hoverClass="hover:!bg-yellow-600"
+            textClass="text-white font-bold"
+            class="mt-5 px-5 py-5 w-[180px] md:w-auto">
+            Donate
+        </x-fund-fairy-button-link>
+
+        {{--        donations--}}
+        <div class="flex flex-col gap-4 my-6 ms-5">
+            @forelse($donations as $donation)
+                <x-fund-fairy-donation-card :donation="$donation"></x-fund-fairy-donation-card>
+            @empty
+                <p>No Donations Found</p>
+            @endforelse
         </div>
 
         <!-- Comments -->
@@ -32,18 +52,5 @@
             </ul>
         </div>
 
-{{--        donations--}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
-            @forelse($donations as $donation)
-                <x-fund-fairy-donation-card :donation="$donation"></x-fund-fairy-donation-card>
-            @empty
-                <p>No Donations Found</p>
-            @endforelse
-        </div>
-
-        <!-- Donate Button -->
-        <button class="bg-green-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-green-600">
-            Donate Now
-        </button>
     </div>
 </x-fund-fairy-layout>
