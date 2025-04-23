@@ -31,4 +31,6 @@ class BusinessReview extends Model
         return $this->belongsTo(Business::class);
     }
 
+
+
 }

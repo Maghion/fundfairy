@@ -15,8 +15,9 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
-        $businesses = Business::latest()->get();
+        $businesses = Business::latest()->paginate(6);
         return view('businesses.index')->with('businesses', $businesses);
+
 
     }
 
@@ -65,6 +66,8 @@ class BusinessController extends Controller
         $business->load('businessReviews');
         $title = "Business Details: " . $business->name;
         return view('businesses.show', compact('title', 'business'));
+
+
     }
 
     /**

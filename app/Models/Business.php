@@ -2,9 +2,14 @@
 
 namespace App\Models;
 
+
+
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 
 class Business extends Model
@@ -12,6 +17,9 @@ class Business extends Model
     use HasFactory;
 
     protected $table = 'businesses';
+
+
+    protected $with = ['businessReviews'];
 
     protected $fillable = [
         'user_id',
@@ -31,8 +39,9 @@ class Business extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function businessReviews(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function businessReviews(): HasMany
     {
         return $this->hasMany(BusinessReview::class);
     }
 }
+
