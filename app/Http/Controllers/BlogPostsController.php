@@ -88,7 +88,7 @@ class BlogPostsController extends Controller
         $blogPost->update($validated);
 
         // Redirect back to the index page with all posts
-        return redirect()->route('blog-posts.index')
+        return redirect()->route('blog-posts.show')
             ->with('success', 'Blog post updated successfully');
     }
     /**

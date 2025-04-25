@@ -3,7 +3,7 @@
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">Blogposts</h1>
         <a href="{{ route('blog-posts.create') }}"
-           class="bg-fuchsia-950 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+           class="bg-fuchsia-950 hover:bg-fuchsia-400 text-white font-bold py-2 px-4 rounded">
 
             Create New Post
         </a>

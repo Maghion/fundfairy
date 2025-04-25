@@ -31,7 +31,7 @@
 
             <div class="flex gap-4">
                 <button type="submit"
-                        class="bg-fuchsia-950 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+                        class="bg-fuchsia-950 hover:bg-fuchsia-400 text-white font-bold py-2 px-4 rounded">
                     Update Post
                 </button>
 
