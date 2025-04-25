@@ -113,6 +113,7 @@
 
         .home-button:hover {
             background-color: #580058;
+            color: white;
         ;
         }
         @media only screen and (max-width: 767px) {
