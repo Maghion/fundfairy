@@ -28,7 +28,7 @@ class CommentController extends Controller
      * @return View
      */
     public function create(): View {
-        $title = "Add Comment";
+        $title = "Add Your Comment";
         return view('comment.create', compact('title'));
     }
 
@@ -105,9 +105,9 @@ class CommentController extends Controller
     {
         // Check if the user is authorized
         $this->authorize('update', $comment);
-//        if ($comment->user_id !== request()->user()->id) {
-//            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
-//        }
+        if ($comment->user_id !== request()->user()->id) {
+            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
+        }
         $comment->delete();
 
         return redirect()->route('comment.index')->with('success', 'Comment deleted successfully.');

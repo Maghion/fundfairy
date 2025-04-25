@@ -9,8 +9,7 @@
 
 <a href="{{$url}}" style="text-decoration: none"
    class="{{$btnColor}} {{$hoverClass}} {{$textClass}} px-4 py-2 rounded hover:text-white shadow-md transition duration-300
-   {{$block ? 'block' : ''}}"
-    style="padding:0">
+   {{$block ? 'block' : ''}}">
     @if($icon)
         <i class="fa fa-{{$icon}}"></i>
     @endif

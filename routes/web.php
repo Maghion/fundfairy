@@ -20,6 +20,17 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
+//test error page:
+Route::get('/error/403', function () {
+    abort(403);
+});
+Route::get('/error/500', function () {
+    abort(500);
+});
+Route::get('/error/413', function () {
+    abort(413);
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogRequest::class);
 
 //USERS ROUTES

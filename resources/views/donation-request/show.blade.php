@@ -44,12 +44,12 @@
 
         <!-- Comments -->
         <div class="mt-3 ">
-            <h3 class="text-sm font-semibold">Comments</h3>
-            <ul class="text-xs text-gray-700 ">
+            <h3 class="text-lg font-semibold text-fuchsia-800 mb-1">Comments</h3>
+            <ul class="space-y-2 text-base text-gray-800 ">
                 @forelse ($comments as $comment)
                     <x-comment-card :comment="$comment"></x-comment-card>
                     @empty
-                        <p>No comments to display</p>
+                        <p class="text-gray-600 italic">There are no comments at this time. </p>
                 @endforelse
             </ul>
         </div>
