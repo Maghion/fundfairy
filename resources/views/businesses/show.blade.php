@@ -19,13 +19,48 @@
                 <div class="flex justify-left my-6" >
                     @auth
                         <x-fund-fairy-button-link
-                            url="{{ route('business-review.create', $business->id) }}"
+                            url="{{ route('business-review.create') }}"
                         >
                             Create a business review
                         </x-fund-fairy-button-link>
                     @endauth
                 </div>
             <!-- End create Button -->
+
+{{--                //no connected--}}
+{{--                <section class="rounded-lg shadow-md bg-white p-4">--}}
+{{--                    <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>--}}
+{{--                    <div class= "border-b pb-4 mb-4">--}}
+{{--                        @forelse($businessReviews as $businessReview)--}}
+{{--                            <x-business-review-card :businessReview="$businessReview"></x-business-review-card>--}}
+{{--                        @empty--}}
+{{--                            <p>No review Found</p>--}}
+{{--                        @endforelse--}}
+{{--                    </div>--}}
+
+{{--                </section>--}}
+
+
+                    <section class="rounded-lg shadow-md bg-white p-4">
+                    <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
+                    @if($business->businessReviews->count())
+                        <div class="space-y-6">
+                            @foreach($business->businessReviews as $review)
+                                <div class="border-b pb-4 mb-4">
+                                    <h3 class="text-lg font-bold text-blue-600">{{ $review->title }}</h3>
+                                    <wa-rating label="Rating" readonly value="{{ $review->rating }}"></wa-rating>
+                                    <p class="text-gray-700">{{ $review->comment }}</p>
+                                    <p class="text-sm text-gray-500">Posted by User ID: {{ $review->user_id }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-gray-500 italic">No reviews yet for this business.</p>
+                    @endif
+                </section>
+            </div>
+
+        </div>
 
 {{--            <section class="rounded-lg shadow-md bg-white p-4">--}}
 {{--                <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>--}}
