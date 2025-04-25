@@ -48,6 +48,7 @@ Route::put('/profile', [ProfileController::class, 'update'])->name('profile.upda
 
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
+Route::get('/business-review/create/{business}', [BusinessReviewController::class, 'create'])->name('business-review.create');
 Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 

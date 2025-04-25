@@ -64,10 +64,11 @@ class BusinessController extends Controller
      */
     public function show(Business $business): View
     {
+
         $business->load('businessReviews');
         $title = "Business Details: " . $business->name;
-        //$businessReviews= $business->businessReviews()->paginate(2);
-        return view('businesses.show', compact('title', 'business'));
+        $businessReviews= $business->businessReviews();//->paginate(2);
+        return view('businesses.show', compact('title', 'business', 'businessReviews'));
     }
 
     /**

@@ -19,7 +19,7 @@
                 <div class="flex justify-left my-6" >
                     @auth
                         <x-fund-fairy-button-link
-                            url="{{ route('business-review.create') }}"
+                            url="{{ route('business-review.create', $business->id) }}"
                         >
                             Create a business review
                         </x-fund-fairy-button-link>
