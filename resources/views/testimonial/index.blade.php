@@ -26,4 +26,6 @@
             <p>No Testimonials Found</p>
         @endforelse
     </div>
+    <div class="mt-4">{{ $testimonials->links() }}</div>
+
 </x-fund-fairy-layout>
