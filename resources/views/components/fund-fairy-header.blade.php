@@ -33,12 +33,11 @@
    <nav id="mobile-menu"
         class="hidden md:hidden bg-fushia-950 text-white mt-5 pb-4 space-y-2">
        <x-fund-fairy-nav-link :active="request()->is('/')" url="/" :mobile="true">Home</x-fund-fairy-nav-link>
-       <x-fund-fairy-nav-link :active="request()->is('about')" url="/about"  :mobile="true">About</x-fund-fairy-nav-link>
-       <x-fund-fairy-nav-link :active="request()->is('blog-posts')" url="/blog-posts"  :mobile="true">Blog Posts</x-fund-fairy-nav-link>
-       <x-fund-fairy-nav-link :active="request()->is('testimonial')" url="/testimonial"  :mobile="true">Testimonials</x-fund-fairy-nav-link>
        <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses"  :mobile="true">Businesses</x-fund-fairy-nav-link>
-       <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request"  :mobile="true">Donation Requests</x-fund-fairy-nav-link>
-       @auth
+       <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request"  :mobile="true">Donate</x-fund-fairy-nav-link>
+       <x-fund-fairy-nav-link :active="request()->is('about')" url="/about"  :mobile="true">About</x-fund-fairy-nav-link>
+
+   @auth
            <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved"  :mobile="true">Bookmarks</x-fund-fairy-nav-link>
            <form method="POST" action="{{ route('logout') }}">
                @csrf
@@ -48,11 +47,8 @@
            </form>
        @else
            <x-fund-fairy-nav-link :active="request()->is('register')" url="/register"  :mobile="true">Register</x-fund-fairy-nav-link>
-           <x-fund-fairy-nav-link :active="request()->is('login')" url="/login"  :mobile="true">User Login</x-fund-fairy-nav-link>
+           <x-fund-fairy-nav-link :active="request()->is('login')" url="/login"  :mobile="true">Login</x-fund-fairy-nav-link>
        @endauth
 
-        @auth
-           <x-fund-fairy-button-link btnColor="bg-blue-500" textClass="text-white" url="/donation-request/create"  :mobile="true" icon="edit" :block="true">Donation Request</x-fund-fairy-button-link>
-        @endauth
     </nav>
 </header>
