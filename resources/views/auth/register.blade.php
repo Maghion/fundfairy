@@ -28,7 +28,7 @@
             />
             <button
                 type="submit"
-                class="w-full bg-fuchsia-600 hover:!bg-fuchsia-800 text-white px-4 py-2 rounded focus:outline-none"
+                class="w-full bg-fuchsia-950 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
             >
                 Register
             </button>

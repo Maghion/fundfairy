@@ -16,7 +16,8 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'BLOG POSTS';
-        $blogPosts = BlogPost::where('status','=','published')
+        $blogPosts = BlogPost::
+            where('status','=','published')
             ->orderBy('updated_at','DESC')->get();
         return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
     }
@@ -87,7 +88,7 @@ class BlogPostsController extends Controller
         $blogPost->update($validated);
 
         // Redirect back to the index page with all posts
-        return redirect()->route('blog-posts.index')
+        return redirect()->route('blog-posts.show')
             ->with('success', 'Blog post updated successfully');
     }
     /**

@@ -27,12 +27,13 @@ class LoginController extends Controller
         ]);
         if(Auth::attempt($validatedData)) {
             $request->session()->regenerate();
-            return redirect()->route('home')->with('success', 'You are logged in.');
+            $redirectTo = session()->pull('redirect_to', route('home'));
+
+            return redirect()->to($redirectTo)->with('success', 'You are logged in.');
         } else {
 //            return back()->with('error', 'The provided credentials do not match our records.');
             return back()->withErrors(['email' => 'The provided credentials do not match our records.'])->onlyInput('email');
         }
-
     }
 
     public function logout(Request $request): RedirectResponse
