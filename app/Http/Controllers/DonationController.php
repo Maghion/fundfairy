@@ -29,10 +29,17 @@ class DonationController extends Controller
      * @route GET /donation/create
      * @return View
      */
-    public function create(DonationRequest $donationRequest): View {
+    public function create(DonationRequest $donationRequest): View|RedirectResponse {
+        if (!auth()->check()) {
+            return redirect()
+                ->route('login')
+                ->with('warning', 'Please log in to donate.');
+        }
+
         $title = "Make Donation";
         return view('donation.create', compact('title', 'donationRequest'));
     }
+
 
     /**
      * @desc Store a donation in the database

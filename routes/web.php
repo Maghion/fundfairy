@@ -33,10 +33,10 @@ Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
 });
+Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
 
