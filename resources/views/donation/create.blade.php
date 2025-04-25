@@ -2,9 +2,15 @@
     <x-slot name="title">{{ $title }}</x-slot>
     <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">{{ $title }}</h1>
     <div class="flex justify-center items-center">
-    <form action="/donation" method="POST" class="w-full max-w-lg">
+
+        <form action="/donation" method="POST" class="w-full max-w-lg">
+
         @csrf
-    <div class="flex flex-wrap -mx-3 mb-6 mt-3">
+
+        <input type="hidden" name="donation_request_id" value="{{ $donationRequest->id }}">
+
+
+        <div class="flex flex-wrap -mx-3 mb-6 mt-3">
         <div class="w-full px-3 mb-6 md:mb-0">
             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                 Amount
@@ -17,7 +23,7 @@
 
         <div class="w-full px-3 mb-6 mt-2 md:mb-0">
         <h3 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Select Donation Type:</h3>
-                <label>
+            <label>
                     <input type="radio" name="type" value="Singular" {{ old('type', 'Singular') == 'Singular' ? 'checked' : '' }}> One-time
                 </label>
                 <label>

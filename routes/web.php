@@ -14,7 +14,9 @@ use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
+use App\Http\Controllers\DashboardController;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
@@ -22,6 +24,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogR
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
@@ -32,7 +35,7 @@ Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
+    Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
 });
@@ -43,7 +46,8 @@ Route::put('/donation/{donation}', [DonationController::class, 'update'])->name(
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 Route::resource('blog-posts', BlogPostsController::class);
-Route::resource('testimonial', TestimonialController::class);
+Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
 Route::resource('newsletter', NewsletterController::class);
 
@@ -68,6 +72,9 @@ Route::get('/privacypolicy', function() {
 //     return view('PrivacyPolicy.index' , compact('title'));
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);

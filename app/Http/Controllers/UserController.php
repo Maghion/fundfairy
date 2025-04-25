@@ -52,12 +52,16 @@ class UserController extends Controller
             //'created_at'=>'required|string|max:255',
 
         ]);
+      
+        if ($request->hasFile('avatar')) {
+            $path = $request->file('avatar')->store('avatars', 'public');
+            $validatedData['avatar'] = $path;
+        }
 
         // Submit to database
         User::create($validatedData);
 
         return redirect()->route('users.index')->with('success', 'User created successfully!');
-
     }
 
     /**
