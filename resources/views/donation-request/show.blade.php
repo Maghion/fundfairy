@@ -64,7 +64,7 @@
                 @forelse ($comments as $comment)
                     <x-comment-card :comment="$comment"></x-comment-card>
                     @empty
-                        <p>No comments to display</p>
+                        <p class="text-gray-600 italic">There are no comments at this time. </p>
                 @endforelse
             </ul>
         </div>

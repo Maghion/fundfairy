@@ -15,16 +15,37 @@ use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProfileController;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
+//test error page:
+Route::get('/error/403', function () {
+    abort(403);
+});
+Route::get('/error/500', function () {
+    abort(500);
+});
+Route::get('/error/413', function () {
+    abort(413);
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogRequest::class);
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+
+//DASHBOARD
+if (request()->query('from') === 'dashboard') {
+    return redirect()->route('dashboard.index')->with('success', 'Job listing deleted successfully!');
+}
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+//PROFILE
+Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
+
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
@@ -35,10 +56,10 @@ Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
 });
+Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
 
@@ -49,7 +70,12 @@ Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
-Route::resource('newsletter', NewsletterController::class);
+
+Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
+
+Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 //Login And Register routes
 Route::middleware('guest')->group(function () {
@@ -76,38 +102,4 @@ Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
 
-Route::get('/marc', function() {
-    $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
-    echo '<pre>'.$dragon->say("Marc is ready!").'</pre>';
-});
-
-Route::get('/michelle', function() {
-    $dragon = Farm::create(\Cowsayphp\Farm\Tux::class);
-    echo '<pre>'.$dragon->say("Michelle is ready!").'</pre>';
-});
-
-Route::get('/anton', function() {
-    $Cow = Farm::create(\Cowsayphp\Farm\Cow::class);
-    echo '<pre>'.$Cow->say("Anton is ready!").'</pre>';
-});
-
-Route::get('/george', function() {
-    $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
-    echo '<pre>'.$dragon->say("Roll for initiative").'</pre>';
-});
-
-Route::get('/keren', function() {
-    $dragon = Farm::create(\Cowsayphp\Farm\Whale::class);
-    echo '<pre>'.$dragon->say("Keren is ready!").'</pre>';
-});
-
-Route::get('/lillian', function () {
-    $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
-    echo '<pre>' . $dragon->say("Howdy, Lillian is ready!") . '</pre>';
-});
-
-Route::get('/mireille', function() {
-    $cow = Farm::create(\Cowsayphp\Farm\Dragon::class);
-    echo '<pre>'.$cow->say("Mimi is ready!").'</pre>';
-});
 

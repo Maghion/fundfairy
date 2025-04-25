@@ -7,7 +7,10 @@
             <i class="fa-solid fa-hand-holding-dollar text-4xl text-fuchsia-400"></i>
         </div>        <div class="flex flex-col">
             <h5 class="mb-1 text-xl font-bold text-gray-900">
-                {{ $donation->anon ? 'Anonymous' : $donation->user->first_name . ' ' . $donation->user->last_name }}
+                {{ $donation->anon || (!$donation->user->first_name && !$donation->user->last_name)
+                    ? 'Anonymous'
+                    : trim($donation->user->first_name . ' ' . $donation->user->last_name)
+                }}
                 donated ${{ number_format($donation->amount, 2) }}
             </h5>
             <p class="mb-1 text-gray-800">{{ $donation->message }}</p>

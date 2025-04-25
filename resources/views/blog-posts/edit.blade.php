@@ -31,7 +31,7 @@
 
             <div class="flex gap-4">
                 <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        class="bg-fuchsia-950 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
                     Update Post
                 </button>
 
@@ -48,7 +48,7 @@
                     @method('DELETE')
                     <button type="submit"
                             class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Delete Post
+                      Delete Post
                     </button>
                 </form>
             </div>
