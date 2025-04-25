@@ -1,4 +1,5 @@
-<x-fund-fairy-layout>
+
+<x-fund-fairy-layout style="background-color: blue;">
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
     >
@@ -27,7 +28,7 @@
             />
             <button
                 type="submit"
-                class="w-full bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
+                class="w-full bg-fuchsia-950 hover:bg-blue-600 text-white px-4 py-2 rounded focus:outline-none"
             >
                 Register
             </button>

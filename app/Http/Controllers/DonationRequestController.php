@@ -76,8 +76,9 @@ class DonationRequestController extends Controller
     {
 //        $donationRequests = DonationRequest::with('donations')->get();
         $donationRequest->load('donations');
-
-        return view('donation-request.show', compact('donationRequest'));
+        $comments = $donationRequest->comments;
+        $donations = $donationRequest->donations()->paginate(5);
+        return view('donation-request.show', compact('donationRequest', 'comments', 'donations'));
     }
 
     /**
