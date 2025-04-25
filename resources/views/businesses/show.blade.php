@@ -26,28 +26,18 @@
                     @endauth
                 </div>
             <!-- End create Button -->
-            <section class="rounded-lg shadow-md bg-white p-4">
-                <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
-                <div class= "border-b pb-4 mb-4">
-                    @forelse($businessReviews as $businessReview)
-                        <x-business-review-card :businessReview="$businessReview"></x-business-review-card>
-                    @empty
-                        <p>No review Found</p>
-                    @endforelse
-                </div>
 
-{{--                @if($business->businessReviews->count())--}}
-{{--                    <div class="space-y-6">--}}
-{{--                        @foreach($business->businessReviews as $review)--}}
-{{--                            <div class="border-b pb-4 mb-4">--}}
-{{--                                <x-business-review-card :review="$review"></x-business-review-card>--}}
+{{--            <section class="rounded-lg shadow-md bg-white p-4">--}}
+{{--                <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>--}}
+{{--                <div class= "border-b pb-4 mb-4">--}}
+{{--                    @forelse($businessReviews as $businessReview)--}}
+{{--                        <x-business-review-card :businessReview="$businessReview"></x-business-review-card>--}}
+{{--                    @empty--}}
+{{--                        <p>No review Found</p>--}}
+{{--                    @endforelse--}}
+{{--                </div>--}}
 
-{{--                            </div>--}}
-{{--                            @endforelse--}}
-
-{{--                        @endif--}}
-
-            </section>
+{{--            </section>--}}
 
 
         {{-- Section 3 --}}

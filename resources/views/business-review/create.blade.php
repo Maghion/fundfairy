@@ -11,7 +11,7 @@
             enctype="multipart/form-data"
         >
             @csrf
-            @method("PUT")
+
             <x-inputs.text
                 id="title"
                 name="title"
@@ -25,7 +25,7 @@
                 id="rating"
                 name="rating"
                 label="Rating"
-                :options="['⭐⭐⭐⭐⭐' => '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐' => '⭐⭐⭐⭐', '⭐⭐⭐' => '⭐⭐⭐', '⭐⭐' => '⭐⭐', '⭐' => '⭐']"
+                :options="[5 => '⭐⭐⭐⭐⭐', 4 => '⭐⭐⭐⭐', 3 => '⭐⭐⭐', 2 => '⭐⭐', 1 => '⭐']"
                 value="{{ old('rating') }}"
             />
 
