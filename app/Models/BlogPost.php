@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class BlogPost extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'blog_posts';
     protected $fillable = [
         'user_id',
@@ -23,8 +23,11 @@ class BlogPost extends Model
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        // In the BlogPost model
+
+        return $this->belongsTo(User::class, 'user_id');  // Assuming 'user_id' is the foreign key
     }
+
 
     public function author(): BelongsTo
     {

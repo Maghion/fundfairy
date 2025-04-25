@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 
+use App\Models\User;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,8 +77,12 @@ class BlogPostsController extends Controller
     public function show(BlogPost  $blogPost): View
     {
 
+        $user = $blogPost->user;  // Eager load the associated user
         $title = 'View Blog Post';
-        return view('blog-posts.show', compact('blogPost', 'title'));
+        return view('blog-posts.show', compact('blogPost', 'user', 'title'));
+
+
+
     }
 
     /**
