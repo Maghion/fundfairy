@@ -20,7 +20,6 @@
             </div>
         </div>
 
-
         <!-- Donate Button -->
         <x-fund-fairy-button-link
             url="{{ route('donation.create', $donationRequest->id) }}"
@@ -31,7 +30,9 @@
             Donate
         </x-fund-fairy-button-link>
 
-        {{--        donations--}}
+
+
+        {{--donations--}}
         <div class="flex flex-col gap-4 my-6 ms-5">
             @forelse($donations as $donation)
                 <x-fund-fairy-donation-card :donation="$donation"></x-fund-fairy-donation-card>
@@ -42,10 +43,24 @@
         <!-- Pagination Links -->
         <div class="mt-4">{{ $donations->links() }}</div>
 
+        @auth
+            <!-- Comment Button -->
+            <x-fund-fairy-button-link
+                url="{{ route('comment.create', $donationRequest->id) }}"
+                btnColor="bg-fuchsia-700"
+                hoverClass="hover:!bg-yellow-500"
+                textClass="text-white font-bold"
+                class="mt-5 mb-4 px-5 py-5 w-[180px] md:w-auto">
+                Comment
+            </x-fund-fairy-button-link>
+        @endauth
+
         <!-- Comments -->
         <div class="mt-3 ">
-            <h3 class="text-lg font-semibold text-fuchsia-800 mb-1">Comments</h3>
-            <ul class="space-y-2 text-base text-gray-800 ">
+            @guest
+            <h3 class="text-sm font-semibold">Comments</h3>
+            @endguest
+            <ul class="text-xs text-gray-700 ">
                 @forelse ($comments as $comment)
                     <x-comment-card :comment="$comment"></x-comment-card>
                     @empty
