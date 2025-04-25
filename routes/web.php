@@ -66,7 +66,11 @@ Route::put('/donation/{donation}', [DonationController::class, 'update'])->name(
 
 Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
-Route::resource('blog-posts', BlogPostsController::class);
+
+Route::resource('blog-posts', BlogPostsController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('blog-posts', BlogPostsController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+
+
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);

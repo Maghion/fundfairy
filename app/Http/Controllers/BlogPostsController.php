@@ -4,12 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BlogPostsController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * Display a listing of the resource.
      */
@@ -28,8 +32,11 @@ class BlogPostsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create():  View | RedirectResponse
     {
+//        if(!Auth::check()){
+//            return redirect()->route('login')->with('warning', 'You must be logged in to create blog posts.');
+//        }
         $title = 'New Blog Post';
         return view('blog-posts.create', compact('title'));
     }
@@ -45,13 +52,22 @@ class BlogPostsController extends Controller
             'content' => 'required',
         ]);
 
+        $validatedData['status'] = 'published';
+        $validatedData['user_id'] = auth()->user()->id;
+        BlogPost::create($validatedData);
+
         // Create a new jbo listing with the validated data
         BlogPost::create([
             'title' => $validatedData['title'],
             'content' => $validatedData['content'],
         ]);
 
-        return redirect()->route('blog-posts.index');
+//        if(!Auth::check()){
+//            return redirect()->route('login')->with('warning', 'You must be logged in to store blog posts.');
+//        }
+
+
+        return redirect()->route('blog-posts.index')->with('success', 'Blog Post created successfully!');
     }
 
     /**
@@ -59,27 +75,37 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
+
         $title = 'View Blog Post';
         return view('blog-posts.show', compact('blogPost', 'title'));
     }
 
     /**
      * Show the form for editing the specified resource.
+     * @throws AuthorizationException
      */
     public function edit(BlogPost $blogPost)
     {
 
+//        if(!Auth::check()){
+//            return redirect()->route('login')->with('warning', 'You must be logged in to edit blog posts.');
+//        }
+        $this->authorize('update', $blogPost);
        return view('blog-posts.edit', [
            'blogPost' => $blogPost,
            'title' => 'Edit Blog Post'
         ]);
+
     }
 
     /**
      * Update the specified resource in storage.
+     * @throws AuthorizationException
      */
-    public function update(Request $request, BlogPost $blogPost)
+    public function update(Request $request, BlogPost $blogPost): RedirectResponse
     {
+        $this->authorize('update', $blogPost);
+
         $validated = $request->validate([
             'title' => 'required|max:255',
             'content' => 'required'
@@ -87,16 +113,27 @@ class BlogPostsController extends Controller
 
         $blogPost->update($validated);
 
+
         // Redirect back to the index page with all posts
-        return redirect()->route('blog-posts.show')
+        return redirect()->route('blog-posts.show', $blogPost->id)
             ->with('success', 'Blog post updated successfully');
+
     }
+
     /**
      * Remove the specified resource from storage.
+     * @throws AuthorizationException
      */
-    public function destroy(BlogPost $blogPost)
+    public function destroy(BlogPost $blogPost): RedirectResponse
     {
+        $this->authorize('delete', $blogPost);
+
         $blogPost->delete();
+
+//        if(!Auth::check()){
+//            return redirect()->route('login')->with('warning', 'You must be logged in to delete blog posts.');
+//        }
+
 
         return redirect()->route('blog-posts.index')
             ->with('success', 'Blog post deleted successfully');
