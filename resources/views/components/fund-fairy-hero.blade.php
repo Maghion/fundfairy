@@ -16,15 +16,28 @@
             <p class="text-base sm:text-lg font-light md:text-2xl mb-6">
                 Request funding to launch your business or help others succeed by investing in their ideas
             </p>
-            <form class="flex flex-col items-center md:flex-row md:space-x-2">
-                <button class="mb-2 md:mb-0 bg-yellow-500 hover:bg-yellow-600 text-white font-bold
-                   px-6 py-3 w-[180px] md:w-auto">
+            <form class="flex flex-col items-center space-y-2 md:flex-row md:space-x-2 md:space-y-0">
+                <x-fund-fairy-button-link
+                    btnColor="bg-yellow-500"
+                    hoverClass="hover:!bg-yellow-600"
+                    textClass="text-white font-bold"
+                    class="mb-2 md:mb-0 px-5 py-5 w-[180px] md:w-auto"
+                    url="/donation-request">
                     Donate
-                </button>
-                <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold
-                   px-6 py-3 w-[180px] md:w-auto">
-                    Sign Up
-                </button>
+                </x-fund-fairy-button-link>
+
+                @auth
+                @else
+{{--                    If not logged in, show signup button--}}
+                    <x-fund-fairy-button-link
+                        btnColor="bg-yellow-500"
+                        hoverClass="hover:!bg-yellow-600"
+                        textClass="text-white font-bold"
+                        class="mb-2 md:mb-0 px-5 py-5 w-[180px] md:w-auto"
+                        url="/register">
+                        Sign Up
+                    </x-fund-fairy-button-link>
+                @endauth
             </form>
 
         </div>

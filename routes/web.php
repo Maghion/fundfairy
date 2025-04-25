@@ -14,7 +14,9 @@ use App\Http\Controllers\BusinessReviewController;
 use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
+use App\Http\Controllers\DashboardController;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
@@ -22,9 +24,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogR
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
-Route::resource('business-review',BusinessReviewController::class);
+Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
 
@@ -44,7 +49,8 @@ Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
-Route::resource('newsletter', NewsletterController::class);
+Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 //Login And Register routes
 Route::middleware('guest')->group(function () {
@@ -67,6 +73,9 @@ Route::get('/privacypolicy', function() {
 //     return view('PrivacyPolicy.index' , compact('title'));
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 Route::get('/marc', function() {
     $dragon = Farm::create(\Cowsayphp\Farm\Dragon::class);
