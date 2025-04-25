@@ -26,6 +26,7 @@
 
     <div class="flex justify-center mt-4 space-x-4">
         <!-- Edit Button -->
+        @can('update', $businessReview)
         <a href="{{ route('business-review.edit', $businessReview->id) }}"
            class="px-4 py-2 bg-gray-200 rounded-full
                        shadow-md transition duration-300 ease-in-out hover:no-underline hover:text-white hover:bg-gray-800 "
@@ -46,6 +47,7 @@
                 Delete
             </button>
         </form>
+        @endcan
     </div>
 </div>
 

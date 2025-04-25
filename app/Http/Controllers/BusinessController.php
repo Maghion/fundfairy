@@ -6,16 +6,18 @@ use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BusinessController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc Display a listing of businesses.
      * @route GET /businesses
      */
     public function index(): View
     {
-        $businesses = Business::latest()->get();
+        $businesses = Business::paginate(6);
         return view('businesses.index')->with('businesses', $businesses);
 
     }
@@ -50,7 +52,7 @@ class BusinessController extends Controller
         ]);
 
         // Create a new business listing with the validated data
-        $validatedData['user_id'] = 1;
+        $validatedData['user_id'] = auth()->user()->id;
         Business::create($validatedData);
 
         return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
@@ -73,6 +75,8 @@ class BusinessController extends Controller
      */
     public function edit(Business $business): View
     {
+        $this->authorize('update', $business);
+
         return view('businesses.edit')->with('business', $business);
     }
 
@@ -82,6 +86,7 @@ class BusinessController extends Controller
      */
     public function update(Request $request, Business $business): RedirectResponse
     {
+        $this->authorize('update', $business);
 
         // Validate the incoming request data
         $validatedData = $request->validate([
@@ -106,6 +111,8 @@ class BusinessController extends Controller
      */
     public function destroy(Business $business): RedirectResponse
     {
+        $this->authorize('delete', $business);
+
         $business->delete();
 
         return redirect()->route('businesses.index')->with('success', 'Business deleted successfully!');

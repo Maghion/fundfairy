@@ -34,7 +34,7 @@
 
         <div class="flex gap-4 justify-end">
             <button type="submit"
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    class="bg-fuchsia-950 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
                 {{ isset($blogPost) ? 'Update Post' : 'Create Post' }}
             </button>
         </div>

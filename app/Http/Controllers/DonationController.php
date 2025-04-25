@@ -57,7 +57,7 @@ class DonationController extends Controller
         // Submit to database
         Donation::create($validatedData);
 
-        return redirect()->route('donation-request.index',)
+        return redirect()->route('donation-request.show', $validatedData['donation_request_id'])
             ->with('success', 'Donation created successfully!');
     }
 
@@ -67,12 +67,12 @@ class DonationController extends Controller
      * @param $id
      * @return string
      */
-    public function edit(Donation $donation): string {
+    public function edit(Donation $donation): View {
         // Check if the user is authorized
         $this->authorize('update', $donation);
 
         $title = 'Edit Donation';
-        return view('donation.index', compact('donation', 'title'));
+        return view('donation.edit', compact('donation', 'title'));
     }
 
     /**
