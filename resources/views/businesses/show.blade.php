@@ -48,7 +48,7 @@
                     <div class="flex space-x-3 ml-4">
                         <a
                             href="{{ route('businesses.edit', $business->id) }}"
-                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-300 text-white rounded"
                         >Edit</a>
                         <!-- Delete Form -->
                         <form
