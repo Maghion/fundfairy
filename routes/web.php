@@ -49,6 +49,10 @@ Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
+
+Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
+
 Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 

@@ -43,21 +43,31 @@
                 <li class="mb-2"><strong>Address:</strong> {{ $business->address1 }} {{ $business->address2 }}</li>
                 <li class="mb-2"><strong>Zip Code:</strong> {{ $business->zip_code }}</li>
                 <br>
-                <div class="flex space-x-3 ml-4">
-                    <a href="{{route('businesses.edit', $business->id)}}"
-                       class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</a>
-                    <!-- Delete Form -->
-                    <form method="POST" action="{{route('businesses.destroy', $business->id)}}"
-                          onsubmit="return confirm('Are you sure that you want to delete this business?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">
-                            Delete
-                        </button>
-                    </form>
-                    <!-- End Delete Form -->
-
-                </div>
+                @auth @if (auth()->user()->id === $business->user_id)
+                    @can('update', $business)
+                    <div class="flex space-x-3 ml-4">
+                        <a
+                            href="{{ route('businesses.edit', $business->id) }}"
+                            class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
+                        >Edit</a>
+                        <!-- Delete Form -->
+                        <form
+                            method="POST"
+                            action="{{ route('businesses.destroy', $business->id) }}"
+                            onsubmit="return confirm('Are you sure you want to delete this business?');"
+                        >
+                            @csrf @method('DELETE')
+                            <button
+                                type="submit"
+                                class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
+                            >
+                                Delete
+                            </button>
+                        </form>
+                        <!-- End Delete Form -->
+                    </div>
+                    @endcan
+                @endif @endauth
             </ul>
 
         </aside>

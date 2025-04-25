@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Models\Testimonial;
 use App\Models\Comment;
 use App\Models\Donation;
+use App\Models\Business;
 use App\Models\BusinessReview;
 
 use App\Policies\TestimonialPolicy;
 use App\Policies\CommentPolicy;
 use App\Policies\DonationPolicy;
+use App\Policies\BusinessPolicy;
 use App\Policies\BusinessReviewPolicy;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -21,6 +23,7 @@ class AuthServiceProvider extends ServiceProvider
         Donation::class => DonationPolicy::class,
         BusinessReview::class => BusinessReviewPolicy::class,
         Comment::class => CommentPolicy::class,
+        Business::class => BusinessPolicy::class,
     ];
 
     /**
