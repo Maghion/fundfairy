@@ -1,7 +1,7 @@
 <x-fund-fairy-layout>
     <div class="flex gap-4 justify-end">
         <a href="{{ route('blog-posts.edit', $blogPost) }}"
-           class="bg-fuchsia-950 hover:bg-fuchsia-400 text-white font-bold py-2 px-4 rounded">
+           class="bg-fuchsia-700 hover:!bg-fuchsia-900 text-white hover:text-white hover:no-underline font-bold py-2 px-4 rounded">
             Edit Post
         </a>
     </div>
@@ -12,7 +12,7 @@
             <p class="text-zinc-600 leading-relaxed">{{ $blogPost->content }}</p>
         </div>
         <a href="{{ route('blog-posts.index') }}" class="block text-xl text-center">
-            <i class="fa fa-arrow-alt-circle-left"></i> Back to BlogPosts
+            <i class="fa fa-arrow-alt-circle-left"></i> Back to blog posts
         </a>
     </div>
 
