@@ -19,6 +19,14 @@ use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
 
+//test error page:
+Route::get('/error/403', function () {
+    abort(403);
+});
+Route::get('/error/500', function () {
+    abort(500);
+});
+
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogRequest::class);
 
 //USERS ROUTES

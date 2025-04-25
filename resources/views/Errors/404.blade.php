@@ -1,12 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - Page Not Found</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>404 - Page Not Found!</title>
 
     <style>
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url(/fonts.gstatic.com/s/montserrat/v25/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCvC73w0aXpsog.woff2) format('woff2');
+            unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -14,72 +24,160 @@
         body {
             margin: 0;
             padding: 0;
+            background-color: mediumpurple;
             font-family: 'Montserrat', sans-serif;
-            background: #f4f4f4;
         }
 
         #notfound {
-            display: flex;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
-            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .notfound-container {
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-            padding: 1rem;
+            gap: 20px;
+            max-width: 800px;
+            padding: 20px;
+            margin: 0 auto;
         }
 
-        .notfound-text h1 {
-            font-size: 6rem;
-            margin: 0;
-            color: #800080;
+        .fairy_404 {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .notfound-text {
+            max-width: 720px;
+            width: 100%;
+            line-height: 1.6;
+        }
+
+        .notfound-text .notfound-404 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .notfound-text .notfound-404 h1 > span {
+            text-shadow: -8px 0 0 #fff;
         }
 
         .notfound-text h2 {
-            font-size: 1.75rem;
-            margin-top: 1rem;
-            color: #333;
+            font-family: 'Cabin', sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        .notfound-text p {
-            color: #555;
-            margin-top: 1rem;
-            font-size: 1rem;
-            max-width: 500px;
+        @media only screen and (max-width: 767px) {
+            .notfound-container {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
-        .notfound-image {
-            margin-top: 2rem;
-            display: flex;
-            justify-content: center;
-            width: 100%;
+        @media only screen and (max-width: 480px) {
+            .notfound-text .notfound-404 {
+                height: 162px;
+            }
+
+            .notfound-text h2 {
+                font-size: 16px;
+            }
+        }
+        .home-button {
+            display: inline-block;
+            margin: 5px auto 0;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: darkmagenta;
+            background-color: #EAB308;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+        }
+        .button-container {
+            text-align: center;
         }
 
-        .notfound-image img {
-            display: block;         /* Ensures it behaves like a block element */
-            margin: 0 auto;         /* Horizontally centers the image */
-            max-width: 100%;
-            height: auto;
+        .home-button:hover {
+            background-color: #580058;
+        ;
         }
+        @media only screen and (max-width: 767px) {
+            .notfound-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                padding: 30px 20px;
+            }
+
+            .fairy_404 {
+                width: 90%;
+                max-width: 320px;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .notfound-text .notfound-404 {
+                height: 220px;
+            }
+
+            .notfound-text h2 {
+                font-size: 18px;
+            }
+
+            .home-button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .notfound-text .notfound-404 {
+                height: 180px;
+            }
+
+            .notfound-text h2 {
+                font-size: 16px;
+            }
+
+            .home-button {
+                font-size: 13px;
+                padding: 8px 16px;
+            }
+
+            .fairy_404 {
+                max-width: 340px;
+                width: 100%;
+            }
+        }
+
+
     </style>
 </head>
 <body>
 <div id="notfound">
     <div class="notfound-container">
         <div class="notfound-text">
-            <h1>Oops!</h1>
-            <h2>Sorry, we couldn't find that page</h2>
-            <p>It's unavailable either because it was removed, had its name changed or is temporarily unavailable.</p>
-        </div>
-        <div class="notfound-image">
-            <img src="/images/hat.png" alt="404 Illustration" />
+            <div class="notfound-404">
+                <img src="/images/fairy_404.png" alt="fairy" class="fairy_404" />
+            </div>
+            <h2>We couldn't find the page you were looking for</h2>
+            <div class="button-container">
+                    <a href="/" class="home-button">Return Home</a>
+            </div>
         </div>
     </div>
 </div>

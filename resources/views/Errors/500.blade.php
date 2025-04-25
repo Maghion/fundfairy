@@ -1,106 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>500 - Page Not Found</title>
-
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>500 - Internal Server Error</title>
     <style>
-        * {
-            box-sizing: border-box;
+        html {
+            font-size: 20px;
         }
 
         body {
             margin: 0;
             padding: 0;
+            background-color: #38a8a0;
             font-family: 'Montserrat', sans-serif;
-            background: #f4f4f4;
-        }
-
-        #notfound {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            padding: 2rem;
         }
 
         .notfound-container {
-            display: flex;
-            background: white;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
+            text-align: center;
+            padding: 40px;
             max-width: 1000px;
-            width: 100%;
+            width: 90%;
+            transform: scale(1.15);
         }
 
-        .notfound-text {
-            padding: 2rem;
-            flex: 1;
+        .error_500 {
+            max-width: 350px;
+            margin: 0 auto 20px;
+            display: block;
         }
 
-        .notfound-text h1 {
-            font-size: 5rem;
+        .notfound-404 h1 {
+            font-size: 250px;
+            font-weight: 900;
+            color: #FF5800;
+            letter-spacing: -14px;
             margin: 0;
-            color: #e11d48;
+            line-height: 1;
         }
 
-        .notfound-text h2 {
-            font-size: 1.5rem;
-            margin-top: 1rem;
-            color: #333;
+        .notfound-404 h1 span {
+            text-shadow: -6px 0 0 white;
         }
 
-        .notfound-text p {
-            color: #555;
-            margin-top: 1rem;
-            font-size: 1rem;
+        .notfound-404 h3 {
+            font-size: 32px;
+            font-weight: 600;
+            color: white;
+            margin: 5px 0 10px;
         }
 
-        .notfound-image {
-            flex: 1;
-            background-color: #fef2f2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        h2 {
+            font-size: 24px;
+            color:white;
+            margin: 10px 0 20px;
         }
 
-        .notfound-image img {
-            max-width: 100%;
-            height: auto;
-            object-fit: cover;
+        .home-button {
+            display: inline-block;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            color: white;
+            background-color: #187770;
+            border: none;
+            border-radius: 8px;
+            text-decoration: none;
         }
 
-        @media (max-width: 768px) {
+        .home-button:hover {
+            background-color: #15E1C7;
+        }
+
+        @media (max-width: 767px) {
+            html {
+                font-size: 17px;
+            }
+
             .notfound-container {
-                flex-direction: column;
-                text-align: center;
+                transform: scale(1);
+                padding: 20px;
             }
 
-            .notfound-image {
-                padding: 1rem;
+            .error_500 {
+                max-width: 200px;
             }
 
-            .notfound-text h1 {
-                font-size: 3rem;
+            .notfound-404 h1 {
+                font-size: 120px;
+                letter-spacing: -10px;
+            }
+
+            .notfound-404 h3 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .home-button {
+                font-size: 16px;
+                padding: 12px 24px;
             }
         }
     </style>
 </head>
 <body>
-<div id="notfound">
-    <div class="notfound-container">
-        <div class="notfound-text">
-            <h1>Oops!</h1>
-            <h2>We couldn't find that page</h2>
-            <p>Sorry, the page you're looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
-        </div>
-        <div class="notfound-image">
-            <img src="/images/404-illustration.png" alt="404 Illustration" />
-        </div>
+<div class="notfound-container">
+    <img src="/images/error_500.png" alt="error_500" class="error_500" />
+    <div class="notfound-404">
+        <h3>Internal Server Error</h3>
+        <h1><span>5</span><span>0</span><span>0</span></h1>
     </div>
+    <h2>Sorry, something went wrong. It's not you, it's us.</h2>
+    <a href="/" class="home-button">Return Home</a>
 </div>
 </body>
 </html>
