@@ -15,6 +15,7 @@ use App\Http\Controllers\DonationRequestController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\BookmarkController;
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -28,10 +29,12 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
 Route::resource('business-review',BusinessReviewController::class);
-Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
+//Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
+    Route::get('/bookmarks', [BookmarkController::class, 'index'])->name('bookmarks.index');
+    Route::post('/bookmarks/{donationRequest}', [BookmarkController::class, 'store'])->name('bookmarks.store');
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
     Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');

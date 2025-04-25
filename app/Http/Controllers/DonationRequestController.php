@@ -39,6 +39,7 @@ class DonationRequestController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+
         // Validate the incoming request data
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',

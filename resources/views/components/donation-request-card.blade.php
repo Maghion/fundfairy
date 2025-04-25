@@ -27,6 +27,22 @@
                 Donate
             </a>
 
+            @auth
+                <form action="{{ route('bookmarks.store', $donationRequest->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                        <i class="fa-solid fa-heart fa-2xl" style="color: red;"></i>
+                    </button>
+                </form>
+            @else
+                <button
+                    type="button"
+                    style="background: none; border: none; padding: 0; cursor: not-allowed;"
+                    title="You must log in to bookmark!">
+                    <i class="fa-solid fa-heart fa-2xl" style="color: red;"></i>
+                </button>
+            @endauth
+
         </div>
 
     </div>

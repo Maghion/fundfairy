@@ -14,7 +14,7 @@
             <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request">Donation Requests</x-fund-fairy-nav-link>
             @auth
-            <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
+            <x-fund-fairy-nav-link :active="request()->is('bookmarks')" url="{{ route('bookmarks.index') }}">Bookmarks</x-fund-fairy-nav-link>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit" class="hover:underline" style="background-color: transparent; ">
