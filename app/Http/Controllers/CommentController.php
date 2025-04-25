@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\DonationRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Comment;
 use Illuminate\Http\RedirectResponse;
@@ -27,9 +28,9 @@ class CommentController extends Controller
      * @route GET /comment/create
      * @return View
      */
-    public function create(): View {
+    public function create(DonationRequest $donationRequest): View {
         $title = "Add Your Comment";
-        return view('comment.create', compact('title'));
+        return view('comment.create', compact('title', 'donationRequest'));
     }
 
     /**
@@ -41,7 +42,9 @@ class CommentController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
             'comment' => 'required|string|max:255',
+            'donation_request_id' => 'required|exists:donation_requests,id',
         ]);
 
         $validatedData['user_id'] = $request->user()->id;
@@ -50,7 +53,9 @@ class CommentController extends Controller
 //        $parent_comment = $request->input('parent_comment');
 //        $comment = $request->input('comment');
 //        return "Token: $token, Parent Comment: $parent_comment, Comment: $comment";
-        return redirect()->route('comments.index')->with('success', 'Comment created successfully.');
+//
+        return redirect()->route('donation-request.show', $validatedData['donation_request_id'])
+            ->with('success', 'Comment created successfully.');
     }
 
     /**
