@@ -14,6 +14,7 @@ class Business extends Model
     protected $table = 'businesses';
 
     protected $fillable = [
+        'user_id',
         'name',
         'address1',
         'address2',

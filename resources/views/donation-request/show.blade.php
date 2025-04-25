@@ -15,35 +15,44 @@
             <p><strong>Raised:</strong> ${{ $donationRequest->donations->sum('amount') }}</p>
 
             <!-- Progress Bar -->
-            <div class="w-full bg-gray-200 rounded-full h-3 mt-1">
+            <div class="w-full bg-gray-200 rounded-full h-3 mt-1 mb-5">
                 <div class="bg-blue-500 h-3 rounded-full" style="width: {{ ($donationRequest->donations->sum('amount') / $donationRequest->funding_goal) * 100 }}%;"></div>
             </div>
         </div>
 
-        <!-- Comments -->
-        <div class="mt-3 ">
-            <h3 class="text-sm font-semibold">Comments</h3>
-            <ul class="text-xs text-gray-700 ">
-                @forelse ($comments as $comment)
-                    <x-comment-card :comment="$comment"></x-comment-card>
-                    @empty
-                        <p>No comments to display</p>
-                @endforelse
-            </ul>
-        </div>
 
-{{--        donations--}}
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
+        <!-- Donate Button -->
+        <x-fund-fairy-button-link
+            url="{{ route('donation.create', $donationRequest->id) }}"
+            btnColor="bg-yellow-500"
+            hoverClass="hover:!bg-yellow-600"
+            textClass="text-white font-bold"
+            class="mt-5 px-5 py-5 w-[180px] md:w-auto">
+            Donate
+        </x-fund-fairy-button-link>
+
+        {{--        donations--}}
+        <div class="flex flex-col gap-4 my-6 ms-5">
             @forelse($donations as $donation)
                 <x-fund-fairy-donation-card :donation="$donation"></x-fund-fairy-donation-card>
             @empty
                 <p>No Donations Found</p>
             @endforelse
         </div>
+        <!-- Pagination Links -->
+        <div class="mt-4">{{ $donations->links() }}</div>
 
-        <!-- Donate Button -->
-        <button class="bg-green-500 text-white px-4 py-2 mt-3 rounded-lg hover:bg-green-600">
-            Donate Now
-        </button>
+        <!-- Comments -->
+        <div class="mt-3 ">
+            <h3 class="text-lg font-semibold text-fuchsia-800 mb-1">Comments</h3>
+            <ul class="space-y-2 text-base text-gray-800 ">
+                @forelse ($comments as $comment)
+                    <x-comment-card :comment="$comment"></x-comment-card>
+                    @empty
+                        <p class="text-gray-600 italic">There are no comments at this time. </p>
+                @endforelse
+            </ul>
+        </div>
+
     </div>
 </x-fund-fairy-layout>

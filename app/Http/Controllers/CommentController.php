@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Comment;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
@@ -8,6 +9,8 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * @desc Display list of comment
      * @route GET /comment
@@ -25,7 +28,7 @@ class CommentController extends Controller
      * @return View
      */
     public function create(): View {
-        $title = "Add Comment";
+        $title = "Add Your Comment";
         return view('comment.create', compact('title'));
     }
 
@@ -56,7 +59,10 @@ class CommentController extends Controller
      * @param $id
      * @return string
      */
-    public function edit(Comment $comment): View {
+    public function edit(Comment $comment): View
+    {
+        // Check if the user is authorized
+        $this->authorize('update', $comment);
         $title = "Edit Comment";
         return view('comment.edit', compact('comment', 'title'));
     }
@@ -80,6 +86,8 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment): RedirectResponse
     {
+        // Check if the user is authorized
+        $this->authorize('update', $comment);
         $validatedData = $request->validate([
             'comment' => 'required|string|max:500',
         ]);
@@ -95,9 +103,11 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment): RedirectResponse
     {
-//        if ($comment->user_id !== request()->user()->id) {
-//            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
-//        }
+        // Check if the user is authorized
+        $this->authorize('update', $comment);
+        if ($comment->user_id !== request()->user()->id) {
+            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
+        }
         $comment->delete();
 
         return redirect()->route('comment.index')->with('success', 'Comment deleted successfully.');

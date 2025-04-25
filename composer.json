@@ -12,7 +12,8 @@
         "php": "^8.2",
         "alrik11es/cowsayphp": "^1.2",
         "laravel/framework": "^11.31",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "spatie/laravel-permission": "^6.17"
     },
     "require-dev": {
         "heroku/heroku-buildpack-php": "^262.0",

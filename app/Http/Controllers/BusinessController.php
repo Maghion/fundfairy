@@ -6,16 +6,18 @@ use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class BusinessController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc Display a listing of businesses.
      * @route GET /businesses
      */
     public function index(): View
     {
-        $businesses = Business::latest()->get();
+        $businesses = Business::paginate(6);
         return view('businesses.index')->with('businesses', $businesses);
 
     }
@@ -36,15 +38,24 @@ class BusinessController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $title = $request->input('title');
-        $description = $request->input('business_description');
 
-        Business::create([
-            'title' => $title,
-            'business_description' => $description
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'business_description' => 'nullable|string',
+            'address1' => 'required|string',
+            'address2' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'phone_number' => 'required|string',
         ]);
 
-        return redirect()->route('businesses.index');
+        // Create a new business listing with the validated data
+        $validatedData['user_id'] = auth()->user()->id;
+        Business::create($validatedData);
+
+        return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
     }
 
     /**
@@ -62,27 +73,49 @@ class BusinessController extends Controller
      * @desc Show the form for editing a single business.
      * @route GET /businesses/{id}/edit
      */
-    public function edit(string $id): string
+    public function edit(Business $business): View
     {
-        return "Edit business $id";
+        $this->authorize('update', $business);
+
+        return view('businesses.edit')->with('business', $business);
     }
 
     /**
      * @desc Update the business in storage.
      * @route PUT /businesses/{id}
      */
-    public function update(Request $request, string $id): string
+    public function update(Request $request, Business $business): RedirectResponse
     {
-        return "You have updated business: $id";
+        $this->authorize('update', $business);
+
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'business_description' => 'nullable|string',
+            'address1' => 'required|string',
+            'address2' => 'nullable|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip_code' => 'required|string',
+            'phone_number' => 'required|string',
+        ]);
+
+        $business->update($validatedData);
+
+        return redirect()->route('businesses.index')->with('success', 'Business updated successfully!');
     }
 
     /**
      * @desc Remove the business from storage.
      * @route DELETE /businesses/{id}
      */
-    public function destroy(string $id): string
+    public function destroy(Business $business): RedirectResponse
     {
-        return "You have deleted business: $id";
+        $this->authorize('delete', $business);
+
+        $business->delete();
+
+        return redirect()->route('businesses.index')->with('success', 'Business deleted successfully!');
     }
 
     /**
