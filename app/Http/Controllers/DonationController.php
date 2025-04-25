@@ -31,9 +31,9 @@ class DonationController extends Controller
      */
     public function create(DonationRequest $donationRequest): View|RedirectResponse {
         if (!auth()->check()) {
-            return redirect()
-                ->route('login')
-                ->with('warning', 'Please log in to donate.');
+            session(['redirect_to' => route('donation.create', $donationRequest->id)]);
+
+            return redirect()->route('login')->with('warning', 'Please log in to donate.');
         }
 
         $title = "Make Donation";
