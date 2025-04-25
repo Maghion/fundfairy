@@ -75,7 +75,7 @@ class DonationRequestController extends Controller
     public function show(DonationRequest $donationRequest): View
     {
 //        $donationRequests = DonationRequest::with('donations')->get();
-        $donationRequest->load('donations');
+        $donationRequest->load(['donations', 'comments']);
         $comments = $donationRequest->comments;
         $donations = $donationRequest->donations;
 
