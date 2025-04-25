@@ -67,6 +67,7 @@
                             </button>
                         </form>
                         <!-- End Delete Form -->
+
                     </div>
                     @endcan
                 @endif @endauth
