@@ -22,19 +22,19 @@
 {{--    @else--}}
 {{--        <ul class="mt-4 space-y-6">--}}
 {{--            @foreach ($donationRequest->comments->sortByDesc('created_at') as $comment)--}}
-                <li class="p-4 border border-fuchsia-200 rounded-lg shadow-sm bg-white">
-                    <div class="flex items-center justify-between">
-                        <p class="font-semibold text-fuchsia-800">
-                            {{ $comment->user->first_name }} {{ $comment->user->last_name }}
-                        </p>
-                        <p class="text-sm text-fuchsia-500">
-                            {{ $comment->created_at->diffForHumans() }}
-                        </p>
-                    </div>
-                    <p class="mt-2 text-fuchsia-800 whitespace-pre-line">
-                        {{ $comment->comment }}
-                    </p>
-                </li>
+        <li class="px-5 py-3 border border-fuchsia-600 border-dotted rounded-md shadow bg-fuchsia-50 font-sans">
+            <div class="flex items-center justify-between mb-1">
+                <p class="font-semibold text-gray-900 tracking-tight">
+                    {{ $comment->user->first_name }} {{ $comment->user->last_name }}
+                </p>
+                <p class="text-sm text-fuchsia-700">
+                    {{ $comment->created_at->diffForHumans() }}
+                </p>
+            </div>
+            <p class="text-fuchsia-900 italic whitespace-pre-line leading-snug font-serif">
+                {{ $comment->comment }}
+            </p>
+        </li>
 {{--            @endforeach--}}
 {{--        </ul>--}}
 {{--    @endif--}}
