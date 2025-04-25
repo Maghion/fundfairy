@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class  BusinessReviewController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc  Show all reviews
      * @route Get /business-review
@@ -52,10 +54,14 @@ class  BusinessReviewController extends Controller
         ]);
 
         // Hardcoded user ID
-        $validatedData['user_id'] = 1;
+        //$validatedData['user_id'] = 1;
+        // Add the user ID of the current user
+        $validatedData['user_id'] = auth()->user()->id;
 
         // Hardcoded business ID
-        $validatedData['business_id'] = 1;
+        //$validatedData['business_id'] = 1;
+        // Add the user ID of the current user
+        $validatedData['business_id'] = auth()->user()->id;
 
         // Submit to database
         BusinessReview::create($validatedData);
@@ -85,7 +91,7 @@ class  BusinessReviewController extends Controller
     public function edit(BusinessReview $businessReview): View {
         // Check if the user is authorized on hold
 
-
+        $this->authorize('update', $businessReview);
         $title = 'Edit Single Business Review';
 
         return view('business-review.edit', compact('businessReview', 'title'));
@@ -107,6 +113,7 @@ class  BusinessReviewController extends Controller
 
         ]);
 
+        $this->authorize('update', $businessReview);
         $businessReview->update($validatedData);
         //give this page
         return redirect()->route('business-review.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
@@ -120,8 +127,9 @@ class  BusinessReviewController extends Controller
      * @return string
      */
     public function destroy(BusinessReview $businessReview): RedirectResponse   {
-        // delete the
+        // delete
 
+        $this->authorize('delete', $businessReview);
         $businessReview->delete();
         return redirect()->route('business-review.index')->with('success', 'The business review was deleted successfully!');
 

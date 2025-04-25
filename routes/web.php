@@ -27,7 +27,9 @@ Route::resource('users', UserController::class);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
-Route::resource('business-review',BusinessReviewController::class);
+Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
 
