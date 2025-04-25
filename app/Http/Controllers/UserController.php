@@ -52,10 +52,10 @@ class UserController extends Controller
             //'created_at'=>'required|string|max:255',
 
         ]);
-      
+
         if ($request->hasFile('avatar')) {
-            $path = $request->file('avatar')->store('avatars', 'public');
-            $validatedData['avatar'] = $path;
+            $path = Storage::disk('s3')->putFile('avatars', $request->file('avatar'), 'public');
+            $validatedData['avatar'] = "https://".env('AWS_BUCKET')."s3.".env('AWS_DEFAULT_REGION')."amazonaws.com.".$path;
         }
 
         // Submit to database
