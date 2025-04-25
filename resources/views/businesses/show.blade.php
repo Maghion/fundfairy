@@ -44,6 +44,7 @@
                 <li class="mb-2"><strong>Zip Code:</strong> {{ $business->zip_code }}</li>
                 <br>
                 @auth @if (auth()->user()->id === $business->user_id)
+                    @can('update', $job)
                     <div class="flex space-x-3 ml-4">
                         <a
                             href="{{ route('businesses.edit', $business->id) }}"
@@ -65,6 +66,7 @@
                         </form>
                         <!-- End Delete Form -->
                     </div>
+                    @endcan
                 @endif @endauth
             </ul>
 
