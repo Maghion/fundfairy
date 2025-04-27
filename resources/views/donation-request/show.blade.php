@@ -56,11 +56,11 @@
         @endauth
 
         <!-- Comments -->
-        <div class="mt-3 ">
+        <div class="mt-6 ">
             @guest
             <h3 class="text-sm font-semibold">Comments</h3>
             @endguest
-            <ul class="text-xs text-gray-700 ">
+            <ul class="space-y-4 text-xs text-gray-700 ">
                 @forelse ($comments as $comment)
                     <x-comment-card :comment="$comment"></x-comment-card>
                     @empty
