@@ -1,16 +1,7 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ $title }}</x-slot>
     <h2 class="text-2xl">{{ $title }}</h2>
-    <div class="flex justify-end my-6" >
 
-        @auth
-        <x-fund-fairy-button-link
-            url="{{ route('business-review.create') }}"
-        >
-            Create a business review
-        </x-fund-fairy-button-link>
-        @endauth
-    </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
 
 

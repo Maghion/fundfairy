@@ -51,6 +51,7 @@ class  BusinessReviewController extends Controller
             'rating' => 'required|string:active, pending',
             'comment' => 'required|string|max:255',
 
+
         ]);
 
         // Hardcoded user ID
@@ -66,7 +67,7 @@ class  BusinessReviewController extends Controller
         // Submit to database
         BusinessReview::create($validatedData);
 
-        return redirect()->route('business-review.index')->with('success', 'Review created successfully!');
+        return redirect()->route('businesses.show')->with('success', 'Review created successfully!');
 
     }
 
@@ -78,7 +79,7 @@ class  BusinessReviewController extends Controller
      * @return View
      */
     public function show(BusinessReview $review): View {
-        return view('business-review.show', compact('review'));
+        return view('businesses.show', compact('review'));
     }
 
 
@@ -116,7 +117,7 @@ class  BusinessReviewController extends Controller
         $this->authorize('update', $businessReview);
         $businessReview->update($validatedData);
         //give this page
-        return redirect()->route('business-review.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
+        return redirect()->route('businesses.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
 
     }
 
@@ -131,7 +132,7 @@ class  BusinessReviewController extends Controller
 
         $this->authorize('delete', $businessReview);
         $businessReview->delete();
-        return redirect()->route('business-review.index')->with('success', 'The business review was deleted successfully!');
+        return redirect()->route('businesses.index')->with('success', 'The business review was deleted successfully!');
 
     }
 }

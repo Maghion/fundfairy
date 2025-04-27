@@ -2,7 +2,7 @@
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
     >
-        <h2 class="text-4xl text-center font-bold mb-4">Edit Business Review</h2>
+        <h2 class="text-4xl text-center font-bold mb-4">Create Business Review</h2>
 
         <!--Form Start-->
         <form
@@ -11,7 +11,7 @@
             enctype="multipart/form-data"
         >
             @csrf
-            @method("PUT")
+
             <x-inputs.text
                 id="title"
                 name="title"
@@ -25,7 +25,7 @@
                 id="rating"
                 name="rating"
                 label="Rating"
-                :options="['⭐⭐⭐⭐⭐' => '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐' => '⭐⭐⭐⭐', '⭐⭐⭐' => '⭐⭐⭐', '⭐⭐' => '⭐⭐', '⭐' => '⭐']"
+                :options="[5 => '⭐⭐⭐⭐⭐', 4 => '⭐⭐⭐⭐', 3 => '⭐⭐⭐', 2 => '⭐⭐', 1 => '⭐']"
                 value="{{ old('rating') }}"
             />
 
