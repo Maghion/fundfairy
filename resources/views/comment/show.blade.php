@@ -19,7 +19,7 @@
                         @csrf
                         @method('DELETE')
                         <button type="submit"
-                                class="px-4 py-2 bg-yellow-500 hover:bg-yellow-700 text-white rounded">Delete
+                                class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded">Delete
                         </button>
                     </form>
                     <!-- End Delete Form -->
