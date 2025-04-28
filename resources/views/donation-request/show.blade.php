@@ -1,9 +1,8 @@
 <x-fund-fairy-layout>
     @php
         $totalDonated = $donationRequest->donations->sum('amount');
-
         $goal = $donationRequest->funding_goal;
-        $progress = $goal > 0 ? ($totalDonated / $goal) * 100 : 0;
+        $progress = $goal > 0 ? min(($totalDonated / $goal) * 100, 100) : 0;
     @endphp
 
     <div class="border rounded-lg p-4 shadow-md bg-white">
@@ -16,7 +15,7 @@
 
             <!-- Progress Bar -->
             <div class="w-full bg-gray-200 rounded-full h-3 mt-1 mb-5">
-                <div class="bg-blue-500 h-3 rounded-full" style="width: {{ ($donationRequest->donations->sum('amount') / $donationRequest->funding_goal) * 100 }}%;"></div>
+                <div class="bg-green-500 h-3 rounded-full" style="width: {{ $progress }}%;"></div>
             </div>
         </div>
 
@@ -56,11 +55,11 @@
         @endauth
 
         <!-- Comments -->
-        <div class="mt-3 ">
+        <div class="mt-6 ">
             @guest
             <h3 class="text-sm font-semibold">Comments</h3>
             @endguest
-            <ul class="text-xs text-gray-700 ">
+            <ul class="space-y-4 text-xs text-gray-700 ">
                 @forelse ($comments as $comment)
                     <x-comment-card :comment="$comment"></x-comment-card>
                     @empty
