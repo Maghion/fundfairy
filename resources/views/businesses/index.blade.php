@@ -1,6 +1,7 @@
 <x-fund-fairy-layout>
 
-    <h2 class="text-2xl font-bold text-center text-fuchsia-950">Recent Businesses</h2>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
 
     <div class="flex justify-end my-6">
         @auth

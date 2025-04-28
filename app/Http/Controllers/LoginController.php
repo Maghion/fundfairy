@@ -13,7 +13,8 @@ class LoginController extends Controller
     // @route  GET /login
     public function login() : View
     {
-        return view('auth.login');
+        $title = 'Login';
+        return view('auth.login')->with('title', $title);
     }
 
     // @desc   Process user registration form

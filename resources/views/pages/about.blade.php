@@ -1,7 +1,7 @@
 <x-fund-fairy-layout>
-
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="prose max-w-none p-6 bg-gray-50 rounded-lg shadow-md">
-    <h1 class='text-3xl font-bold text-fuchsia-950 border-b pb-2'> About Us</h1>
+        <x-page-title>{{ $title }}</x-page-title>
     <br>
     <p> Welcome to FundFairy, where dreams take flight with the power of community-driven funding!
 

@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <section class="flex flex-col md:flex-row gap-6">
 
         <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-1/2">

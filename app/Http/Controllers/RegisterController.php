@@ -13,7 +13,8 @@ class RegisterController extends Controller
     // @route  GET /register
     public function register() : View
     {
-        return view('auth.register');
+        $title = 'Register';
+        return view('auth.register')->with(compact('title'));
     }
 
     // @desc   Process user registration form

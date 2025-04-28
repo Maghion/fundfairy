@@ -1,6 +1,6 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ $title }}</x-slot>
-    <h2 class="text-2xl">{{ $title }}</h2>
+    <x-page-title>{{ $title }}</x-page-title>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-6">
 

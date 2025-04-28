@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-6">
 
         <div class="flex-1 space-y-6">
