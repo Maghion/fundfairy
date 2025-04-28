@@ -8,4 +8,8 @@
             <li>No donation requests found</li>
         @endforelse
     </ul>
+    <!-- Pagination Links -->
+    <div class="mt-6">
+        {{ $donationRequests->links('pagination::tailwind') }}
+    </div>
 </x-fund-fairy-layout>request_id

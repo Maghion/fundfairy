@@ -40,8 +40,11 @@
                 <p>No Donations Found</p>
             @endforelse
         </div>
+
         <!-- Pagination Links -->
-        <div class="mt-4">{{ $donations->links() }}</div>
+        <div class="mt-6">
+            {{ $donations->withQueryString()->links('pagination::tailwind') }}
+        </div>
 
         @auth
             <!-- Comment Button -->
@@ -67,7 +70,9 @@
                         <p class="text-gray-600 italic">There are no comments at this time. </p>
                 @endforelse
             </ul>
+                <div class="mt-6">
+                    {{ $comments->withQueryString()->links('pagination::tailwind') }}
+                </div>
         </div>
-
     </div>
 </x-fund-fairy-layout>
