@@ -17,8 +17,10 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
+        $title = 'Businesses';
         $businesses = Business::paginate(6);
-        return view('businesses.index')->with('businesses', $businesses);
+        return view('businesses.index', compact('title', 'businesses'));
+//        return view('businesses.index')->with('businesses', $businesses);
 
     }
 
@@ -66,7 +68,7 @@ class BusinessController extends Controller
     {
 
         $business->load('businessReviews');
-        $title = "Business Details: " . $business->name;
+        $title = $business->name;
         $businessReviews= $business->businessReviews();//->paginate(2);
         return view('businesses.show', compact('title', 'business', 'businessReviews'));
     }

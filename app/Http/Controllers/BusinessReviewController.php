@@ -19,7 +19,7 @@ class  BusinessReviewController extends Controller
      * @return View
      */
     public function index():View{
-        $title = "View all Reviews";
+        $title = "All Reviews";
         $reviews = BusinessReview::all();
         return view('business-review.index', compact('title', 'reviews'));
 

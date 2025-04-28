@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <div class="flex gap-4 justify-end">
         <a href="{{ route('blog-posts.edit', $blogPost) }}"
            class="bg-fuchsia-700 hover:!bg-fuchsia-900 text-white hover:text-white hover:no-underline font-bold py-2 px-4 rounded">

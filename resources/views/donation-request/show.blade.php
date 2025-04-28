@@ -5,6 +5,8 @@
         $goal = $donationRequest->funding_goal;
         $progress = $goal > 0 ? ($totalDonated / $goal) * 100 : 0;
     @endphp
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
 
     <div class="border rounded-lg p-4 shadow-md bg-white">
         <h2 class="text-lg font-bold">{{ $donationRequest->business->name }}</h2>

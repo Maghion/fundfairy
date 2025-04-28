@@ -1,7 +1,5 @@
 <x-fund-fairy-layout>
     <x-slot name="title">Home</x-slot>
-    <h1>Welcome to Fund Fairy</h1>
-    <p>Fund your dream today!</p>
 
         <h2 class="text-center text-3xl mb-4 font-bold border border-gray-300 p-3">
             Recent Blog Posts

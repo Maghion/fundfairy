@@ -17,6 +17,8 @@ class DashboardController extends Controller
         // Get all job listings for the authenticated user
         $businesses = Business::where('user_id', $user->id)->get();
 
-        return view('dashboard.index', compact('user', 'businesses'));
+        $title = "Dashboard";
+
+        return view('dashboard.index', compact('user', 'businesses', 'title'));
     }
 }

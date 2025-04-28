@@ -1,5 +1,7 @@
 
 <x-fund-fairy-layout style="background-color: blue;">
+    <x-slot name="title">{{ $title }}</x-slot>
+
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
     >
