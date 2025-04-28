@@ -35,6 +35,7 @@
             </form>
         </div>
 
+        <div class="flex flex-col gap-6 w-full md:w-1/2">
         <div class="bg-white p-8 rounded-lg shadow-md w-full">
             <h3 class="text-3xl text-center font-bold mb-4">
                 My Businesses
@@ -72,6 +73,32 @@
                 <p class="text-gray-700">No businesses to display</p>
             @endforelse
         </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            <h3 class="text-3xl text-center font-bold mb-4">
+                My Donations
+            </h3>
+            @forelse ($donations as $donation)
+                <div class="flex justify-between items-center border-b-2 border-gray-200 py-2">
+                    <div class="flex justify-between items-center w-full">
+                        <a href="{{ route('donation-request.show', $donation->donationRequest->id) }}">
+                            <h3 class="text-xl font-semibold text-fuchsia-950">
+                                {{ $donation->donationRequest->title }}
+                            </h3>
+                        </a>
+                        <p class="text-lg text-gray-500 font-italic">${{$donation->amount}}</p>
+
+                    </div>
+                </div>
+            @empty
+                <p class="text-gray-700">No donations to display</p>
+            @endforelse
+            <div class="mt-6">
+                {{ $donations->withQueryString()->links('pagination::tailwind') }}
+            </div>
+        </div>
+
+</div>
     </section>
 
 </x-fund-fairy-layout>>
