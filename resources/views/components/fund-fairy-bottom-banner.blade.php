@@ -21,7 +21,7 @@
             </p>
         </div>
         <div class="mt-6">
-            <x-fund-fairy-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="{{ $btnColor }}"> {{ $btnText }}</x-fund-fairy-button-link>
+            <x-fund-fairy-button-link url="{{ $btnLink }}" icon="{{ $btnIcon }}" btnColor="bg-yellow-500" hoverClass="hover:bg-fuchsia-900" textClass="text-white font-semibold"> {{ $btnText }}</x-fund-fairy-button-link>
         </div>
     </div>
 </section>

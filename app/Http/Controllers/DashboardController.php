@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Business;
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -19,6 +20,10 @@ class DashboardController extends Controller
 
         $title = "Dashboard";
 
-        return view('dashboard.index', compact('user', 'businesses', 'title'));
+        // Get all donations for the authenticated user
+        $donations = Donation::where('user_id', $user->id)->paginate(5, ['*'], 'donations_page');
+
+        return view('dashboard.index', compact('user', 'businesses', 'donations', 'title'));
+
     }
 }
