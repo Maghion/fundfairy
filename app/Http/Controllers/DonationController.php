@@ -36,7 +36,7 @@ class DonationController extends Controller
             return redirect()->route('login')->with('warning', 'Please log in to donate.');
         }
 
-        $title = "Make Donation";
+        $title = "Donate to $donationRequest->title";
         return view('donation.create', compact('title', 'donationRequest'));
     }
 
