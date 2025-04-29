@@ -30,7 +30,7 @@
                 type="submit"
                 class="w-full bg-fuchsia-950 hover:bg-violet-950 text-white px-4 py-2 rounded focus:outline-none"
             >
-                Update
+                Save
             </button>
         </form>
     </div>
