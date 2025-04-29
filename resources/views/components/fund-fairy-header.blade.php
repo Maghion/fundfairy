@@ -21,7 +21,6 @@
                         Logout
                     </button>
                 </form>
-                <x-fund-fairy-nav-link :active="request()->is('dashboard')" url="/dashboard">Dashboard</x-fund-fairy-nav-link>
 
             @else
                 <x-fund-fairy-nav-link :active="request()->is('register')" url="/register">Register</x-fund-fairy-nav-link>
@@ -33,17 +32,22 @@
                 <!-- User Avatar -->
                 <div class="flex items-center space-x-3">
                     @if(Auth::user()->avatar)
-                        <img
-                            src="{{ asset('storage/' . Auth::user()->avatar) }}"
-                            alt="{{ Auth::user()->name }}"
-                            class="w-10 h-10 rounded-full"
-                        />
+                        <a href="{{ route('dashboard', Auth::user()->id) }}">
+                            <img
+                                src="{{ asset('storage/' . Auth::user()->avatar) }}"
+                                alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full"
+                            />
+                        </a>
                     @else
-                        <img
-                            src="{{ asset('storage/avatars/default-avatar.png') }}"
-                            alt="{{ Auth::user()->name }}"
-                            class="w-10 h-10 rounded-full"
-                        />
+                        <a href="{{ route('dashboard', Auth::user()->id) }}">
+                            <img
+                                src="{{ asset('storage/avatars/default-avatar.png') }}"
+                                alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full"
+                            />
+                        </a>
+
                     @endif
                 </div>
             @endauth

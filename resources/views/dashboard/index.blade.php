@@ -17,8 +17,24 @@
                 @method('PUT')
 
                 <div class="mb-4">
-                    <label class="block text-gray-700" for="name">Name</label>
-                    <input id="name" type="text" name="name" value="{{ $user->name }}"
+                    <label class="block text-gray-700" for="first_name">First Name</label>
+                    <input id="last_name" type="text" name="first_name" value="{{ $user->first_name }}"
+                           class="w-full px-4 py-2 border rounded focus:outline-none" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="last_name">Last Name</label>
+                    <input id="last_name" type="text" name="last_name" value="{{ $user->last_name }}"
+                           class="w-full px-4 py-2 border rounded focus:outline-none" />
+                </div>
+                <div class="mb-4">
+                    <label for="biogrphy" class="block text-gray-700">bio</label>
+                    <textarea id="biogrphy" name="biogrphy" >
+                        {{$user->biography}}
+                    </textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="phone_number">Phone Number</label>
+                    <input id="phone_number" type="text" name="phone_number" value="{{ $user->phone_number }}"
                            class="w-full px-4 py-2 border rounded focus:outline-none" />
                 </div>
                 <div class="mb-4">
