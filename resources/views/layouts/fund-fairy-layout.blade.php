@@ -33,7 +33,6 @@
     @endif
     {{ $slot }}
 </main>
-<x-fund-fairy-bottom-banner />
 <x-fund-fairy-footer/>
 </body>
 </html>
