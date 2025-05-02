@@ -11,9 +11,14 @@
             <x-fund-fairy-nav-link :active="request()->is('businesses')" url="/businesses">Businesses</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request" icon="donate">Donate</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('about')" url="/about">About</x-fund-fairy-nav-link>
-        @auth
-            <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
-                <x-fund-fairy-nav-link :active="request()->is('dashboard')" url="/dashboard">Dashboard</x-fund-fairy-nav-link>
+            @auth
+                <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="hover:underline" style="background-color: transparent; ">
+                        Logout
+                    </button>
+                </form>
 
             @else
                 <x-fund-fairy-nav-link :active="request()->is('register')" url="/register" icon="user">Sign Up</x-fund-fairy-nav-link>
@@ -25,17 +30,22 @@
                 <!-- User Avatar -->
                 <div class="flex items-center space-x-3">
                     @if(Auth::user()->avatar)
-                        <img
-                            src="{{ asset('storage/' . Auth::user()->avatar) }}"
-                            alt="{{ Auth::user()->name }}"
-                            class="w-10 h-10 rounded-full"
-                        />
+                        <a href="{{ route('dashboard', Auth::user()->id) }}">
+                            <img
+                                src="{{ asset('storage/' . Auth::user()->avatar) }}"
+                                alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full"
+                            />
+                        </a>
                     @else
-                        <img
-                            src="{{ asset('storage/avatars/default-avatar.png') }}"
-                            alt="{{ Auth::user()->name }}"
-                            class="w-10 h-10 rounded-full"
-                        />
+                        <a href="{{ route('dashboard', Auth::user()->id) }}">
+                            <img
+                                src="{{ asset('storage/avatars/default-avatar.png') }}"
+                                alt="{{ Auth::user()->name }}"
+                                class="w-10 h-10 rounded-full"
+                            />
+                        </a>
+
                     @endif
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
