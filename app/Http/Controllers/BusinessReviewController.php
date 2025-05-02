@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\BusinessReview;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
@@ -31,9 +32,9 @@ class  BusinessReviewController extends Controller
      * @return View
      */
 
-    public function create(): View {
+    public function create(Business $business): View {
         $title = "Create New Review";
-        return view('business-review.create' , compact('title'));
+        return view('business-review.create' , compact('title', 'business'));
     }
 
 
@@ -50,24 +51,17 @@ class  BusinessReviewController extends Controller
             'title' => 'required|string|max:255',
             'rating' => 'required|string:active, pending',
             'comment' => 'required|string|max:255',
-
-
+            'business_id' => 'required|integer|exists:businesses,id',
         ]);
-
         // Hardcoded user ID
         //$validatedData['user_id'] = 1;
         // Add the user ID of the current user
         $validatedData['user_id'] = auth()->user()->id;
 
-        // Hardcoded business ID
-        //$validatedData['business_id'] = 1;
-        // Add the user ID of the current user
-        $validatedData['business_id'] = auth()->user()->id;
-
         // Submit to database
         BusinessReview::create($validatedData);
 
-        return redirect()->route('businesses.show')->with('success', 'Review created successfully!');
+        return redirect()->route('businesses.show', $validatedData['business_id'])->with('success', 'Review created successfully!');
 
     }
 

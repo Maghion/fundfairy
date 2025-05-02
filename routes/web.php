@@ -36,6 +36,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogR
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+//Route::get('/users/create', [UserProfileController::class, 'create']);
+//Route::post('/users', [UserProfileController::class, 'store']);
 
 //DASHBOARD
 if (request()->query('from') === 'dashboard') {
@@ -46,14 +48,13 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 //PROFILE
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-//Route::get('/users/create', [UserProfileController::class, 'create']);
-//Route::post('/users', [UserProfileController::class, 'store']);
 Route::get('/business-review/create/{business}', [BusinessReviewController::class, 'create'])->name('business-review.create');
-Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
-Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('business-review',BusinessReviewController::class)->except(['create']);
 
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
+//Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+//Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
@@ -72,9 +73,6 @@ Route::resource('blog-posts', BlogPostsController::class);
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
-
-Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
-Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
 
 Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
