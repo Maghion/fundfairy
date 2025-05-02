@@ -20,7 +20,7 @@ class BlogPostsController extends Controller
      */
     public function index(): View
     {
-        $title = 'BLOG POSTS';
+        $title = 'Blog Posts';
         $blogPosts = BlogPost::
             where('status','=','published')
             ->orderBy('updated_at','DESC')->get();
@@ -76,13 +76,9 @@ class BlogPostsController extends Controller
      */
     public function show(BlogPost  $blogPost): View
     {
-
         $user = $blogPost->user;  // Eager load the associated user
         $title = 'View Blog Post';
         return view('blog-posts.show', compact('blogPost', 'user', 'title'));
-
-
-
     }
 
     /**

@@ -13,7 +13,7 @@ class NewsletterController extends Controller
     public function index(): view
     {
         $title = 'Newsletter';
-        return view('/pages/newsletter')->with('newsletter', $title);
+        return view('/pages/newsletter')->with('title', $title);
     }
 
     public function store (Request $request): RedirectResponse

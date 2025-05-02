@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\DonationRequest;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Comment;
 use Illuminate\Http\RedirectResponse;
@@ -27,9 +28,9 @@ class CommentController extends Controller
      * @route GET /comment/create
      * @return View
      */
-    public function create(): View {
+    public function create(DonationRequest $donationRequest): View {
         $title = "Add Your Comment";
-        return view('comment.create', compact('title'));
+        return view('comment.create', compact('title', 'donationRequest'));
     }
 
     /**
@@ -41,7 +42,9 @@ class CommentController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
             'comment' => 'required|string|max:255',
+            'donation_request_id' => 'required|exists:donation_requests,id',
         ]);
 
         $validatedData['user_id'] = $request->user()->id;
@@ -50,7 +53,9 @@ class CommentController extends Controller
 //        $parent_comment = $request->input('parent_comment');
 //        $comment = $request->input('comment');
 //        return "Token: $token, Parent Comment: $parent_comment, Comment: $comment";
-        return redirect()->route('comments.index')->with('success', 'Comment created successfully.');
+//
+        return redirect()->route('donation-request.show', $validatedData['donation_request_id'])
+            ->with('success', 'Comment created successfully.');
     }
 
     /**
@@ -92,7 +97,7 @@ class CommentController extends Controller
             'comment' => 'required|string|max:500',
         ]);
         $comment->update($validatedData);
-        return redirect()->route('comment.index')->with('success', 'Comment updated successfully.');
+        return redirect()->route('donation-request.show',$comment->donation_request_id)->with('success', 'Comment updated successfully.');
     }
 
     /**
@@ -103,14 +108,13 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment): RedirectResponse
     {
-        // Check if the user is authorized
         $this->authorize('update', $comment);
-        if ($comment->user_id !== request()->user()->id) {
-            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
-        }
+        $donationRequestId = $comment->donation_request_id;
         $comment->delete();
 
-        return redirect()->route('comment.index')->with('success', 'Comment deleted successfully.');
+        return redirect()
+            ->route('donation-request.show', $donationRequestId)
+            ->with('success', 'Your comment was deleted.');
     }
 }
 

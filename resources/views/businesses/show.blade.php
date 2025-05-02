@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-6">
 
         <div class="flex-1 space-y-6">
@@ -14,24 +17,66 @@
             </section>
 
             {{-- Section 2 --}}
-            <section class="rounded-lg shadow-md bg-white p-4">
-                <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
-                @if($business->businessReviews->count())
-                    <div class="space-y-6">
-                        @foreach($business->businessReviews as $review)
-                            <div class="border-b pb-4 mb-4">
-                                <h3 class="text-lg font-bold text-blue-600">{{ $review->title }}</h3>
-                                <wa-rating label="Rating" readonly value="{{ $review->rating }}"></wa-rating>
-                                <p class="text-gray-700">{{ $review->comment }}</p>
-                                <p class="text-sm text-gray-500">Posted by User ID: {{ $review->user_id }}</p>
-                            </div>
-                        @endforeach
-                    </div>
-                @else
-                    <p class="text-gray-500 italic">No reviews yet for this business.</p>
-                @endif
-            </section>
+            <div>
+                <!-- Create Button -->
+                <div class="flex justify-left my-6" >
+                    @auth
+                        <x-fund-fairy-button-link
+                            url="{{ route('business-review.create', $business->id) }}"
+                        >
+                            Create a business review
+                        </x-fund-fairy-button-link>
+                    @endauth
+                </div>
+            <!-- End create Button -->
+
+{{--                //no connected--}}
+{{--                <section class="rounded-lg shadow-md bg-white p-4">--}}
+{{--                    <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>--}}
+{{--                    <div class= "border-b pb-4 mb-4">--}}
+{{--                        @forelse($businessReviews as $businessReview)--}}
+{{--                            <x-business-review-card :businessReview="$businessReview"></x-business-review-card>--}}
+{{--                        @empty--}}
+{{--                            <p>No review Found</p>--}}
+{{--                        @endforelse--}}
+{{--                    </div>--}}
+
+{{--                </section>--}}
+
+
+                    <section class="rounded-lg shadow-md bg-white p-4">
+                    <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
+                    @if($business->businessReviews->count())
+                        <div class="space-y-6">
+                            @foreach($business->businessReviews as $review)
+                                <div class="border-b pb-4 mb-4">
+                                    <h3 class="text-lg font-bold text-blue-600">{{ $review->title }}</h3>
+                                    <wa-rating label="Rating" readonly value="{{ $review->rating }}"></wa-rating>
+                                    <p class="text-gray-700">{{ $review->comment }}</p>
+                                    <p class="text-sm text-gray-500">Posted by User ID: {{ $review->user_id }}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="text-gray-500 italic">No reviews yet for this business.</p>
+                    @endif
+                </section>
+            </div>
+
         </div>
+
+{{--            <section class="rounded-lg shadow-md bg-white p-4">--}}
+{{--                <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>--}}
+{{--                <div class= "border-b pb-4 mb-4">--}}
+{{--                    @forelse($businessReviews as $businessReview)--}}
+{{--                        <x-business-review-card :businessReview="$businessReview"></x-business-review-card>--}}
+{{--                    @empty--}}
+{{--                        <p>No review Found</p>--}}
+{{--                    @endforelse--}}
+{{--                </div>--}}
+
+{{--            </section>--}}
+
 
         {{-- Section 3 --}}
         <aside class="w-full lg:w-1/4 bg-white rounded-lg shadow-md p-3">
@@ -46,10 +91,12 @@
                 @auth @if (auth()->user()->id === $business->user_id)
                     @can('update', $business)
                     <div class="flex space-x-3 ml-4">
-                        <a
-                            href="{{ route('businesses.edit', $business->id) }}"
-                            class="px-4 py-2 bg-blue-500 hover:bg-blue-300 text-white rounded"
-                        >Edit</a>
+                        <button
+                            onclick="location.href='{{ route('businesses.edit', $business->id) }}'"
+                            class="px-4 py-2 bg-purple-600 hover:bg-purple-400 text-white rounded"
+                        >
+                            Edit
+                        </button>
                         <!-- Delete Form -->
                         <form
                             method="POST"
@@ -65,6 +112,7 @@
                             </button>
                         </form>
                         <!-- End Delete Form -->
+
                     </div>
                     @endcan
                 @endif @endauth

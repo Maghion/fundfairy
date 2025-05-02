@@ -17,8 +17,10 @@ class BusinessController extends Controller
      */
     public function index(): View
     {
+        $title = 'Businesses';
         $businesses = Business::paginate(6);
-        return view('businesses.index')->with('businesses', $businesses);
+        return view('businesses.index', compact('title', 'businesses'));
+//        return view('businesses.index')->with('businesses', $businesses);
 
     }
 
@@ -53,9 +55,9 @@ class BusinessController extends Controller
 
         // Create a new business listing with the validated data
         $validatedData['user_id'] = auth()->user()->id;
-        Business::create($validatedData);
+        $business = Business::create($validatedData);
 
-        return redirect()->route('businesses.index')->with('success', 'Business created successfully!');
+        return redirect()->route('businesses.show', $business->id)->with('success', 'Business created successfully!');
     }
 
     /**
@@ -64,9 +66,11 @@ class BusinessController extends Controller
      */
     public function show(Business $business): View
     {
+
         $business->load('businessReviews');
-        $title = "Business Details: " . $business->name;
-        return view('businesses.show', compact('title', 'business'));
+        $title = $business->name;
+        $businessReviews= $business->businessReviews();//->paginate(2);
+        return view('businesses.show', compact('title', 'business', 'businessReviews'));
     }
 
     /**
@@ -102,8 +106,7 @@ class BusinessController extends Controller
 
         $business->update($validatedData);
 
-        return redirect()->route('businesses.index')->with('success', 'Business updated successfully!');
-    }
+        return redirect()->route('businesses.show', $business->id)->with('success', 'Business updated successfully!');    }
 
     /**
      * @desc Remove the business from storage.

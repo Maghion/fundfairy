@@ -48,6 +48,7 @@ Route::put('/profile', [ProfileController::class, 'update'])->name('profile.upda
 
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
+Route::get('/business-review/create/{business}', [BusinessReviewController::class, 'create'])->name('business-review.create');
 Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 
@@ -63,8 +64,9 @@ Route::get('/donation/create/{donationRequest}', [DonationController::class, 'cr
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
 
+Route::get('/comment/create/{donationRequest}', [CommentController::class, 'create'])->name('comment.create');
+Route::resource('comment', CommentController::class)->except(['create']);
 
-Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
 
 Route::resource('blog-posts', BlogPostsController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
