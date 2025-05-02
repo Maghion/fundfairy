@@ -13,14 +13,7 @@
 
         >
             @csrf
-
-            <input
-                type="hidden"
-                name="business_id"
-                value="{{ $business->id }}"
-
-            />
-
+            <input type="hidden" name="business_id" value="{{ $business->id }}">
             <x-inputs.text
                 id="title"
                 name="title"
