@@ -1,4 +1,5 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
     <div class="max-w-md mx-auto mt-10 p-8 bg-white rounded-2xl shadow-xl space-y-6">
         <h1 class="text-4xl font-extrabold text-fuchsia-900 border-b border-fuchsia-200 pb-4">
             Newsletter

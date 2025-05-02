@@ -20,7 +20,7 @@ class  BusinessReviewController extends Controller
      * @return View
      */
     public function index():View{
-        $title = "View all Reviews";
+        $title = "All Reviews";
         $reviews = BusinessReview::all();
         return view('business-review.index', compact('title', 'reviews'));
 
@@ -34,10 +34,8 @@ class  BusinessReviewController extends Controller
 
     public function create(Business $business): View {
         $title = "Create New Review";
-        return view('business-review.create' , compact('title', 'business'));
+        return view('business-review.create', compact('title', 'business'));
     }
-
-
 
     /**
      * @desc Store a review in the databse
@@ -57,7 +55,6 @@ class  BusinessReviewController extends Controller
         //$validatedData['user_id'] = 1;
         // Add the user ID of the current user
         $validatedData['user_id'] = auth()->user()->id;
-
         // Submit to database
         BusinessReview::create($validatedData);
 

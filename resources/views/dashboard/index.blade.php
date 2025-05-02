@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <section class="flex flex-col md:flex-row gap-6">
 
         <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-1/2">
@@ -17,8 +20,24 @@
                 @method('PUT')
 
                 <div class="mb-4">
-                    <label class="block text-gray-700" for="name">Name</label>
-                    <input id="name" type="text" name="name" value="{{ $user->name }}"
+                    <label class="block text-gray-700" for="first_name">First Name</label>
+                    <input id="last_name" type="text" name="first_name" value="{{ $user->first_name }}"
+                           class="w-full px-4 py-2 border rounded focus:outline-none" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="last_name">Last Name</label>
+                    <input id="last_name" type="text" name="last_name" value="{{ $user->last_name }}"
+                           class="w-full px-4 py-2 border rounded focus:outline-none" />
+                </div>
+                <div class="mb-4">
+                    <label for="biogrphy" class="block text-gray-700">bio</label>
+                    <textarea id="biogrphy" name="biogrphy" >
+                        {{$user->biography}}
+                    </textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700" for="phone_number">Phone Number</label>
+                    <input id="phone_number" type="text" name="phone_number" value="{{ $user->phone_number }}"
                            class="w-full px-4 py-2 border rounded focus:outline-none" />
                 </div>
                 <div class="mb-4">
@@ -35,6 +54,7 @@
             </form>
         </div>
 
+        <div class="flex flex-col gap-6 w-full md:w-1/2">
         <div class="bg-white p-8 rounded-lg shadow-md w-full">
             <h3 class="text-3xl text-center font-bold mb-4">
                 My Businesses
@@ -72,6 +92,32 @@
                 <p class="text-gray-700">No businesses to display</p>
             @endforelse
         </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-md w-full">
+            <h3 class="text-3xl text-center font-bold mb-4">
+                My Donations
+            </h3>
+            @forelse ($donations as $donation)
+                <div class="flex justify-between items-center border-b-2 border-gray-200 py-2">
+                    <div class="flex justify-between items-center w-full">
+                        <a href="{{ route('donation-request.show', $donation->donationRequest->id) }}">
+                            <h3 class="text-xl font-semibold text-fuchsia-950">
+                                {{ $donation->donationRequest->title }}
+                            </h3>
+                        </a>
+                        <p class="text-lg text-gray-500 font-italic">${{$donation->amount}}</p>
+
+                    </div>
+                </div>
+            @empty
+                <p class="text-gray-700">No donations to display</p>
+            @endforelse
+            <div class="mt-6">
+                {{ $donations->withQueryString()->links('pagination::tailwind') }}
+            </div>
+        </div>
+
+</div>
     </section>
 
 </x-fund-fairy-layout>>

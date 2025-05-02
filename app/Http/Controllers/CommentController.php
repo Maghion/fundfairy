@@ -97,7 +97,7 @@ class CommentController extends Controller
             'comment' => 'required|string|max:500',
         ]);
         $comment->update($validatedData);
-        return redirect()->route('comment.index')->with('success', 'Comment updated successfully.');
+        return redirect()->route('donation-request.show',$comment->donation_request_id)->with('success', 'Comment updated successfully.');
     }
 
     /**
@@ -108,14 +108,13 @@ class CommentController extends Controller
      */
     public function destroy(Comment $comment): RedirectResponse
     {
-        // Check if the user is authorized
         $this->authorize('update', $comment);
-        if ($comment->user_id !== request()->user()->id) {
-            return redirect()->route('comment.index')->with('error', 'You are not allowed to delete this comment.');
-        }
+        $donationRequestId = $comment->donation_request_id;
         $comment->delete();
 
-        return redirect()->route('comment.index')->with('success', 'Comment deleted successfully.');
+        return redirect()
+            ->route('donation-request.show', $donationRequestId)
+            ->with('success', 'Your comment was deleted.');
     }
 }
 

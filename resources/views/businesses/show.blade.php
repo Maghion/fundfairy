@@ -1,4 +1,7 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+    <x-page-title>{{ $title }}</x-page-title>
+
     <div class="container mx-auto p-4 flex flex-col lg:flex-row gap-6">
 
         <div class="flex-1 space-y-6">
@@ -89,10 +92,12 @@
                 @auth @if (auth()->user()->id === $business->user_id)
                     @can('update', $business)
                     <div class="flex space-x-3 ml-4">
-                        <a
-                            href="{{ route('businesses.edit', $business->id) }}"
-                            class="px-4 py-2 bg-blue-500 hover:bg-blue-300 text-white rounded"
-                        >Edit</a>
+                        <button
+                            onclick="location.href='{{ route('businesses.edit', $business->id) }}'"
+                            class="px-4 py-2 bg-purple-600 hover:bg-purple-400 text-white rounded"
+                        >
+                            Edit
+                        </button>
                         <!-- Delete Form -->
                         <form
                             method="POST"
@@ -108,6 +113,7 @@
                             </button>
                         </form>
                         <!-- End Delete Form -->
+
                     </div>
                     @endcan
                 @endif @endauth
