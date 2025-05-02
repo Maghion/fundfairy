@@ -17,8 +17,20 @@ use App\Http\Middleware\LogRequest;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Cowsayphp\Farm;
+
+//test error page:
+Route::get('/error/403', function () {
+    abort(403);
+});
+Route::get('/error/500', function () {
+    abort(500);
+});
+Route::get('/error/413', function () {
+    abort(413);
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogRequest::class);
 
@@ -36,26 +48,40 @@ Route::put('/profile', [ProfileController::class, 'update'])->name('profile.upda
 
 //Route::get('/users/create', [UserProfileController::class, 'create']);
 //Route::post('/users', [UserProfileController::class, 'store']);
-Route::resource('business-review',BusinessReviewController::class);
+Route::get('/business-review/create/{business}', [BusinessReviewController::class, 'create'])->name('business-review.create');
+Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
 });
+Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
 
+Route::get('/comment/create/{donationRequest}', [CommentController::class, 'create'])->name('comment.create');
+Route::resource('comment', CommentController::class)->except(['create']);
 
-Route::resource('comment', CommentController::class);
 Route::resource('donation-request', DonationRequestController::class);
-Route::resource('blog-posts', BlogPostsController::class);
-Route::resource('testimonial', TestimonialController::class);
+
+Route::resource('blog-posts', BlogPostsController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('blog-posts', BlogPostsController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+
+
+Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
-Route::resource('newsletter', NewsletterController::class);
+
+Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
+
+Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
+Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');
 
 //Login And Register routes
 Route::middleware('guest')->group(function () {
@@ -78,5 +104,8 @@ Route::get('/privacypolicy', function() {
 //     return view('PrivacyPolicy.index' , compact('title'));
 });
 
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
 
 

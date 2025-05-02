@@ -31,26 +31,14 @@
 
             <div class="flex gap-4">
                 <button type="submit"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                        class="bg-fuchsia-700 hover:!bg-fuchsia-900 text-white font-bold py-2 px-4 rounded">
                     Update Post
                 </button>
 
                 <a href="{{ route('blog-posts.show', $blogPost) }}"
-                   class="bg-gray-500 hover:bg-gray-300 text-white font-bold py-2 px-4 rounded">
+                   class="bg-gray-500 hover:bg-gray-700 text-white hover:text-white hover:no-underline font-bold py-2 px-4 rounded">
                     Cancel
                 </a>
-
-                <form action="{{ route('blog-posts.destroy', $blogPost) }}"
-                      method="POST"
-                      class="inline"
-                      onsubmit="return confirm('Are you sure you want to delete this post?')">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"
-                            class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                        Delete Post
-                    </button>
-                </form>
             </div>
         </form>
     </div>

@@ -1,27 +1,37 @@
 @props(['testimonial'])
-<div class="mx-auto flex flex-col gap-y-10">
-    <div class="rounded-lg bg-white p-8 shadow-2xl max-w-full border-4 border-fuchsia-950">
-            @if($testimonial->testimonial_image)
-                <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
-                     {{-- Show user uploaded image if available, otherwise display default image --}}
-                     src="{{ $testimonial->testimonial_image ? '/storage/' . $testimonial->testimonial_image : asset('images/no_users.png') }}"
-                     alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
-            @endif
-    {{-- dipslay the user name before the testimonial description--}}
+<div class="mx-auto flex flex-col gap-y-10 justify-stretch items-stretch  w-full">
+    <div class="rounded-lg bg-white p-8 shadow-2xl border-4 border-fuchsia-950 flex flex-col">
+        @if($testimonial->testimonial_image)
+            <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
+                 src="{{ asset('storage/' . $testimonial->testimonial_image) }}"
+                 alt="{{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}" />
+        @else
+            <img class="w-20 h-20 rounded-full bg-gray-800 object-cover shadow-2xl border-4 border-violet-600 mx-auto"
+                 src="{{ asset('storage/testimonials/no_users.png') }}"
+                 alt="Default image" />
+        @endif
+
+        {{-- dipslay the user name before the testimonial description--}}
                 <div class="text-center mt-4">
                     <strong class="text-black text-lg">
-                        {{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}
+                        @if($testimonial->user && $testimonial->user->first_name && $testimonial->user->last_name)
+                            {{ $testimonial->user->first_name }} {{ $testimonial->user->last_name }}
+                        @else
+                            Anonymous
+                        @endif
                     </strong>
                 </div>
 
-                <figure class="relative isolate pt-6">
-                    <blockquote class="text-xl text-black  bg-gray-200 p-4 rounded">
+                <figure class="relative isolate pt-6 flex-1">
+                    <blockquote class="text-xl text-black bg-gray-200 p-4 rounded min-h-[120px]">
                         <span class="absolute font-semibold text-8xl top-0 left-0 -translate-x-1/2 -translate-y-1/2 text-violet-600 ">“</span>
                         <p>{{ $testimonial->description }}</p>
                     </blockquote>
                 </figure>
 
                 <div class="flex justify-center mt-4 space-x-4">
+                    @can('update', $testimonial)
+
                     <!-- Edit Button -->
                     <a href="{{ route('testimonial.edit', $testimonial->id) }}"
                        class="px-4 py-2 bg-gray-200 rounded-full
@@ -43,6 +53,8 @@
                             Delete
                         </button>
                     </form>
+                    @endcan
+
                 </div>
         </div>
 

@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\BusinessReview;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class  BusinessReviewController extends Controller
 {
+    use AuthorizesRequests;
     /**
      * @desc  Show all reviews
      * @route Get /business-review
      * @return View
      */
     public function index():View{
-        $title = "View all Reviews";
+        $title = "All Reviews";
         $reviews = BusinessReview::all();
         return view('business-review.index', compact('title', 'reviews'));
 
@@ -29,12 +32,13 @@ class  BusinessReviewController extends Controller
      * @return View
      */
 
-    public function create(): View {
+
+
+    public function create(Business $business): View{
         $title = "Create New Review";
-        return view('business-review.create' , compact('title'));
+        return view('business-review.create', compact('title', 'business'));
+
     }
-
-
 
     /**
      * @desc Store a review in the databse
@@ -48,19 +52,25 @@ class  BusinessReviewController extends Controller
             'title' => 'required|string|max:255',
             'rating' => 'required|string:active, pending',
             'comment' => 'required|string|max:255',
+            'business_id' => 'required|exists:businesses,id',
 
         ]);
 
         // Hardcoded user ID
-        $validatedData['user_id'] = 1;
+        //$validatedData['user_id'] = 1;
+        // Add the user ID of the current user
+        $validatedData['user_id'] = auth()->user()->id;
 
         // Hardcoded business ID
-        $validatedData['business_id'] = 1;
+        //$validatedData['business_id'] = 1;
+        // Add the user ID of the current user
+        //$validatedData['business_id'] = auth()->user()->id;
+
 
         // Submit to database
         BusinessReview::create($validatedData);
 
-        return redirect()->route('business-review.index')->with('success', 'Review created successfully!');
+        return redirect()->route('businesses.show', $validatedData['business_id'])->with('success', 'Review created successfully!');
 
     }
 
@@ -72,7 +82,7 @@ class  BusinessReviewController extends Controller
      * @return View
      */
     public function show(BusinessReview $review): View {
-        return view('business-review.show', compact('review'));
+        return view('businesses.show', compact('review'));
     }
 
 
@@ -85,7 +95,7 @@ class  BusinessReviewController extends Controller
     public function edit(BusinessReview $businessReview): View {
         // Check if the user is authorized on hold
 
-
+        $this->authorize('update', $businessReview);
         $title = 'Edit Single Business Review';
 
         return view('business-review.edit', compact('businessReview', 'title'));
@@ -107,9 +117,10 @@ class  BusinessReviewController extends Controller
 
         ]);
 
+        $this->authorize('update', $businessReview);
         $businessReview->update($validatedData);
         //give this page
-        return redirect()->route('business-review.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
+        return redirect()->route('businesses.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
 
     }
 
@@ -120,10 +131,11 @@ class  BusinessReviewController extends Controller
      * @return string
      */
     public function destroy(BusinessReview $businessReview): RedirectResponse   {
-        // delete the
+        // delete
 
+        $this->authorize('delete', $businessReview);
         $businessReview->delete();
-        return redirect()->route('business-review.index')->with('success', 'The business review was deleted successfully!');
+        return redirect()->route('businesses.index')->with('success', 'The business review was deleted successfully!');
 
     }
 }

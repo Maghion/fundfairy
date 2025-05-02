@@ -37,20 +37,23 @@
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">
                                 <div class="space-y-2">
 
-                                    <x-fund-fairy-button-link
-                                        btnColor="bg-blue-500"
-                                        textClass="text-white"
-                                        url="{{ route('donation.edit', $donation->id) }}">
-                                        Edit
-                                    </x-fund-fairy-button-link>
+                                    @can('update', $donation)
+                                        <x-fund-fairy-button-link
+                                            btnColor="bg-blue-500"
+                                            textClass="text-white"
+                                            url="{{ route('donation.edit', $donation->id) }}">
+                                            Edit
+                                        </x-fund-fairy-button-link>
 
-                                    <form action="{{ route('donation.destroy', $donation->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this donation?');">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded mb-2" style="height: auto; padding: 0.3rem 1rem;">
-                                            Delete
-                                        </button>
-                                    </form>
+                                        <form action="{{ route('donation.destroy', $donation->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this donation?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded mb-2" style="height: auto; padding: 0.3rem 1rem;">
+                                                Delete
+                                            </button>
+                                        </form>
+                                    @endcan
+
                                 </div>
                             </td>
 

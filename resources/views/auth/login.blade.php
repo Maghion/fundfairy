@@ -1,4 +1,6 @@
 <x-fund-fairy-layout>
+    <x-slot name="title">{{ $title }}</x-slot>
+
     <div
         class="bg-white rounded-lg shadow-md w-full md:max-w-xl mx-auto mt-12 p-8 py-12"
     >
@@ -19,7 +21,7 @@
             />
             <button
                 type="submit"
-                class="w-full bg-blue-500 hover:bg-fuchsia-600 text-white px-4 py-2 rounded focus:outline-none"
+                class="w-full bg-fuchsia-950 hover:bg-fuchsia-600 text-white px-4 py-2 rounded focus:outline-none"
             >
                 Login
             </button>

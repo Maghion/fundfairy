@@ -25,7 +25,7 @@
                 id="rating"
                 name="rating"
                 label="Rating"
-                :options="['⭐⭐⭐⭐⭐' => '⭐⭐⭐⭐⭐', '⭐⭐⭐⭐' => '⭐⭐⭐⭐', '⭐⭐⭐' => '⭐⭐⭐', '⭐⭐' => '⭐⭐', '⭐' => '⭐']"
+                :options="[5 => '⭐⭐⭐⭐⭐', 4 => '⭐⭐⭐⭐', 3 => '⭐⭐⭐', 2 => '⭐⭐', 1 => '⭐']"
                 value="{{ old('rating',$businessReview-> rating) }}"
             />
 

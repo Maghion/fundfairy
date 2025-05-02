@@ -2,7 +2,9 @@
     <x-slot name="title">{{ $title }}</x-slot>
 
     <div class="prose max-w-none p-6 bg-gray-50 rounded-lg shadow-md">
-        <h1 class="text-3xl font-bold text-fuchsia-950 border-b pb-2">Privacy Policy</h1>
+        <x-page-title class="border-b pb-2">{{ $title }}</x-page-title>
+
+{{--        <h1 class="text-3xl font-bold text-fuchsia-950 border-b pb-2">Privacy Policy</h1>--}}
 
         <p class="mt-4 text-gray-700">Welcome to Fund Fairy! Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your personal information when you use our platform to support or launch fundraising campaigns.</p>
 
