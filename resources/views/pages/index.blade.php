@@ -30,7 +30,7 @@
             @endforelse
         </div>
         <a href="{{ route('blog-posts.index') }}" class="block text-xl text-center">
-            <i class="fa fa-arrow-alt-circle-right"></i> Show All BlogPosts
+            <i class="fa fa-arrow-alt-circle-right"></i> Show all blog posts
         </a>
 </x-fund-fairy-layout>
 
