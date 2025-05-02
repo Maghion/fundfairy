@@ -1,6 +1,8 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ $title }}</x-slot>
     <x-page-title>{{ $title }}</x-page-title>
+    {{--pagination above--}}
+    <div class="mt-4">{{ $testimonials->links() }}</div>
 
     {{-- Create Button Above Cards to create new  testmonial--}}
     <div class="flex justify-end my-6" >
@@ -25,6 +27,7 @@
             <p>No Testimonials Found</p>
         @endforelse
     </div>
+    {{--pagination bottom--}}
     <div class="mt-4">{{ $testimonials->links() }}</div>
 
 </x-fund-fairy-layout>
