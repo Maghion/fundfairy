@@ -3,9 +3,11 @@
 
 <div class="border rounded-lg p-4 border-none w-full">
     <div class="flex flex-row items-center gap-4">
-        <div class="w-16 h-16 bg-fuchsia-100 rounded-full flex items-center justify-center">
+        <div class="w-16 h-16 min-w-16 bg-fuchsia-100 rounded-full flex items-center justify-center shrink-0">
             <i class="fa-solid fa-hand-holding-dollar text-4xl text-fuchsia-400"></i>
-        </div>        <div class="flex flex-col">
+        </div>
+
+        <div class="flex flex-col">
             <h5 class="mb-1 text-xl font-bold text-gray-900">
                 {{ $donation->anon || (!$donation->user->first_name && !$donation->user->last_name)
                     ? 'Anonymous'
