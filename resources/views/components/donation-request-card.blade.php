@@ -28,6 +28,7 @@
             </a>
 
             @auth
+
                 <form action="{{ route('bookmarks.store', $donationRequest->id) }}" method="POST" style="display: inline;">
                     @csrf
                     <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">

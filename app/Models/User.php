@@ -100,9 +100,12 @@ class User extends Authenticatable
         return $this->hasMany(Testimonial::class);
     }
 
-    public function bookmarkedDonationRequests(): BelongsToMany
+    public function bookmarkedDonationRequests()
     {
-        return $this->belongsToMany(DonationRequest::class, 'donation_request_user_bookmarks')->withTimestamps();
+        return $this->belongsToMany(DonationRequest::class, 'donation_request_user_bookmarks')
+            ->using(Bookmark::class)
+            ->withTimestamps();
     }
+
 
 }

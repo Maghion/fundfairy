@@ -19,17 +19,10 @@ class BookmarkController extends Controller
         return view ('donation-request.bookmarked')->with('bookmarks', $bookmarks);
     }
 
-    public function store(DonationRequest $donationRequest): RedirectResponse
+    public function store(DonationRequest $donationRequest)
     {
-//        dd($donationRequest);
+        Auth::user()->bookmarkedDonationRequests()->syncWithoutDetaching($donationRequest->id);
 
-        $user = Auth::user();
-
-        if ($user->bookmarkedDonationRequests()->where('donation_request_id', $donationRequest->id)->exists()) {
-            return back()->withErrors(['status' => 'You have already bookmarked this request.']);
-        } else {
-            $user->bookmarkedDonationRequests()->attach($donationRequest->id);
-            return back()->with('success', 'Job bookmarked successfully.');
-        }
+        return back()->with('success', 'Job bookmarked successfully.');
     }
 }
