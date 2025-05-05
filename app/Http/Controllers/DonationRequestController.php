@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Business;
 use App\Models\DonationRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Routing\Controller;
+
 
 class DonationRequestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only(['create', 'store']);
+    }
+
+
     /**
      * @desc Display a listing of Donation Requests.
      * @route GET /donation-request
@@ -40,34 +49,31 @@ class DonationRequestController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // Validate the incoming request data
+
+        // Validate form input
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'status' => 'required|boolean',
+            'status' => 'required|string',
             'funding_goal' => 'required|integer',
             'featured' => 'required|boolean',
-
         ]);
 
-        // Add the hardcoded business_id
-        $validatedData['business_id'] = 1;
+        // Get the logged-in user's business
+        $business = Business::where('user_id', auth()->id())->first();
 
-        // Create a new job listing with the validated data
-        DonationRequest::create([
-            'title' => $validatedData['title'],
-            'description' => $validatedData['description'],
-            'status' => $validatedData['status'],
-            'funding_goal' =>$validatedData['funding_goal'],
-            'featured' => $validatedData['featured'],
+        if (!$business) {
+            return back()->withErrors(['business_id' => 'No business found for the current user.'])->withInput();
+        }
 
-        ]);
+        // Add business_id to validated data
+        $validatedData['business_id'] = $business->id;
 
-        return redirect()->route('donation-request.index')->with('success', 'donation request created successfully!');
+        // Create donation request
+        DonationRequest::create($validatedData);
+
+        return redirect()->route('donation-request.index')->with('success', 'Donation request created successfully!');
     }
-
-
-
 
     /**
      * @desc Display a single donation request
