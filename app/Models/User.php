@@ -102,7 +102,7 @@ class User extends Authenticatable
 
     public function bookmarkedDonationRequests()
     {
-        return $this->belongsToMany(DonationRequest::class, 'donation_request_user_bookmarks')
+        return $this->belongsToMany(DonationRequest::class, 'donation_request_user_bookmark')
             ->using(Bookmark::class)
             ->withTimestamps();
     }

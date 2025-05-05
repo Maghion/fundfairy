@@ -29,8 +29,8 @@ class DonationSeeder extends Seeder
             // Assign a random user_id to each donation
             $donation['user_id'] = $userIds[array_rand($userIds)];
 
-            // Assign a random donation_request_id to each donation
-            $donation['donation_request_id'] = $requestIds[array_rand($requestIds)];
+            // Assign a random donation_requests_id to each donation
+            $donation['donation_requests_id'] = $requestIds[array_rand($requestIds)];
 
             // Add timestamps
             $donation['created_at'] = now();

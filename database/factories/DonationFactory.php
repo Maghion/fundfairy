@@ -20,7 +20,7 @@ class DonationFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'donation_request_id' => DonationRequest::factory(),
+            'donation_requests_id' => DonationRequest::factory(),
             'amount' => $this->faker->randomFloat(2, 10, 100),
             'message' => $this->faker->realText(),
             'anon' => $this->faker->boolean(),

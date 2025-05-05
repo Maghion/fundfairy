@@ -18,7 +18,7 @@ class Comment extends Model
 
     protected $fillable = [
         'user_id',
-        'donation_request_id',
+        'donation_requests_id',
         'status',
         'title',
         'comment',

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('donation_request_id')->constrained()->onDelete('cascade');
+            $table->foreignId('donation_requests_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['Pending', 'Approved', 'Rejected'])->default('Pending');
             $table->string('title');
             $table->text('comment');
@@ -32,8 +32,8 @@ return new class extends Migration
             // Drop foreign key constraint and user_id column
             $table->dropForeign(['user_id']);
             $table->dropColumn(['user_id']);
-            $table->dropForeign('donation_request_id');
-            $table->dropColumn('donation_request_id');
+            $table->dropForeign('donation_requests_id');
+            $table->dropColumn('donation_requests_id');
         });
         Schema::dropIfExists('comments');
     }

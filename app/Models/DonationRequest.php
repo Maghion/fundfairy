@@ -44,7 +44,7 @@ class DonationRequest extends Model
 
     public function bookmarkedByUsers()
     {
-        return $this->belongsToMany(User::class, 'donation_request_user_bookmarks')->using(Bookmark::class)->withTimestamps();
+        return $this->belongsToMany(User::class, 'donation_request_user_bookmark')->using(Bookmark::class)->withTimestamps();
     }
 }
 

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('donation_request_id')->constrained()->onDelete('cascade');
+            $table->foreignId('donation_requests_id')->constrained()->onDelete('cascade');
             $table->decimal('amount', 10, 2);
             $table->text('message')->nullable();
             $table->boolean('anon')->default(false);
@@ -31,8 +31,8 @@ return new class extends Migration
         Schema::table('donations', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
             $table->dropColumn('user_id');
-            $table->dropForeign(['donation_request_id']);
-            $table->dropColumn('donation_request_id');
+            $table->dropForeign(['donation_requests_id']);
+            $table->dropColumn('donation_requests_id');
         });
         Schema::dropIfExists('donations');
     }

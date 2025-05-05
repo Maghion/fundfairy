@@ -44,14 +44,14 @@ class DonationController extends Controller
     {
 
         $validatedData = $request->validate([
-            'donation_request_id' => 'required|exists:donation_requests,id',
+            'donation_requests_id' => 'required|exists:donation_requests,id',
             'amount' => 'required|numeric|min:1|max:20000',
             'message' => 'nullable|string|max:255',
             'anon' => 'boolean',
             'type' => 'required|string|in:Singular,Weekly,Monthly',
         ]);
 
-//        $validatedData['donation_request_id'] = $request->input('donation_request_id');
+//        $validatedData['donation_requests_id'] = $request->input('donation_requests_id');
         $validatedData['user_id'] = auth()->id();
 
         // Submit to database

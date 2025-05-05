@@ -13,8 +13,8 @@ class BookmarkController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $bookmarks = $user->bookmarkedDonationRequests()->paginate(5);
-
+//        $bookmarks = $user->bookmarkedDonationRequests()->paginate(5);
+            $bookmarks = [];
 
         return view ('donation-request.bookmarked')->with('bookmarks', $bookmarks);
     }

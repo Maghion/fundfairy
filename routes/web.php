@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/donation/create', [DonationController::class, 'create'])->name('donation.create');
     Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
     Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
+//    Route::patch('/users/{user}', [UserController::class, 'update'])->name('profile.update');
 });
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');

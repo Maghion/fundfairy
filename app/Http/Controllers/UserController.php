@@ -105,6 +105,7 @@ class UserController extends Controller
             //'created_at'=>'required|string|max:255',
 
         ]);
+        dd($validatedData);
         if ($request->hasFile('avatar')) {
             // Delete the old avatar from storage
             if ($user->avatar && Storage::disk('public')->exists($user->avatar)) {

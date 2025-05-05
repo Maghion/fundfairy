@@ -7,7 +7,7 @@
 
         @csrf
 
-        <input type="hidden" name="donation_request_id" value="{{ $donationRequest->id }}">
+        <input type="hidden" name="donation_requests_id" value="{{ $donationRequest->id }}">
 
 
         <div class="flex flex-wrap -mx-3 mb-6 mt-3">

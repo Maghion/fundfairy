@@ -22,7 +22,7 @@ class CommentFactory extends Factory
     {
         return [
             'user_id'=>User::factory(),
-            'donation_request_id'=> DonationRequest::factory(),
+            'donation_requests_id'=> DonationRequest::factory(),
             'status'=> $this->faker->randomElement(['Pending', 'Approved', 'Rejected' ]),
             'title'=> $this->faker->sentence(),
             'comment'=> $this->faker->paragraph(),

@@ -10,5 +10,5 @@
         @endforelse
     </div>
 
-    {{ $bookmarks->links() }}
+{{--    {{ $bookmarks->links() }}--}}
 </x-fund-fairy-layout>
