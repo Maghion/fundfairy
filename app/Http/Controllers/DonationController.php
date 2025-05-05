@@ -76,7 +76,7 @@ class DonationController extends Controller
      */
     public function edit(Donation $donation): View {
         // Check if the user is authorized
-        $this->authorize('update', $donation);
+//        $this->authorize('update', $donation);
 
         $title = 'Edit Donation';
         return view('donation.edit', compact('donation', 'title'));
@@ -90,7 +90,7 @@ class DonationController extends Controller
      * @return RedirectResponse
      */
     public function update(Request $request, Donation $donation): RedirectResponse {
-        $this->authorize('update', $donation);
+//        $this->authorize('update', $donation);
 
         $validatedData = $request->validate([
             'amount' => 'required|numeric|min:1|max:20000',
@@ -111,7 +111,7 @@ class DonationController extends Controller
      */
     public function destroy(Donation $donation): RedirectResponse {
         // Check if the user is authorized
-        $this->authorize('delete', $donation);
+//        $this->authorize('delete', $donation);
 
         $donation->delete();
         $title = 'Delete Donation';
