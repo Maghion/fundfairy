@@ -36,6 +36,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home')->middleware(LogR
 
 //USERS ROUTES
 Route::resource('users', UserController::class);
+//Route::get('/users/create', [UserProfileController::class, 'create']);
+//Route::post('/users', [UserProfileController::class, 'store']);
 
 //DASHBOARD
 if (request()->query('from') === 'dashboard') {
@@ -46,23 +48,31 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 //PROFILE
 Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 
-//Route::get('/users/create', [UserProfileController::class, 'create']);
-//Route::post('/users', [UserProfileController::class, 'store']);
 Route::get('/business-review/create/{business}', [BusinessReviewController::class, 'create'])->name('business-review.create');
-Route::resource('business-review',BusinessReviewController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
-Route::resource('business-review',BusinessReviewController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
+Route::resource('business-review',BusinessReviewController::class)->except(['create']);
 
 Route::get('/businesses/{id}/save', [BusinessController::class, 'save'])->name('jobs.save');
 Route::resource('businesses', BusinessController::class);
+//Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
+//Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
-    Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
-    Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
-});
+//Route::middleware('auth')->group(function () {
+////    Route::get('/donation', [DonationController::class, 'index'])->name('donation.index');
+//    Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit');
+//    Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy');
+//});
+
 Route::get('/donation/create/{donationRequest}', [DonationController::class, 'create'])->name('donation.create');
 Route::post('/donation', [DonationController::class, 'store'])->name('donation.store');
 Route::put('/donation/{donation}', [DonationController::class, 'update'])->name('donation.update');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/donation', [DonationController::class, 'index'])->name('donation.index')->middleware('can:view-all-donations');
+    Route::get('/donation/{donation}/edit', [DonationController::class, 'edit'])->name('donation.edit')->middleware('can:edit-donations');
+    Route::delete('/donation/{donation}', [DonationController::class, 'destroy'])->name('donation.destroy')->middleware('can:delete-donations');
+});
+
+Route::delete('/users/{user}',[UserController::class, 'destroy'])->name('users.destroy');
 
 Route::get('/comment/create/{donationRequest}', [CommentController::class, 'create'])->name('comment.create');
 Route::resource('comment', CommentController::class)->except(['create']);
@@ -76,9 +86,6 @@ Route::resource('blog-posts', BlogPostsController::class)->except(['create', 'st
 Route::resource('testimonial', TestimonialController::class)->middleware('auth')->only(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('testimonial', TestimonialController::class)->except(['create', 'store', 'edit', 'update', 'destroy']);
 Route::resource('about', AboutController::class);
-
-Route::resource('businesses', BusinessController::class)->middleware('auth')->only(['create', 'edit', 'destroy']);
-Route::resource('businesses', BusinessController::class)->except(['create', 'edit', 'destroy']);
 
 Route::get('/newsletter', [NewsletterController::class, 'index'])->name('newsletter.index');
 Route::post('/newsletter', [NewsletterController::class, 'store'])->name('newsletter.store');

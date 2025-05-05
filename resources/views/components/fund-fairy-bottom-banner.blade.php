@@ -2,7 +2,7 @@
     'heading' => 'Turn Dreams into Reality!',
     'subheading' => 'Request funding to launch your business or help others succeed by investing in their ideas',
     'btnText' => 'Donate Now!',
-    'btnLink' => '/donation-request/create',
+    'btnLink' => '/donation-request',
     'btnIcon' => 'magic',
     'btnColor' => 'bg-fuchsia-600',
     'imageSrc' => 'images/donations.jpg'

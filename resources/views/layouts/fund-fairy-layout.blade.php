@@ -11,7 +11,7 @@
     <script type="module" src="https://early.webawesome.com/webawesome@3.0.0-alpha.10/dist/webawesome.loader.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/bf8479ea8b.js" crossorigin="anonymous"></script>
-    <script src='js/scripts.js' defer></script>
+    <script src="{{ asset('js/scripts.js') }}" defer></script>
     <script
         defer
         src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"

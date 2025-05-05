@@ -68,7 +68,7 @@ class BusinessController extends Controller
     {
 
         $business->load('businessReviews');
-        $title = $business->name;
+        $title = "Business Details: " . $business->name;
         $businessReviews= $business->businessReviews();
         return view('businesses.show', compact('title', 'business', 'businessReviews'));
     }

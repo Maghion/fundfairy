@@ -17,11 +17,7 @@
     <div class="text-sm text-gray-500 mt-2">
         <strong>Reviewer:</strong>
         {{ $businessReview->user->first_name }} {{ $businessReview->user->last_name }}
-    </div>
-
-    <div class="text-sm text-gray-500">
-        <strong>Business:</strong>
-        {{ $businessReview->business->name }}
+{{-- Display Anonymous if the user's name is not set --}}
     </div>
 
     <div class="flex justify-center mt-4 space-x-4">

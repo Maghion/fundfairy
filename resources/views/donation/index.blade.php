@@ -37,14 +37,16 @@
                             <td class="relative border-b border-zinc-950/5 px-4 py-4 text-zinc-500 first:pl-1 last:pr-1">
                                 <div class="space-y-2">
 
-                                    @can('update', $donation)
+                                    @can('edit-donations')
                                         <x-fund-fairy-button-link
                                             btnColor="bg-blue-500"
                                             textClass="text-white"
                                             url="{{ route('donation.edit', $donation->id) }}">
                                             Edit
                                         </x-fund-fairy-button-link>
+                                    @endcan
 
+                                    @can('delete-donations')
                                         <form action="{{ route('donation.destroy', $donation->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this donation?');">
                                             @csrf
                                             @method('DELETE')
@@ -53,6 +55,7 @@
                                             </button>
                                         </form>
                                     @endcan
+
 
                                 </div>
                             </td>

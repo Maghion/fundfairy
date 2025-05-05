@@ -1,7 +1,7 @@
 <x-fund-fairy-layout>
     <x-slot name="title">{{ $title }}</x-slot>
     <x-page-title>{{ $title }}</x-page-title>
-    <ul class="grid grid-cols-3 gap-4">
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         @forelse($donationRequests as $donationRequest)
             <x-donation-request-card :donationRequest="$donationRequest" />
 
@@ -13,4 +13,4 @@
     <div class="mt-6">
         {{ $donationRequests->links('pagination::tailwind') }}
     </div>
-</x-fund-fairy-layout>request_id
+</x-fund-fairy-layout>
