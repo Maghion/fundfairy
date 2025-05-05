@@ -13,7 +13,7 @@ class RandomBusinessSeeder extends Seeder
      */
     public function run(): void
     {
-        $businesses = Business::factory(15)->create();
+        $businesses = Business::factory(30)->create();
         echo 'Businesses created successfully!';
 
     }
