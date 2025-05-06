@@ -53,7 +53,14 @@ class BlogPostsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
+
+        // Handle image upload if present
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('blog_images', 'public');  // Store image in public disk
+            $validatedData['image'] = $imagePath;
+        }
 
         // Set the status and user_id
         $validatedData['status'] = 'published';
@@ -106,6 +113,13 @@ class BlogPostsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required'
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('blog_images', 'public');  // Store image
+            $validatedData['image'] = $imagePath;
+        }
+
 
         $blogPost->update($validated);
 

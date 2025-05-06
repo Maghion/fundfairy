@@ -18,7 +18,7 @@ class BlogPost extends Model
         'title',
         'content',
         'status',
-        'published_at'
+        'published_at',
     ];
 
     public function user(): BelongsTo
@@ -33,9 +33,4 @@ class BlogPost extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
-
-
-
-
-
 }
