@@ -21,10 +21,12 @@ class BlogPostsController extends Controller
     public function index(): View
     {
         $title = 'Blog Posts';
-        $blogPosts = BlogPost::
-            where('status','=','published')
-            ->orderBy('updated_at','DESC')->get();
-        return view('blog-posts/index')->with('blogPosts', $blogPosts)->with('title', $title);
+
+        $blogPosts = BlogPost::where('status', 'published')
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(4); // 10 posts per page
+
+        return view('blog-posts.index', compact('blogPosts', 'title'));
     }
 
 
@@ -51,25 +53,25 @@ class BlogPostsController extends Controller
         $validatedData = $request->validate([
             'title' => 'required',
             'content' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
         ]);
 
+        // Handle image upload if present
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('blog_images', 'public');  // Store image in public disk
+            $validatedData['image'] = $imagePath;
+        }
+
+        // Set the status and user_id
         $validatedData['status'] = 'published';
-        $validatedData['user_id'] = auth()->user()->id;
+        $validatedData['user_id'] = auth()->id();
+
+        // Create the blog post
         BlogPost::create($validatedData);
-
-        // Create a new jbo listing with the validated data
-        BlogPost::create([
-            'title' => $validatedData['title'],
-            'content' => $validatedData['content'],
-        ]);
-
-//        if(!Auth::check()){
-//            return redirect()->route('login')->with('warning', 'You must be logged in to store blog posts.');
-//        }
-
 
         return redirect()->route('blog-posts.index')->with('success', 'Blog Post created successfully!');
     }
+
 
     /**
      * Display the specified resource.
@@ -111,6 +113,13 @@ class BlogPostsController extends Controller
             'title' => 'required|max:255',
             'content' => 'required'
         ]);
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('blog_images', 'public');  // Store image
+            $validatedData['image'] = $imagePath;
+        }
+
 
         $blogPost->update($validated);
 
