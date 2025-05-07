@@ -15,7 +15,7 @@ class CommentSeeder extends Seeder
     {
         // Attach comments to each donation request
         DonationRequest::all()->each(function ($donationRequest) {
-            Comment::factory()->count(4)->create([
+            Comment::factory()->count(5)->create([
                 'donation_request_id' => $donationRequest->id,
             ]);
         });
