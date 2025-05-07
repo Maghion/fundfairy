@@ -135,7 +135,7 @@
                  garden that captures stormwater runoff, reduces erosion, and supports pollinators. Your donation helps
                  fund native plants, soil amendments, signage, and educational workshops that will teach neighbors how
                  to replicate these gardens in their own yards.",
-                "status" => "Pending",,
+                "status" => "Pending",
                 "status" => "Pending",
                 "funding_goal" => 3000,
                 "featured" => false
