@@ -150,7 +150,6 @@
                 "funding_goal" => 7000,
                 "featured" => false
             ],
-
     ];
 
 
