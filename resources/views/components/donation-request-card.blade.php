@@ -2,7 +2,6 @@
 
 @php
     $totalDonated = $donationRequest->donations->sum('amount');
-
     $goal = $donationRequest->funding_goal;
     $progress = $goal > 0 ? ($totalDonated / $goal) * 100 : 0;
 @endphp
@@ -14,7 +13,7 @@
             <div class="w-full bg-gray-200 rounded-full h-3 mt-1 overflow-hidden">
                 <div class="bg-green-500 h-3 rounded-full transition-all duration-300 ease-in-out" style="width: {{ min($progress, 100) }}%"></div>
             </div>
-            <p class="text-lg text-gray-500">{{ Str::limit($donationRequest->description, 100, '...') }}
+            <p class="text-lg text-gray-500">{{  Str::limit($donationRequest->description, 200, '...') }}
 
             </p>
 
