@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CommentFactory extends Factory
 {
     protected $model = Comment::class;
+
     /**
      * Define the model's default state.
      *
@@ -44,9 +45,9 @@ class CommentFactory extends Factory
             'Much respect to everyone involved.  Our community could use a project like this.',
             'You’ve got my support, and now some funding to help push you forward!',
             'Grateful for the work you\'re doing. Keep pushing!',
-            ];
+        ];
 
-        $commentEmojis = ['🔥','💵','🤝','🫶','🌱','💯', '🙌', '👏', '🌟', '🪄', '🛠️', '🧡'];
+        $commentEmojis = ['🔥', '💵','🌱', '🙌', '👏', '🌟', '🛠️', '🧡'];
 
         return [
             'user_id' => User::factory(),
@@ -63,8 +64,10 @@ class CommentFactory extends Factory
     public function withParentComment(): self
     {
         return $this->state(function (array $attributes) {
+            $parentId = Comment::inRandomOrder()->value('id');
+
             return [
-                'parent_comment_id' => Comment::query()->inRandomOrder()->first()?->id ?? Comment::factory(),
+                'parent_comment_id' => $parentId,
             ];
         });
     }
