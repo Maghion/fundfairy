@@ -31,9 +31,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="biography" class="block text-gray-700">Bio</label>
-                    <textarea id="biography" name="biography" >
-                        {{$user->biography}}
-                    </textarea>
+                    <textarea id="biography" name="biography" class="w-full px-4 py-2 border rounded focus:outline-none">{{ $user->biography }}</textarea>
                 </div>
                 <div class="mb-4">
                     <label class="block text-gray-700" for="phone_number">Phone Number</label>
