@@ -30,8 +30,8 @@
                            class="w-full px-4 py-2 border rounded focus:outline-none" />
                 </div>
                 <div class="mb-4">
-                    <label for="biogrphy" class="block text-gray-700">bio</label>
-                    <textarea id="biogrphy" name="biogrphy" >
+                    <label for="biography" class="block text-gray-700">Bio</label>
+                    <textarea id="biography" name="biography" >
                         {{$user->biography}}
                     </textarea>
                 </div>
