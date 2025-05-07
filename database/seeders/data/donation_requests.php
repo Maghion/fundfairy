@@ -1,6 +1,5 @@
 <?php
     return[
-
             [
                 "title" => "AI-Powered Chatbot",
                 "description" => "An advanced chatbot utilizing AI to enhance customer service interactions.
