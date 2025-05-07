@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Comment;
+use App\Models\DonationRequest;
 
 class CommentSeeder extends Seeder
 {
@@ -12,10 +13,11 @@ class CommentSeeder extends Seeder
      */
     public function run(): void
     {
-        // Generate 20 top-level comments
-        Comment::factory()->count(10)->create();
-
-        // Generate 10 replies for random comments
-        Comment::factory()->count(5)->withParentComment()->create();
+        // Attach comments to each donation request
+        DonationRequest::all()->each(function ($donationRequest) {
+            Comment::factory()->count(5)->create([
+                'donation_request_id' => $donationRequest->id,
+            ]);
+        });
     }
 }
