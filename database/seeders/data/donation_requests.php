@@ -89,6 +89,25 @@
                 "featured" => true
             ],
             [
+                "title" => "The Nap Trap",
+                "description" => "A nap café where you can book a quiet pod, recharge for 30 minutes,
+                 and leave with a lavender eye pillow and less existential dread. Includes ambient noise
+                 machines, soft lighting, and a no-questions-asked napping policy. We’re fundraising to
+                 build pods, hire dream whisperers, and stock 500 thread-count sheets.",
+                "status" => "Active",
+                "funding_goal" => 15000,
+                "featured" => true
+            ],
+            [
+                "title" => "Dog & Doughnut",
+                "description" => "The city’s first café designed for dogs and their humans. Pup-sized doughnuts,
+                 human-sized lattes, and a fenced-in patio where everyone can chase their tails. We need support
+                 to build custom canine seating, stock our treat bar, and make every tail wag on arrival.",
+                "status" => "Complete",
+                "funding_goal" => 10000,
+                "featured" => true
+            ],
+            [
                 "title" => "Freelancer Collaboration Platform",
                 "description" => "A platform connecting freelancers for project collaboration and networking
                  Features include shared task boards, payment protection, portfolio hosting, and mentorship
@@ -141,6 +160,17 @@
                 "featured" => false
             ],
             [
+                "title" => "Rural Broadband Co-op",
+                "description" => "This project aims to establish a cooperative-owned broadband network that brings
+                 high-speed internet access to underserved rural communities. Reliable internet is no longer a
+                 luxury—it's essential for education, healthcare, and economic opportunity. Funding will help
+                 install key infrastructure, support member outreach, and provide low-cost plans for families
+                 in need.",
+                "status" => "Active",
+                "funding_goal" => 150000,
+                "featured" => true
+            ],
+            [
                 "title" => "Zero-Waste Household Refill Station",
                 "description" => "We're launching a neighborhood-based refill station where customers can bring their own
                  containers to stock up on everyday essentials like hand soap, laundry detergent, shampoo, and pantry
@@ -151,6 +181,4 @@
                 "featured" => false
             ],
     ];
-
-
 
