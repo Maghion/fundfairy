@@ -58,12 +58,11 @@ Route::middleware('guest')->group(function () {
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::post('/bookmark/{donationRequest}', [BookmarkController::class, 'store'])
-    ->name('bookmarks.store');
-Route::post('/bookmark/{donationRequest}', [BookmarkController::class, 'store'])
-    ->middleware('auth')
-    ->name('bookmarks.store');
+//Route::post('/bookmark/{donationRequest}', [BookmarkController::class, 'store'])
+//    ->name('bookmarks.store');
 Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmarks.index');
+Route::post('/bookmark/{donationRequest}', [BookmarkController::class, 'store'])
+    ->name('bookmarks.store');
 
 
 

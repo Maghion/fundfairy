@@ -2,7 +2,7 @@
 return [
     [
         'user_id' => 1,
-        'donation_request_id' => 3,
+        'donation_requests_id' => 3,
         'amount' => 25.00,
         'message' => 'Keep up the great work!',
         'anon' => false,
@@ -10,7 +10,7 @@ return [
     ],
     [
         'user_id' => 2,
-        'donation_request_id' => 5,
+        'donation_requests_id' => 5,
         'amount' => 50.00,
         'message' => 'Happy to support this cause!',
         'anon' => true,
@@ -18,7 +18,7 @@ return [
     ],
     [
         'user_id' => 3,
-        'donation_request_id' => 7,
+        'donation_requests_id' => 7,
         'amount' => 100.00,
         'message' => 'Thank you for all that you do!',
         'anon' => false,
@@ -26,7 +26,7 @@ return [
     ],
     [
         'user_id' => 4,
-        'donation_request_id' => 2,
+        'donation_requests_id' => 2,
         'amount' => 15.00,
         'message' => 'Every little bit helps. Keep going!',
         'anon' => true,
@@ -34,7 +34,7 @@ return [
     ],
     [
         'user_id' => 5,
-        'donation_request_id' => 8,
+        'donation_requests_id' => 8,
         'amount' => 75.00,
         'message' => 'Honored to contribute to this amazing cause.',
         'anon' => false,
@@ -42,7 +42,7 @@ return [
     ],
     [
         'user_id' => 6,
-        'donation_request_id' => 4,
+        'donation_requests_id' => 4,
         'amount' => 30.00,
         'message' => 'Sending love and support!',
         'anon' => true,
@@ -50,7 +50,7 @@ return [
     ],
     [
         'user_id' => 7,
-        'donation_request_id' => 1,
+        'donation_requests_id' => 1,
         'amount' => 20.00,
         'message' => 'Hope this helps in some way!',
         'anon' => false,
@@ -58,7 +58,7 @@ return [
     ],
     [
         'user_id' => 8,
-        'donation_request_id' => 6,
+        'donation_requests_id' => 6,
         'amount' => 40.00,
         'message' => 'Great initiative, happy to help!',
         'anon' => true,
@@ -66,7 +66,7 @@ return [
     ],
     [
         'user_id' => 9,
-        'donation_request_id' => 9,
+        'donation_requests_id' => 9,
         'amount' => 90.00,
         'message' => 'Thank you for making a difference!',
         'anon' => false,
@@ -74,7 +74,7 @@ return [
     ],
     [
         'user_id' => 10,
-        'donation_request_id' => 10,
+        'donation_requests_id' => 10,
         'amount' => 10.00,
         'message' => 'Wishing you all the best!',
         'anon' => true,

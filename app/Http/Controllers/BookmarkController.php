@@ -13,16 +13,22 @@ class BookmarkController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-//        $bookmarks = $user->bookmarkedDonationRequests()->paginate(5);
-            $bookmarks = [];
+        $bookmarks = $user->bookmarkedDonationRequests()->paginate(5);
+
 
         return view ('donation-request.bookmarked')->with('bookmarks', $bookmarks);
     }
 
     public function store(DonationRequest $donationRequest)
     {
-        Auth::user()->bookmarkedDonationRequests()->syncWithoutDetaching($donationRequest->id);
 
-        return back()->with('success', 'Job bookmarked successfully.');
+        $user = Auth::user();
+        if($user->bookmarkedDonationRequests()->where('donation_requests_id', $donationRequest->id)->exists()){
+            return back()->with('error', 'Already bookmarked');
+        } else {
+            $user->bookmarkedDonationRequests()->attach($donationRequest->id);
+            return back()->with('success', 'Bookmarked');
+        }
+
     }
 }
