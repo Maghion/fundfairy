@@ -16,8 +16,9 @@
     </p>
     <div class="text-sm text-gray-500 mt-2">
         <strong>Reviewer:</strong>
-        {{ $businessReview->user->first_name }} {{ $businessReview->user->last_name }}
-{{-- Display Anonymous if the user's name is not set --}}
+        {{-- Display Anonymous if the user's name is not set --}}
+        {{ $businessReview->user->first_name ?? 'Anonymous'  }} {{ $businessReview->user->last_name ?? '' }}
+
     </div>
 
     <div class="flex justify-center mt-4 space-x-4">
