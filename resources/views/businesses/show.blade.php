@@ -48,7 +48,7 @@
                     <h2 class="text-xl font-semibold mb-4">Customer Reviews</h2>
                     @if($business->businessReviews->count())
                         <div class="space-y-6">
-                            @foreach($business->businessReviews as $review)
+                            @foreach($businessReviews as $review)
 {{--                                <div class="border-b pb-4 mb-4">--}}
 {{--                                    <h3 class="text-lg font-bold text-blue-600">{{ $review->title }}</h3>--}}
 {{--                                    <wa-rating label="Rating" readonly value="{{ $review->rating }}"></wa-rating>--}}
@@ -62,6 +62,10 @@
                         <p class="text-gray-500 italic">No reviews yet for this business.</p>
                     @endif
                 </section>
+{{--                <div class="mt-4">{{ $businessReview->links() }}</div>--}}
+                <div class="mt-6">
+                    {{ $businessReviews->withQueryString()->links('pagination::tailwind') }}
+                </div>
             </div>
 
         </div>
