@@ -22,7 +22,7 @@ class AdminEditorUserSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('password'),
             'biography' => 'Marc is the instructor for the Web Technologies Capstone course. He teaches a variety of technologies and software tools including PHP, Java, HTML, CSS, JavaScript, Python, WordPress, Shopify, Figma.',
-            'avatar' => 'avatars/no_avatar.png',
+            'avatar' => 'avatars/default-avatar.png',
         ]);
 
         $marc->assignRole('Admin');
