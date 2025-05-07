@@ -161,7 +161,11 @@
             ],
             [
                 "title" => "Rural Broadband Co-op",
-                "description" => "This project aims to establish a cooperative-owned broadband network that brings high-speed internet access to underserved rural communities. Reliable internet is no longer a luxury—it's essential for education, healthcare, and economic opportunity. Funding will help install key infrastructure, support member outreach, and provide low-cost plans for families in need.",
+                "description" => "This project aims to establish a cooperative-owned broadband network that brings
+                 high-speed internet access to underserved rural communities. Reliable internet is no longer a
+                 luxury—it's essential for education, healthcare, and economic opportunity. Funding will help
+                 install key infrastructure, support member outreach, and provide low-cost plans for families
+                 in need.",
                 "status" => "Active",
                 "funding_goal" => 150000,
                 "featured" => true
