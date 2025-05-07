@@ -21,7 +21,7 @@ class  BusinessReviewController extends Controller
      */
     public function index():View{
         $title = "All Reviews";
-        $reviews = BusinessReview::all();
+        $reviews = BusinessReview::paginate(12);
         return view('business-review.index', compact('title', 'reviews'));
 
     }
