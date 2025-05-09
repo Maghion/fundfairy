@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\Donation;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
 
 class DonationRequest extends Model
 {
@@ -38,6 +40,11 @@ class DonationRequest extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function bookmarkedByUsers(): belongsToMany
+    {
+        return $this->belongsToMany(User::class, 'donation_request_user_bookmark')->withTimestamps();
     }
 }
 

@@ -12,8 +12,8 @@
             <x-fund-fairy-nav-link :active="request()->is('donation-request')" url="/donation-request" icon="donate">Donate</x-fund-fairy-nav-link>
             <x-fund-fairy-nav-link :active="request()->is('about')" url="/about">About</x-fund-fairy-nav-link>
             @auth
-                <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved">Bookmarks</x-fund-fairy-nav-link>
-{{--                <form method="POST" action="{{ route('logout') }}">--}}
+                <x-fund-fairy-nav-link :active="request()->is('bookmarks')" url="{{ route('bookmarks.index') }}">Bookmarks</x-fund-fairy-nav-link>
+                {{--                <form method="POST" action="{{ route('logout') }}">--}}
 {{--                    @csrf--}}
 {{--                    <button type="submit" class="hover:underline" style="background-color: transparent; ">--}}
 {{--                        Logout--}}
@@ -71,7 +71,7 @@
        <x-fund-fairy-nav-link :active="request()->is('about')" url="/about"  :mobile="true">About</x-fund-fairy-nav-link>
 
    @auth
-           <x-fund-fairy-nav-link :active="request()->is('businesses/saved')" url="/businesses/saved"  :mobile="true">Bookmarks</x-fund-fairy-nav-link>
+           <x-fund-fairy-nav-link :active="request()->is('bookmarks')" url="{{ route('bookmarks.index') }}" :mobile="true">Bookmarks</x-fund-fairy-nav-link>
            <x-fund-fairy-nav-link :active="request()->is('about')" url="/dashboard"  :mobile="true">Dashboard</x-fund-fairy-nav-link>
            <form method="POST" action="{{ route('logout') }}">
                @csrf

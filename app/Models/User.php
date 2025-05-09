@@ -102,4 +102,10 @@ class User extends Authenticatable
         return $this->hasMany(Testimonial::class);
     }
 
+    public function bookmarkedDonationRequests(): BelongsToMany
+    {
+        return $this->belongsToMany(DonationRequest::class, 'donation_request_user_bookmark', 'user_id', 'donation_requests_id');
+
+    }
+
 }
