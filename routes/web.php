@@ -16,6 +16,8 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Middleware\LogRequest;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookmarkController;
+
 
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
@@ -98,6 +100,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 });
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/bookmark', [BookmarkController::class, 'index'])->name('bookmarks.index');
+Route::post('/bookmark/{donationRequest}', [BookmarkController::class, 'store'])
+    ->name('bookmarks.store');
 
 
 //Route::get('/about', function () {
