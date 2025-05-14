@@ -12,6 +12,11 @@
         >
             @csrf
             @method("PUT")
+            <input type="hidden" name="business_id" value="{{ old('business_id', $businessReview->business_id) }}">
+
+            {{--            <input type="hidden" name="business_id" value="{{ old('business_id', $business->id) }}">--}}
+
+            {{--            <input type="hidden" name="business_id" :value="old{{ $business->id }}">--}}
             <x-inputs.text
                 id="title"
                 name="title"
