@@ -84,7 +84,7 @@ class  BusinessReviewController extends Controller
         // Check if the user is authorized on hold
 
         $this->authorize('update', $businessReview);
-        $title = 'Edit Single Business Review';
+        $title = 'Edit Business Review';
 
         return view('business-review.edit', compact('businessReview', 'title'));
     }
@@ -102,13 +102,16 @@ class  BusinessReviewController extends Controller
             'title' => 'required|string|max:255',
             'rating' => 'required|string:active, pending',
             'comment' => 'required|string|max:255',
+            'business_id' => 'required|exists:businesses,id',
 
         ]);
 
         $this->authorize('update', $businessReview);
         $businessReview->update($validatedData);
         //give this page
-        return redirect()->route('businesses.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
+        return redirect()->route('businesses.show', $validatedData['business_id'])
+            ->with('success', 'The Business Review was updated successfully!');
+//        return redirect()->route('businesses.show', $businessReview->id)->with('success', 'The Business Review was updated successfully!');
 
     }
 
