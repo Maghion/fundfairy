@@ -48,11 +48,11 @@ class UserController extends Controller
             'biography'=>'required|string|max:255',
             'avatar'=>'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'phone_number'=>'nullable|string|max:255',
-            'role'=>'required|string|max:255',
+            'role'=>'required|in:subscriber,user,premium,admin',
             //'created_at'=>'required|string|max:255',
 
         ]);
-      
+
         if ($request->hasFile('avatar')) {
             $path = $request->file('avatar')->store('avatars', 'public');
             $validatedData['avatar'] = $path;
