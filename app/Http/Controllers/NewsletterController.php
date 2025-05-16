@@ -21,8 +21,19 @@ class NewsletterController extends Controller
 //validation and unique email
 
         $validatedData = $request->validate([
-            'email' => 'required|string|max:255',
-        ]);
+            'email' => 'required|email|max:255',
+    ]);
+        // check existing subscriber
+        $existingSubscriber = User::where('email', $validatedData['email'])
+            ->where('role', 'subscriber')
+            ->first();
+
+        if ($existingSubscriber) {
+            return redirect()->back()
+                ->withErrors(['email' => 'This email is already subscribed.'])
+                ->withInput();
+        }
+
 
         $validatedData['first_name'] = '';
         $validatedData['last_name'] = '';
