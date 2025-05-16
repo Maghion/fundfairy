@@ -9,6 +9,9 @@
                     Create a User
                 </x-fund-fairy-button-link>
             </div>
+            <div class="mt-4">
+                {{ $users->links() }}
+            </div>
             <div class="-mx-(--page-padding) mt-8 flex overflow-x-auto">
                 <div class="grow px-(--page-padding)">
                     <table class="min-w-full text-left text-sm/6 whitespace-nowrap text-zinc-950">
@@ -48,12 +51,12 @@
                         @empty
                             No users Found
                         @endforelse
-                        <div class="mt-4">
-                            {{ $users->links() }}
-                        </div>
+
                         </tbody>
                     </table>
+
                 </div>
+
             </div>
         </div>
     </div>

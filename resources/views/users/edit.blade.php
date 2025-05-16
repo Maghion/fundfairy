@@ -77,5 +77,5 @@
 
             </form>
         </div>
-    @endif @endauth
+
 </x-fund-fairy-layout>
